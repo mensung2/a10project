@@ -7,51 +7,101 @@
     <title>Document</title>
 </head>
 <style>
+    body {
+        margin: 0%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
     .container {
         display: grid;
-        grid-gap: 10px;
-        grid-template-columns: 400px 400px 1fr;
-        grid-template-rows: 50px 40px 100px 40px 380px;
-        height: 100vh;
         grid-template-areas: 
-        'nav nav nav'    
-        'back back back'
-        'search search search'     
-        'list list list'
-        'poster1 poster2 poster3';
-    }
+        'header header header header'
+        'back back back back'
+        'search search search search'
+        'search search search search'
+        'list list list list'
+        'screen1 screen2 screen3 screen3'
+        'screen4 screen5 screen3 screen3'
+        'screen6 screen6 screen7 screen8'
+        'screen6 screen6 screen9 screen10'
+        'footer footer footer footer';
 
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(7,1fr);
+        height: 100vh;
+        grid-gap: 10px;
+    }
     .container div {
         background-color: skyblue;
         padding: 20px;
         border: 1px solid black;
     }
-    .nav {
-        grid-area: nav;
-    }
-    .back {
-        grid-area: back;
-    }
-    .search {
-        grid-area: search;
-    }
-    .list {
-        grid-area: list;
-    }
-    .poster1 {
-        grid-area: poster1;
-    }
-    .poster2 {
-        grid-area: poster2;
-    }
-    .poster3 {
-        grid-area: poster3;
-    }
-   
-
-   
-
-   
+   .header {
+    grid-area: header;
+   }
+   .back {
+    grid-area: back;
+   }
+   .search {
+    grid-area: search;
+    height: 60px;
+   }
+   .list {
+    grid-area: list;
+   }
+   .screen1 {
+    grid-area: screen1;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen2 {
+    grid-area: screen2;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen3 {
+    grid-area: screen3;
+    height: 750px;
+    border-radius: 6px;
+   }
+   .screen4 {
+    grid-area: screen4;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen5 {
+    grid-area: screen5;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen6 {
+    grid-area: screen6;
+    height: 750px;
+    border-radius: 6px;
+   }
+   .screen7 {
+    grid-area: screen7;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen8 {
+    grid-area: screen8;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen9 {
+    grid-area: screen9;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .screen10 {
+    grid-area: screen10;
+    height: 350px;
+    border-radius: 6px;
+   }
+   .footer {
+    grid-area: footer;
+   }
 </style>
 
 <body>
@@ -63,13 +113,23 @@
         <article class="card-list">
         </article>
         <div class="container">
-            <div class="nav">nav</div>
-            <div class="back">back</div>
-            <div class="search">search</div>
-            <div class="list">list</div>
-            <div class="poster1">poster1</div>
-            <div class="poster2">poster2</div>
-            <div class="poster3">poster3</div>
+            <div class="header">
+
+            </div>
+            <div class="back"></div>
+            <div class="search"></div>
+            <div class="list"></div>
+            <div class="screen1"></div>
+            <div class="screen2"></div>
+            <div class="screen3"></div>
+            <div class="screen4"></div>
+            <div class="screen5"></div>
+            <div class="screen6"></div>
+            <div class="screen7"></div>
+            <div class="screen8"></div>
+            <div class="screen9"></div>
+            <div class="screen10"></div>
+            <div class="footer"></div>
         </div>
     </section>
 </body>
