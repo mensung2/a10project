@@ -5,12 +5,13 @@ const createDiv = (id, text) => {
   div.innerText = text;
   return div;
 };
-const makeDivObj = () => {
+
+const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
-  const headerDiv = createDiv("header", "");
-  const mainDiv = createDiv("main", "");
-  const ticketDiv = createDiv("ticket", "");
-  const footerDiv = createDiv("footer", "");
+  const headerDiv = createDiv("event-join-header", "");
+  const mainDiv = createDiv("event-join-main", "");
+  const ticketDiv = createDiv("event-join-ticket", "");
+  const footerDiv = createDiv("event-join-footer", "");
   return { containerDiv, headerDiv, mainDiv, ticketDiv, footerDiv };
 };
 //아스키 코드 생성기 A 65
@@ -57,8 +58,8 @@ const makeSeat = () => {
   return seat.innerHTML;
 };
 
-const renderPage = () => {
-  const divObj = makeDivObj();
+const renderJoinPage = () => {
+  const divObj = makeJoinDivObj();
   console.log(divObj);
   divObj.containerDiv.innerHTML = `
   ${(divObj.headerDiv.innerHTML = `<h1>Nav</h1>`)}
@@ -71,4 +72,4 @@ const renderPage = () => {
   `;
   document.body.appendChild(divObj.containerDiv);
 };
-renderPage();
+// renderJoinPage();

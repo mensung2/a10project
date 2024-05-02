@@ -34,36 +34,37 @@ body {
     gap: 10px;
     background-color: white;
   }
-}
-#main-seat {
-  margin-top: 40px;
-}
-.seat-container {
-  display: flex;
-}
-.seat-element {
-  display: flex;
-  width: 40px;
-  height: 39px;
-  font-weight: bold;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-.seat-en {
-  background-color: black;
-  color: white;
-}
-.VIP {
-  background: linear-gradient(180deg, #c76cf2 0%, #c2fefa 100%);
-}
-.R {
-  background: #ffe27b;
-}
-.S {
-  background: #f98c8c;
-}
-.A {
-  background-color: #dd5656;
+  #main-seat {
+    margin-top: 40px;
+  }
+
+  .seat-container {
+    display: flex;
+  }
+  .seat-element {
+    display: flex;
+    width: 40px;
+    height: 39px;
+    font-weight: bold;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  .seat-en {
+    background-color: black;
+    color: white;
+  }
+  .VIP {
+    background: linear-gradient(180deg, #c76cf2 0%, #c2fefa 100%);
+  }
+  .R {
+    background: #ffe27b;
+  }
+  .S {
+    background: #f98c8c;
+  }
+  .A {
+    background-color: #dd5656;
+  }
 }
