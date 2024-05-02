@@ -7,7 +7,7 @@ body {
   width: 1440px;
   margin: 0 auto;
   height: 95vh;
-  opacity: 0.8;
+  opacity: 1;
   #section-container {
     display: flex;
     justify-content: space-around;
