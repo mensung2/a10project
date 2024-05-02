@@ -6,19 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .container {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 400px 400px 1fr;
+        grid-template-rows: 50px 40px 100px 40px 380px;
+        height: 100vh;
+        grid-template-areas: 
+        'nav nav nav'    
+        'back back back'
+        'search search search'     
+        'list list list'
+        'poster1 poster2 poster3';
+    }
+
+    .container div {
+        background-color: skyblue;
+        padding: 20px;
+        border: 1px solid black;
+    }
+    .nav {
+        grid-area: nav;
+    }
+    .back {
+        grid-area: back;
+    }
+    .search {
+        grid-area: search;
+    }
+    .list {
+        grid-area: list;
+    }
+    .poster1 {
+        grid-area: poster1;
+    }
+    .poster2 {
+        grid-area: poster2;
+    }
+    .poster3 {
+        grid-area: poster3;
+    }
+   
+
+   
+
+   
+</style>
 
 <body>
-    <form>
-        <input class="search-txt" type="text" placeholder="영화 제목을 입력하세요..." />
-        <button class="search-btn" type="submit">검색</button>
-    </form>
-    <section class="card-list">
-        <!-- <div class="movie-card" id="278" container>
-            <img src="https://image.tmdb.org/t/p/w300/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg" alt="The Shawshank Redemption"/>
-            <h3>The Shawshank Redemption</h3>
-            <p>Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.</p>
-            <p>Rating: 8.704</p>
-        </div> -->
+    <section>
+        <!-- <form>
+            <input class="search-txt" type="text" placeholder="영화 제목을 입력하세요..." />
+            <button class="search-btn" type="submit">검색</button>
+        </form> -->
+        <article class="card-list">
+        </article>
+        <div class="container">
+            <div class="nav">nav</div>
+            <div class="back">back</div>
+            <div class="search">search</div>
+            <div class="list">list</div>
+            <div class="poster1">poster1</div>
+            <div class="poster2">poster2</div>
+            <div class="poster3">poster3</div>
+        </div>
     </section>
 </body>
 
