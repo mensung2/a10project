@@ -5,24 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event</title>
     <link rel="stylesheet" href="./css/ticket-container.css" />
+    <link href="./css/eventJoin.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="print-btn">
-      <div class="frontside">티켓 뽑기</div>
-      <div class="topside"></div>
-    </div>
-    <article class="ticket-container">
-      <div class="ticket-printer front">
-        <div class="ticket-counter">
-          <div class="count-box">
-            <p class="count">100</p>
-            <div class="bottomside"></div>
-          </div>
-          <p class="unit">장</p>
-        </div>
+    <section class="event-area">
+      <div class="print-btn">
+        <div class="frontside">티켓 뽑기</div>
+        <div class="topside"></div>
       </div>
-      <div class="ticket-printer back"></div>
-      <img class="ticket" src="./img/SVG/rainbow-ticket.svg" alt="" />
-    </article>
+      <article class="ticket-container">
+        <div class="ticket-printer front">
+          <div class="ticket-counter">
+            <div class="count-box">
+              <p class="count">0</p>
+              <div class="bottomside"></div>
+            </div>
+            <p class="unit">장</p>
+          </div>
+        </div>
+        <div class="ticket-printer back"></div>
+        <img class="ticket" src="./img/SVG/rainbow-ticket.svg" alt="" />
+      </article>
+    </section>
   </body>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+  <script src="./javascript/eventJoin.js"></script>
+  <!-- <script src="./javascript/eventGuide.js"></script> -->
+  <script src="./javascript/firebase.js"></script>
+  <script src="./javascript/ticket.js"></script>
 </html>
