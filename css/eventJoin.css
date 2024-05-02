@@ -1,11 +1,13 @@
 @import "./reset.css";
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: #2d2d2d;
-  height: 100vh;
 }
 
 #event-join-container {
+  z-index: 10;
   margin: 0 auto;
   width: 1440px;
   height: 100%;
@@ -13,13 +15,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background: repeating-linear-gradient(
+  background-color: #2d2d2d;
+  /* background: repeating-linear-gradient(
     90deg,
     #3d3d3d,
     #3d3d3d 30px,
     #968b8b 0,
     #968b8b 80px
-  );
+  ); */
   #main {
     display: flex;
     flex-direction: column;
@@ -44,7 +47,7 @@ body {
   .seat-element {
     display: flex;
     width: 40px;
-    height: 39px;
+    height: 40px;
     font-weight: bold;
     flex-direction: column;
     justify-content: center;
