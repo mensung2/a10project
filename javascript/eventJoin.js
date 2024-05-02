@@ -17,7 +17,6 @@ const makeJoinDivObj = () => {
 //아스키 코드 생성기 A 65
 const askiiCodeGenerator = (askiiNum) => {
   const askiiString = String.fromCharCode(askiiNum);
-
   return askiiString;
 };
 
@@ -62,14 +61,15 @@ const renderJoinPage = () => {
   const divObj = makeJoinDivObj();
   console.log(divObj);
   divObj.containerDiv.innerHTML = `
-  ${(divObj.headerDiv.innerHTML = `<h1>Nav</h1>`)}
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
   <div id = "main-seat">${makeSeat()}</div>
   `)}
-  ${(divObj.ticketDiv.innerHTML = `<h1>ticket Image</h1>`)}
-  ${(divObj.footerDiv.innerHTML = `<h1>Footer</h1>`)}
   `;
-  document.body.appendChild(divObj.containerDiv);
+
+  const eventArea = document.querySelector(".event-area");
+  document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
+  // document.body.appendChild(divObj.containerDiv);
 };
-// renderJoinPage();
+renderJoinPage();
+
