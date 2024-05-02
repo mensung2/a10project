@@ -9,23 +9,89 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="detailContainer">
       <header>헤더</header>
-      <h1>영화 정보</h1>
+      <h1 id="firstTitle">영화 정보</h1>
       <section id="detail">
         <!--영화 정보 불러오는 곳-->
       </section>
-      <section id="review">
-        <h1>리뷰 한줄평</h1>
-        <div id="reviewContainer">
-            <div id="revBox">
-                <h3>Nickname</h3>
-                <p></p>
-            </div>
-            <div id="revBox">2</div>
-            <div id="revBox">3</div>
-            <div id="revBox">4</div>
+      <div id="middleBlock">
+        <h1 id="secondTitle">리뷰 한줄평</h1>
+        <div class="writeBox">
+            <button id="writeRv">리뷰 작성하기</button>       
+            <button id="writeRvBack"></button>            
         </div>
+
+      </div>
+      <section id="reviewContainer">
+        <ul id="review">
+            <li id="revBox">
+                <div class="revTop">
+                    <h3 id="revName">Nickname</h3>
+                    <h3 id="starPoint">★ 4.7</h3>                    
+                </div>               
+                <div class="revMid">
+                    <p>딱 기대했던 만큼의 재미!!</p>
+                </div>
+                <div class="revBase">
+                    <p>298</p>
+                    <div class="revBtn">
+                        <button class="modiBtn">수정</button>
+                        <button class="delBtn">삭제</button>                    
+                    </div>
+                </div>
+            </li>
+            <li id="revBox">
+                <div class="revTop">
+                    <h3 id="revName">Nickname</h3>
+                    <h3 id="starPoint">★ 4.7</h3>                    
+                </div>               
+                <div class="revMid">
+                    <p>딱 기대했던 만큼의 재미!!</p>
+                </div>
+                <div class="revBase">
+                    <p>298</p>
+                    <div class="revBtn">
+                        <button class="modiBtn">수정</button>
+                        <button class="delBtn">삭제</button>                    
+                    </div>
+                </div>
+            </li>
+            <li id="revBox">
+                <div class="revTop">
+                    <h3 id="revName">Nickname</h3>
+                    <h3 id="starPoint">★ 4.7</h3>                    
+                </div>               
+                <div class="revMid">
+                    <p>딱 기대했던 만큼의 재미!!</p>
+                </div>
+                <div class="revBase">
+                    <p>298</p>
+                    <div class="revBtn">
+                        <button class="modiBtn">수정</button>
+                        <button class="delBtn">삭제</button>                    
+                    </div>
+                </div>
+            </li>
+            <li id="revBox">
+                <div class="revTop">
+                    <h3 id="revName">Nickname</h3>
+                    <h3 id="starPoint">★ 4.7</h3>                    
+                </div>               
+                <div class="revMid">
+                    <p>딱 기대했던 만큼의 재미!!</p>
+                </div>
+                <div class="revBase">
+                    <p>298</p>
+                    <div class="revBtn">
+                        <button class="modiBtn">수정</button>
+                        <button class="delBtn">삭제</button>                    
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <img>
+        <img>
       </section>
     </div>
     <script src="./javascript/detailReview.js"></script>

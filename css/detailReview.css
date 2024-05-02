@@ -13,7 +13,7 @@ body {
   margin: 0 auto;
 }
 
-.container {
+.detailContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,7 +29,7 @@ header {
   text-indent: 20px;
 }
 
-h1 {
+#firstTitle {  
   font-size: 40px;
   background-color: bisque;
   height: 130px;
@@ -37,6 +37,15 @@ h1 {
   align-items: center;
   text-indent: 20px;
 }
+
+#secondTitle {  
+    font-size: 40px;
+    background-color: bisque;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    text-indent: 20px;
+  }
 
 #detail {
   width: 1440px;
@@ -88,18 +97,145 @@ h1 {
   }
 }
 
-.review {
+#middleBlock {
+    display: flex;
+    justify-content: space-between;
+
+    #secondTitle {  
+        background-color: bisque;
+        height: 130px;
+        font-size: 40px;
+        display: flex;
+        align-items: center;
+        text-indent: 20px;
+    }
+
+    .writeBox{
+        position: relative;
+        margin-top: 40px;
+        right: 200px;
+    }
+
+    #writeRv {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        border-radius: 15px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    #writeRvBack {
+        position: absolute;
+        top: 15px;
+        width: 200px;
+        height: 50px;        
+        border: none;
+        border-radius: 15px;
+        background-color: #d79a00;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    
+}
+
+#reviewContainer {
   width: 1440px;
-  height: 830px;
-  background-color: aquamarine;
+  height: 690px;
+  background-color: rgb(116, 84, 133);
 
-  .reviewContainer {
-    height: 695px;
-    background-color: aqua;
+  #review {
+    width: 1400px;
+    height: 240px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(151, 93, 119);
+    display: flex;
+    justify-content: space-between;
 
-    #revbox {
+    #revBox {
         width: 320px;
         height: 240px;
+        border-radius: 10px;
+        background-color: #F2F2F2;
+        color: black;
+
+        .revTop {
+            display:flex;
+            margin: 0 20px 0 20px;            
+            align-items: center;
+            justify-content: space-between;           
+            width: 280px;
+            height: 68px;
+            border-bottom: 1px solid #787878;
+            font-size: 20px;
+
+            #revName {
+                text-indent: 40px;
+            }
+
+            #starPoint {
+                margin-right: 10px;
+                width: 70px;
+                height: 32px;
+                border-radius: 15px;
+                background-color: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        
+        .revMid {
+            display:flex;
+            width: 280px;
+            height: 120px;
+            font-size: 12px;
+            text-indent: 10px;
+            margin: 0 20px 0 20px; 
+            padding-top: 10px;
+            border-bottom: 1px solid #787878;
+        }
+
+        .revBase {
+            display:flex;
+            align-items: center;
+            justify-content: space-between;           
+            margin: 0 20px 0 20px;
+            width: 280px;
+            height: 40px;
+            color: #787878;
+
+
+            .revBtn {
+                display: flex;
+                justify-content: space-between; 
+                width: 105px;
+                height: 30px;
+
+                .modiBtn {
+                    width: 50px;                    
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 12px;
+                    background-color: #787878;
+                    color: white;
+                }
+                .delBtn {
+                    width: 50px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 12px;    
+                    background-color: #f16168;    
+                    color: white;
+                }
+            }
+        }
     }
   }
 }
