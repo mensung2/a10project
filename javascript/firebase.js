@@ -67,3 +67,9 @@ const updateData = async () => {
 // console.log(getData());
 
 readData();
+
+// db.collection("event").doc("kwak").set({
+//   username: "kwak",
+//   description: "hello",
+//   date: new Date(),
+// });
