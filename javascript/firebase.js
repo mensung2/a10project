@@ -12,32 +12,40 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Firebase POST data
-// const postData = async () => {
-//   const docRef = await db.collection("event").doc("tickets");
-//   docRef.get().then((doc) => {
-//     console.log(doc.data());
-//   });
-//   db.collection("event")
-//   .get()
-//   .then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//       console.log(doc.id, " => ", doc.data());
-//       currTime = doc.data()["units"];
-//       console.log(currTime);
-//       db.collection("cat")
-//         .doc("wakeUpTime")
-//         .update({ time: Number(currTime) + 1 });
-//     });
-//   });
-// };
-const getData = async () => {
+const postData = async (dbCollection, dataName, data) => {
+  const docRef = await db.collection(dbCollection).doc(dataName).set({
+    movies: data,
+    date: new Date(),
+  });
+  localStorage.setItem("postData", true);
+
+  return docRef;
+  // docRef.get().then((doc) => {
+  //   console.log(doc.data());
+  // });
+  // db.collection("event")
+  //   .get()
+  //   .then(function (querySnapshot) {
+  //     querySnapshot.forEach(function (doc) {
+  //       console.log(doc.id, " => ", doc.data());
+  //       currTime = doc.data()["units"];
+  //       console.log(currTime);
+  //       db.collection("cat")
+  //         .doc("wakeUpTime")
+  //         .update({ time: Number(currTime) + 1 });
+  //     });
+  //   });
+};
+// export default postData;
+
+const getData = async (dbcollection, docName, dataName) => {
   let result;
   await db
-    .collection("event")
-    .doc("tickets")
+    .collection(dbcollection)
+    .doc(docName)
     .get()
     .then((doc) => {
-      result = doc.data()["units"];
+      result = doc.data()[dataName];
     });
   // docRef.get().then((doc) => {
   //   data = doc.data()["units"];
@@ -66,6 +74,7 @@ const updateData = async () => {
 
 // console.log(getData());
 
+<<<<<<< HEAD
 readData();
 
 // db.collection("event").doc("kwak").set({
@@ -73,3 +82,6 @@ readData();
 //   description: "hello",
 //   date: new Date(),
 // });
+=======
+// readData();
+>>>>>>> 3e8a37fc130be1c6129d335c9cb505e6fbba2396

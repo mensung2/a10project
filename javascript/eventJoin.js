@@ -71,4 +71,4 @@ const renderJoinPage = () => {
   document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   // document.body.appendChild(divObj.containerDiv);
 };
-// renderJoinPage();
+renderJoinPage();
