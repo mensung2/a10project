@@ -11,11 +11,6 @@ fetch('https://api.themoviedb.org/3/movie/now_playing?region=KR&language=ko-KR&p
     .then(response => console.log(response))
     .catch(err => console.error(err));
 
-const searchBox = document.querySelector(".search-txt");
-const searchButton = document.querySelector(".search-btn");
-const cardList = document.querySelector(".card-list");
-const movieCards = document.querySelectorAll('.movie-card');
-
 
 // TMDB API에서 데이터를 가져오는 함수를 정의합니다.
 async function fetchMovieData(searchText) {
@@ -52,10 +47,10 @@ document.querySelector('.search-btn').addEventListener('click', async function (
 });
 
 
-
-
-
-
+// const searchBox = document.querySelector(".search-txt");
+// const searchButton = document.querySelector(".search-btn");
+// const cardList = document.querySelector(".card-list");
+// const movieCards = document.querySelectorAll('.movie-card');
 
 // searchButton.addEventListener('click', async function (event) {
 //     event.preventDefault();
@@ -74,7 +69,13 @@ document.querySelector('.search-btn').addEventListener('click', async function (
 //         const img = document.createElement("img");
 //         img.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
 
-//         div.append(img);
+//         const title = document.createElement("h3");
+//         title.innerText = data.title;
+
+//         const overview = document.createElement("p");
+//         overview.innerText = data.overview;
+
+//         div.append(img, title, overview,);
 //         cardList.append(div);
 //     });
 // });
