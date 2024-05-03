@@ -64,7 +64,6 @@ const makeSeat = () => {
   }
   postData("event", "tickets", eventObj, "seats");
   getData("event", "tickets", "A0").then((data) => console.log(data));
-  console.log("eventObj", eventObj);
   return seat.innerHTML;
 };
 
