@@ -50,8 +50,8 @@ const makeSeat = () => {
       }
       eventObj = {
         ...eventObj,
-        [askiiChar + j]: {
-          seatId: askiiChar + j,
+        [askiiChar + String(j).padStart(2, 0)]: {
+          seatId: askiiChar + String(j).padStart(2, 0),
           ticketGrade: seatGrade,
           isSold: false,
         },
@@ -59,6 +59,8 @@ const makeSeat = () => {
     }
     seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
+
+  console.log("1".padStart(2, 0));
   getData("event", "tickets", "seats").then((data) =>
     data
       ? console.log("티켓 데이터가 존재합니다.")
