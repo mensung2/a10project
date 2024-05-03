@@ -20,7 +20,7 @@ body {
   align-items: center;
 }
 .sold {
-  background-color: #8d8d8d;
+  background-color: #8d8d8d !important;
 }
 .event-area {
   overflow: hidden;

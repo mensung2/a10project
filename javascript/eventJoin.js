@@ -42,11 +42,9 @@ const makeSeat = () => {
     for (let j = 0; j < seatRow; j++) {
       if (j === 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
-        seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${askiiChar}</div>`;
       }
       if (j !== 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
-        seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${j}</div>`;
       }
       eventObj = {
         ...eventObj,
@@ -57,10 +55,7 @@ const makeSeat = () => {
         },
       };
     }
-    seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-
-  console.log("1".padStart(2, 0));
   getData("event", "tickets", "seats").then((data) =>
     data
       ? console.log("티켓 데이터가 존재합니다.")
@@ -68,19 +63,43 @@ const makeSeat = () => {
         makeSeat(),
         console.log("재귀"))
   );
+};
+
+const getSeat = async () => {
+  const seat = createDiv("seat", "");
+  const seatData = await getData("event", "tickets", "seats");
+  const seatKeys = Object.keys(seatData).sort((a, b) => a.localeCompare(b));
+  seatKeys.forEach((seat) => {
+    const { seatId, ticketGrade, isSold } = seatData[seat];
+    console.log(seatId, ticketGrade, isSold);
+    let seatColumnHTML = "";
+
+    const seatRow = seat[0];
+    const seatCol = [...seat].slice(1).join("");
+    if (isSold === true) {
+      seatColumnHTML += `<div id="${seatId}" class = "${ticketGrade} seat-element sold">${seatCol}</div>`;
+    } else if (seatCol === "00") {
+      seatColumnHTML += `<div id="${seatId}" class = "seat-standard seat-element">${seatRow}</div>`;
+    } else {
+      seatColumnHTML += `<div id="${seatId}" class = "${ticketGrade} seat-element">${seatCol}</div>`;
+    }
+    seat.innerHTML += seatColumnHTML;
+  });
   return seat.innerHTML;
 };
-const renderJoinPage = () => {
+const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
   console.log(divObj);
-  divObj.containerDiv.innerHTML = `
-  ${(divObj.mainDiv.innerHTML = `
-  <div id = "main-screen">무대</div>
-  <div id = "main-seat">${makeSeat()}</div>
-  `)}
-  `;
-  const eventArea = document.querySelector(".event-area");
-  document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
-  // document.body.appendChild(divObj.containerDiv);
+  await getSeat().then(data => {
+    console.log(data);
+  });
+  // divObj.containerDiv.innerHTML = `
+  // ${(divObj.mainDiv.innerHTML = `
+  // <div id = "main-screen">무대</div>
+  // <div id = "main-seat">${getSeat()}</div>
+  // `)}
+  // `;
+  // const eventArea = document.querySelector(".event-area");
+  // document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
 };
 renderJoinPage();

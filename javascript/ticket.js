@@ -34,10 +34,13 @@ const generateTicketData = async () => {
     })
     .then((seat) => {
       getData("event", "tickets", "seats").then((data) => {
+        console.log('data[seat].seatId', data[seat].seatId)
         data[seat].isSold = true;
         const soldSeat = document.getElementById(data[seat].seatId);
+        console.log(soldSeat);
         soldSeat.classList.add("sold");
         postData("event", "tickets", data, "seats");
+        
       });
       console.log(seat);
     });
