@@ -27,7 +27,8 @@
         <ul id="review">
         </ul>
         <div class="arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="67" viewBox="0 0 48 67" fill="none">
+            <div class="arrow1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="67" viewBox="0 0 48 67" fill="none">
                 <g filter="url(#filter0_d_43_747)">
                 <path d="M41.8071 60.042L25.269 33.2686L41.8071 6.50966L6.23643 33.2686L41.8071 60.042Z" fill="white"/>
                 </g>
@@ -42,7 +43,9 @@
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_43_747" result="shape"/>
                 </filter>
                 </defs>
-            <svg xmlns="http://www.w3.org/2000/svg" width="62" height="81" viewBox="0 0 62 81" fill="none">
+            </div>
+            <div class="arrow2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="62" height="81" viewBox="0 0 62 81" fill="none">
                 <g filter="url(#filter0_d_43_744)">
                 <path d="M13.1929 13.958L29.731 40.7314L13.1929 67.4903L48.7636 40.7314L13.1929 13.958Z" fill="white"/>
                 </g>
@@ -56,7 +59,8 @@
                 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_43_744"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_43_744" result="shape"/>
                 </filter>
-                </defs>    
+                </defs>     
+            </div>
         </div>
 
         <form name="writeRev" class="writeRev hidden" id="writeRev">
@@ -81,9 +85,9 @@
             내용 <input type="text" id="revContent" > 
           </ul>
         </form>
-        <form name="modiRevPrev" class="modiRevPrev hidden" action="">
+        <form name="modiRevPrev" class="modiRevPrev hidden">
             <ul class="modiRevPrevTop">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <svg id="modiRevPrev-backspace" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M14.8428 21.4062L9.79128 12.2305L14.8428 2.59645L2.49047 11.9999L14.8428 21.4062Z" fill="#2D2D2D"/>
                     <path d="M8.39028 14.1465H21.5366V9.8583H8.39028V14.1465Z" fill="#2D2D2D"/>
                     </svg>
@@ -92,12 +96,12 @@
                 <button type="submit" id="revConfirm">확인</button>
                 <button type="submit" id="revConfirmBack"></button>
             </ul>
-            <ul class="ModiRevNiPw">
+            <ul class="ModiRevPrevNiPw">
                 닉네임 <input type="text" id="nickName" name="Nickname">
                 비밀번호 <input type="text" id="passWord" name="Password">
             </ul>
         </form>
-        <form name="modiRev" class="modiRev" action="">
+        <form name="modiRev" class="modiRev hidden">
             <ul class="modiRevTop">
                 <svg id = "modiRev-backspace" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M14.8428 21.4062L9.79128 12.2305L14.8428 2.59645L2.49047 11.9999L14.8428 21.4062Z" fill="#2D2D2D"/>
@@ -107,13 +111,33 @@
                 <h2 id="modiRev-title">리뷰 수정하기</h2>
                 <button id="modiRev-modiBtn">리뷰 수정</button>
                 <button id="modiRev-modiBtnBack"></button>
-              </ul>
-              <ul class="modiRevPoint">
-                별점 <input type="number" id="starPoint"  min='1' max='10'>
-              </ul>
-              <ul class="modiRevContent">
+            </ul>
+            <ul class="ModiRevNiPw">
+                닉네임 <input type="text" id="nickName" name="Nickname">
+                비밀번호 <input type="text" id="passWord" name="Password">
+            </ul>
+            <ul class="modiRevPoint">
+                별점 <input type="number" id="revPoint"  min='1' max='10'>
+            </ul>
+            <ul class="modiRevContent">
                 내용 <input type="text" id="revContent" > 
-              </ul>
+            </ul>
+        </form>
+        <form name="delRev" class="delRev hidden">
+            <ul class="delRevTop">
+                <svg id="delRev-backspace" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M14.8428 21.4062L9.79128 12.2305L14.8428 2.59645L2.49047 11.9999L14.8428 21.4062Z" fill="#2D2D2D"/>
+                    <path d="M8.39028 14.1465H21.5366V9.8583H8.39028V14.1465Z" fill="#2D2D2D"/>
+                    </svg>
+                <p id="back">뒤로가기</p>
+                <h2 id="DRtitle">리뷰 삭제하기</h2>
+                <button type="submit" id="delConfirm">확인</button>
+                <button type="submit" id="delConfirmBack"></button>
+            </ul>
+            <ul class="delRevNiPw">
+                닉네임 <input type="text" id="nickName" name="Nickname">
+                비밀번호 <input type="text" id="passWord" name="Password">
+            </ul>
         </form>
       </section>
     </div>

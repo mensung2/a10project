@@ -1,7 +1,6 @@
 const getMoviesData = () => {
   const firebaseData = getData("event", "moviesDoc", "movies");
   firebaseData.then((data) => {
-   // console.log("data", data);
     loadThisMovie(data);
   });
 };
@@ -32,27 +31,6 @@ const clickRevRegist = () => {
   });
 };
 
-/////
-
-// const clickModiBtn = () => {
-//   const modiBtn = document.getElementById("modiBtn");
-//   console.log(modiBtn);
-//   modiBtn.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     modiRevPrev.classList.remove("hidden");
-//   })
-// }
-
-const clickModiRevBackSpace = () => {
-  const modiRevBackSpace = document.getElementById("modiRev-backspace");
-  modiRevBackSpace.addEventListener("click", (e) => {
-    e.preventDefault();
-    modiRevPrev.classList.add("hidden");
-    console.log(123);
-    // 질문
-  })
-}
-
 const clickConfirm = () => {
   const confirmBtn = document.getElementById("revConfirm");
   console.log(confirmBtn);
@@ -68,8 +46,6 @@ const clickEvents = () => {
   clickWriteRvButton();
   clickBackSpace();
   clickRevRegist();
-  //clickModiBtn();
-  clickModiRevBackSpace();
   clickConfirm();
 };
 
@@ -100,10 +76,6 @@ const loadThisMovie = (movies) => {
     }
   });
 };
-
-
-
-
 
 
 clickEvents();
