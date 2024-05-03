@@ -35,11 +35,6 @@ const getData = async () => {
   await db.collection("event").doc("tickets").get().then(doc => {
     result = doc.data()["units"];
   })
-  // docRef.get().then((doc) => {
-  //   data = doc.data()["units"];
-  //   ticketCounter.innerText = doc.data()["units"];
-  //   return data;
-  // });
   return result;
 };
 
@@ -54,7 +49,7 @@ const updateData = async () => {
 
   db.collection("event")
     .doc("tickets")
-    .update({ units: Number(data)-Number(1)});
+    .update({ units: Number(data)-Number(1) });
 
   const currData = await getData();
   console.log(currData);
