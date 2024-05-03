@@ -123,26 +123,26 @@
                 </defs>    
         </div>
 
-        <form name="writeRev" class="writeRev" action="">
+        <form name="writeRev" class="writeRev hidden" >
           <ul class="writeRevTop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg id = "writeRev-backspace" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M14.8428 21.4062L9.79128 12.2305L14.8428 2.59645L2.49047 11.9999L14.8428 21.4062Z" fill="#2D2D2D"/>
                 <path d="M8.39028 14.1465H21.5366V9.8583H8.39028V14.1465Z" fill="#2D2D2D"/>
                 </svg>
             <p id="back">뒤로가기</p>
             <h2 id="WRtitle">리뷰 작성하기</h2>
-            <button type="submit" id="revRegist">리뷰 등록</button>
-            <button type="submit" id="revRegistBack"></button>
+            <button id="revRegist">리뷰 등록</button>
+            <button id="revRegistBack"></button>
           </ul>
           <ul class="writeRevNiPw">
-            닉네임 <input type="text" id="nickName" name="Nickname">
-            비밀번호 <input type="text" id="passWord" name="Password">
+            닉네임 <input type="text" id="nickName" >
+            비밀번호 <input type="text" id="passWord" >
           </ul>
           <ul class="writeRevPoint">
-            별점 <input type="number" id="starPoint" name="point" min='1' max='10'>
+            별점 <input type="number" id="starPoint"  min='1' max='10'>
           </ul>
           <ul class="writeRevContent">
-            내용 <input type="text" id="revContent" name="review"> 
+            내용 <input type="text" id="revContent" > 
           </ul>
         </form>
         <form name="modiRevPrev" class="modiRevPrev" action="">
@@ -166,6 +166,12 @@
         </form>
       </section>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="../javascript/firebase.js"></script>
+
     <script src="./javascript/detailReview.js"></script>
   </body>
 </html>
