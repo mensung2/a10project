@@ -1,7 +1,7 @@
 const getMoviesData = () => {
   const firebaseData = getData("event", "moviesDoc", "movies");
   firebaseData.then((data) => {
-    console.log("data", data);
+   // console.log("data", data);
     loadThisMovie(data);
   });
 };
@@ -9,21 +9,20 @@ const getMoviesData = () => {
 const clickWriteRvButton = () => {
   const writeRv = document.getElementById("writeRv");
   const writeRev = document.getElementsByClassName("writeRev")[0];
-  console.log("writeRev", writeRev);
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.remove("hidden");
-    console.log("w", writeRv);
   });
 };
-const clickClickBackSpace = () => {
+
+const clickBackSpace = () => {
   const backSpace = document.getElementById("writeRev-backspace");
-  console.log("backSpace", backSpace);
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
   });
 };
+
 
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
@@ -33,12 +32,47 @@ const clickRevRegist = () => {
   });
 };
 
+/////
+
+const clickModiBtn = () => {
+  const modiBtn = document.getElementById("modiBtn");
+  console.log(modiBtn);
+  modiBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modiRevPrev.classList.remove("hidden");
+  })
+}
+
+const clickModiRevBackSpace = () => {
+  const modiRevBackSpace = document.getElementById("modiRev-backspace");
+  modiRevBackSpace.addEventListener("click", (e) => {
+    e.preventDefault();
+    modiRevPrev.classList.add("hidden");
+    console.log(123);
+    // 질문
+  })
+}
+
+const clickConfirm = () => {
+  const confirmBtn = document.getElementById("revConfirm");
+  console.log(confirmBtn);
+  confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modiRevPrev.classList.add("hidden");
+    /* 리뷰 수정하기에서 확인버튼 누르면 내용 수정 모달창이 뜨게 modiRev클래스 hidden 없애주기*/
+    modiRev.classList.remove("hidden");
+  })
+}
+
 const clickEvents = () => {
   clickWriteRvButton();
-  clickClickBackSpace();
+  clickBackSpace();
   clickRevRegist();
+  clickModiBtn();
+  clickModiRevBackSpace();
+  clickConfirm();
 };
-clickEvents();
+
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
@@ -67,4 +101,10 @@ const loadThisMovie = (movies) => {
   });
 };
 
+
+
+
+
+
+clickEvents();
 getMoviesData();

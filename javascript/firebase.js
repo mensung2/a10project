@@ -69,6 +69,10 @@ const getData = async (dbcollection, docName, dataName) => {
 //     }
 //   });
 // });
+
 db.collection("event").doc("tickets").get().then(data => {
   console.log(data.data());
 });
+
+//이벤트 자리에 무비 코멘트
+//티켓츠자리에 문서이름(댓글하나하나)
