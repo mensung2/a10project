@@ -135,7 +135,7 @@ header {
 
   #writeRvBack {
     position: absolute;
-    top: 15px;
+    top: 10px;
     width: 200px;
     height: 50px;
     border: none;
@@ -213,13 +213,21 @@ header {
         height: 40px;
         color: #787878;
 
+        .thumb {
+          padding-bottom: 5px;
+        }
+        .heart {
+          padding-right: 110px;
+          padding-bottom: 5px;
+        }
+
         .revBtn {
           display: flex;
           justify-content: space-between;
           width: 105px;
           height: 30px;
 
-          .modiBtn {
+          #modiBtn {
             width: 50px;
             border: none;
             border-radius: 10px;
@@ -227,7 +235,7 @@ header {
             background-color: #787878;
             color: white;
           }
-          .delBtn {
+          #delBtn {
             width: 50px;
             border: none;
             border-radius: 10px;
@@ -242,9 +250,13 @@ header {
 
   .arrow {
     display: flex;
-    padding-top: 75px;
+    padding-top: 105px;
     padding-left: 50px;
     justify-content: space-between;
+
+    .arrow2 {
+      padding-right: 50px;
+    }
   }
 
   .writeRev {
@@ -254,7 +266,6 @@ header {
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
-    /* display: none; */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -346,7 +357,7 @@ header {
       padding-bottom: 22px;
       padding-left: 25px;
 
-      #starPoint {
+      #revPoint {
         width: 240px;
         height: 40px;
         margin-left: 32px;
@@ -382,7 +393,6 @@ header {
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -441,7 +451,227 @@ header {
       }
     }
 
+    .ModiRevPrevNiPw {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding-left: 22px;
+      padding-right: 20px;
+
+      #nickName {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+      #passWord {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+    }
+  }
+
+  .modiRev {
+    width: 680px;
+    height: 415px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    .modiRevTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 20px 25px 25px;
+      position: relative;
+
+      #back {
+        font-size: 12px;
+        padding-right: 160px;
+      }
+
+      #modiRev-title {
+        color: #2d2d2d;
+        text-align: center;
+        font-family: Inter;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding-right: 245px;
+      }
+
+      #modiRev-modiBtn {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 25px;
+        left: 520px;
+        z-index: 1;
+      }
+      #modiRev-modiBtnBack {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d79a00;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 30px;
+        left: 520px;
+      }
+
+
+
+    }
     .ModiRevNiPw {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding-left: 22px;
+      padding-right: 20px;
+
+      #nickName {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+      #passWord {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+    }
+
+    .modiRevPoint {
+      display: flex;
+      font-size: 12px;
+      align-items: center;
+      padding-top: 22px;
+      padding-bottom: 22px;
+      padding-left: 25px;
+
+      #revPoint {
+        width: 240px;
+        height: 40px;
+        margin-left: 32px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+    }
+    .modiRevContent{
+      display: flex;
+      font-size: 12px;
+      padding-left: 24px;
+      padding-right: 20px;
+
+      #revContent {
+        width: 580px;
+        height: 200px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-left: 32px;
+        text-indent: 20px;
+      }
+    }
+  }
+
+  .delRev {
+    width: 680px;
+    height: 110px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .delRevTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      position: relative;
+
+      #back {
+        font-size: 12px;
+        padding-right: 160px;
+      }
+
+      #DRtitle {
+        color: #2d2d2d;
+        text-align: center;
+        font-family: Inter;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding-right: 245px;
+      }
+
+      #delConfirm {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 20px;
+        left: 520px;
+        z-index: 1;
+      }
+
+      #delConfirmBack {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d79a00;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 25px;
+        left: 520px;
+      }
+    }
+
+    .delRevNiPw {
       display: flex;
       justify-content: space-between;
       align-items: center;
