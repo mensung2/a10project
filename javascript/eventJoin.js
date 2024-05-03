@@ -62,18 +62,19 @@ const makeSeat = () => {
     }
     seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-  postData("event", "tickets", eventObj, "seats");
-  getData("event", "tickets", "A0").then((data) => console.log(data));
+  // 초기화
+  // postData("event", "tickets", eventObj, "seats"); 
   return seat.innerHTML;
 };
+const seatInfo = makeSeat();
 
-const renderJoinPage = () => {
+const renderJoinPage = (info) => {
   const divObj = makeJoinDivObj();
   console.log(divObj);
   divObj.containerDiv.innerHTML = `
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
-  <div id = "main-seat">${makeSeat()}</div>
+  <div id = "main-seat">${info}</div>
   `)}
   `;
 
@@ -81,4 +82,5 @@ const renderJoinPage = () => {
   document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   // document.body.appendChild(divObj.containerDiv);
 };
-renderJoinPage();
+
+renderJoinPage(seatInfo);

@@ -42,44 +42,27 @@ const getData = async (dbcollection, docName, dataName) => {
   return result;
 };
 
-const readData = async () => {
-  const data = await getData();
-  console.log(data);
-  return data;
-};
-
-const updateData = async () => {
-  const data = await getData();
-
-  db.collection("event")
-    .doc("tickets")
-    .update({ units: Number(data) - Number(1) });
-
-  const currData = await getData();
-  console.log(currData);
-};
-
 // console.log(getData());
 
 // readData();
 
-db.collection(컬렉션이름).onSnapshot((snapshot) => {
+// db.collection(컬렉션이름).onSnapshot((snapshot) => {
 
-    snapshot.docChanges().forEach((change) => {
-    if (change.type === "added") {
+//     snapshot.docChanges().forEach((change) => {
+//     if (change.type === "added") {
 
-      const post = change.doc.data();
-      const id = change.doc.id;
-      //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
-    } else if (change.type === "modified") {
+//       const post = change.doc.data();
+//       const id = change.doc.id;
+//       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+//     } else if (change.type === "modified") {
 
-    } else if (change.type === "removed") {
-      // 삭제된 데이터 처리
-      const postId = change.doc.id;
-      const postElement = document.getElementById(postId);
-      if (postElement) {
-        postElement.remove();
-      }
-    }
-  });
-});
+//     } else if (change.type === "removed") {
+//       // 삭제된 데이터 처리
+//       const postId = change.doc.id;
+//       const postElement = document.getElementById(postId);
+//       if (postElement) {
+//         postElement.remove();
+//       }
+//     }
+//   });
+// });
