@@ -31,7 +31,11 @@ const getData = async (dbcollection, docName, dataName) => {
     .doc(docName)
     .get()
     .then((doc) => {
-      result = doc.data()[dataName];
+      if(!doc.data()) {
+        return null;
+      } else {
+        result = doc.data()[dataName];
+      }
     });
   // docRef.get().then((doc) => {
   //   data = doc.data()["units"];
@@ -65,3 +69,6 @@ const getData = async (dbcollection, docName, dataName) => {
 //     }
 //   });
 // });
+db.collection("event").doc("tickets").get().then(data => {
+  console.log(data.data());
+});

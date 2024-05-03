@@ -5,9 +5,7 @@ const createDiv = (id, text) => {
   div.innerText = text;
   return div;
 };
-
 let eventObj = {};
-
 const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
   const headerDiv = createDiv("event-join-header", "");
@@ -21,7 +19,6 @@ const askiiCodeGenerator = (askiiNum) => {
   const askiiString = String.fromCharCode(askiiNum);
   return askiiString;
 };
-
 const checkSeatGrade = (seatCode) => {
   if (seatCode === "A5" || seatCode === "A6") return "VIP";
   if (seatCode[1] === "0") return "seat-standard";
@@ -71,21 +68,17 @@ const makeSeat = () => {
   );
   return seat.innerHTML;
 };
-const seatInfo = makeSeat();
-
-const renderJoinPage = (info) => {
+const renderJoinPage = () => {
   const divObj = makeJoinDivObj();
   console.log(divObj);
   divObj.containerDiv.innerHTML = `
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
-  <div id = "main-seat">${info}</div>
+  <div id = "main-seat">${makeSeat()}</div>
   `)}
   `;
-
   const eventArea = document.querySelector(".event-area");
   document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   // document.body.appendChild(divObj.containerDiv);
 };
-
-renderJoinPage(seatInfo);
+renderJoinPage();
