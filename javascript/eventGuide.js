@@ -24,4 +24,4 @@ const renderGuidPage = () => {
   `;
   document.body.appendChild(divObj.containerDiv);
 };
-renderGuidPage();
+// renderGuidPage();
