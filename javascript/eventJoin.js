@@ -6,6 +6,8 @@ const createDiv = (id, text) => {
   return div;
 };
 
+let eventObj = {};
+
 const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
   const headerDiv = createDiv("event-join-header", "");
@@ -22,8 +24,7 @@ const askiiCodeGenerator = (askiiNum) => {
 
 const checkSeatGrade = (seatCode) => {
   if (seatCode === "A5" || seatCode === "A6") return "VIP";
-  console.log("seatCode[-1]", seatCode[1]);
-  if (seatCode[1] === "0") return "seat-en";
+  if (seatCode[1] === "0") return "seat-standard";
   if (seatCode.includes("A")) return "R";
   if (
     seatCode.includes("B") ||
@@ -50,10 +51,20 @@ const makeSeat = () => {
         seatGrade = checkSeatGrade(askiiChar + j);
         seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${j}</div>`;
       }
+      eventObj = {
+        ...eventObj,
+        [askiiChar + j]: {
+          seatId: askiiChar + j,
+          ticketGrade: seatGrade,
+          isSold: false,
+        },
+      };
     }
     seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-  console.log("seat.innerHTMl", seat.innerHTML);
+  postData("event", "tickets", eventObj, "seats");
+  getData("event", "tickets", "A0").then((data) => console.log(data));
+  console.log("eventObj", eventObj);
   return seat.innerHTML;
 };
 
