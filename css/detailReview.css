@@ -13,6 +13,10 @@ body {
   margin: 0 auto;
 }
 
+.hidden {
+  display: none;
+}
+
 .detailContainer {
   display: flex;
   flex-direction: column;
@@ -29,7 +33,7 @@ header {
   text-indent: 20px;
 }
 
-#firstTitle {  
+#firstTitle {
   font-size: 40px;
   background-color: bisque;
   height: 130px;
@@ -38,14 +42,14 @@ header {
   text-indent: 20px;
 }
 
-#secondTitle {  
-    font-size: 40px;
-    background-color: bisque;
-    height: 130px;
-    display: flex;
-    align-items: center;
-    text-indent: 20px;
-  }
+#secondTitle {
+  font-size: 40px;
+  background-color: bisque;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  text-indent: 20px;
+}
 
 #detail {
   width: 1440px;
@@ -98,51 +102,49 @@ header {
 }
 
 #middleBlock {
+  display: flex;
+  justify-content: space-between;
+
+  #secondTitle {
+    background-color: bisque;
+    height: 130px;
+    font-size: 40px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    text-indent: 20px;
+  }
 
-    #secondTitle {  
-        background-color: bisque;
-        height: 130px;
-        font-size: 40px;
-        display: flex;
-        align-items: center;
-        text-indent: 20px;
-    }
+  .writeBox {
+    position: relative;
+    margin-top: 40px;
+    right: 200px;
+  }
 
-    .writeBox{
-        position: relative;
-        margin-top: 40px;
-        right: 200px;
-    }
+  #writeRv {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    background-color: #ffb701;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1;
+  }
 
-    #writeRv {
-        position: absolute;
-        width: 200px;
-        height: 50px;
-        border-radius: 15px;
-        border: none;
-        background-color: #ffb701;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        z-index: 1;
-    }
-
-    #writeRvBack {
-        position: absolute;
-        top: 15px;
-        width: 200px;
-        height: 50px;        
-        border: none;
-        border-radius: 15px;
-        background-color: #d79a00;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    
+  #writeRvBack {
+    position: absolute;
+    top: 15px;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 15px;
+    background-color: #d79a00;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
 
 #reviewContainer {
@@ -159,83 +161,310 @@ header {
     justify-content: space-between;
 
     #revBox {
-        width: 320px;
-        height: 240px;
-        border-radius: 10px;
-        background-color: #F2F2F2;
-        color: black;
+      width: 320px;
+      height: 240px;
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      color: black;
 
-        .revTop {
-            display:flex;
-            margin: 0 20px 0 20px;            
-            align-items: center;
-            justify-content: space-between;           
-            width: 280px;
-            height: 68px;
-            border-bottom: 1px solid #787878;
-            font-size: 20px;
+      .revTop {
+        display: flex;
+        margin: 0 20px 0 20px;
+        align-items: center;
+        justify-content: space-between;
+        width: 280px;
+        height: 68px;
+        border-bottom: 1px solid #787878;
+        font-size: 20px;
 
-            #revName {
-                text-indent: 40px;
-            }
-
-            #starPoint {
-                margin-right: 10px;
-                width: 70px;
-                height: 32px;
-                border-radius: 15px;
-                background-color: #FFFFFF;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        #revName {
+          text-indent: 10px;
         }
-        
-        .revMid {
-            display:flex;
-            width: 280px;
-            height: 120px;
+
+        #starPoint {
+          margin-right: 10px;
+          width: 70px;
+          height: 32px;
+          border-radius: 15px;
+          background-color: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .revMid {
+        display: flex;
+        width: 280px;
+        height: 120px;
+        font-size: 12px;
+        text-indent: 10px;
+        margin: 0 20px 0 20px;
+        padding-top: 10px;
+        border-bottom: 1px solid #787878;
+      }
+
+      .revBase {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 20px 0 20px;
+        width: 280px;
+        height: 40px;
+        color: #787878;
+
+        .revBtn {
+          display: flex;
+          justify-content: space-between;
+          width: 105px;
+          height: 30px;
+
+          .modiBtn {
+            width: 50px;
+            border: none;
+            border-radius: 10px;
             font-size: 12px;
-            text-indent: 10px;
-            margin: 0 20px 0 20px; 
-            padding-top: 10px;
-            border-bottom: 1px solid #787878;
+            background-color: #787878;
+            color: white;
+          }
+          .delBtn {
+            width: 50px;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            background-color: #f16168;
+            color: white;
+          }
         }
+      }
+    }
+  }
 
-        .revBase {
-            display:flex;
-            align-items: center;
-            justify-content: space-between;           
-            margin: 0 20px 0 20px;
-            width: 280px;
-            height: 40px;
-            color: #787878;
+  .arrow {
+    display: flex;
+    padding-top: 75px;
+    padding-left: 50px;
+    justify-content: space-between;
+  }
 
+  .writeRev {
+    width: 680px;
+    height: 420px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+    /* display: none; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-            .revBtn {
-                display: flex;
-                justify-content: space-between; 
-                width: 105px;
-                height: 30px;
+    .writeRevTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 20px 25px 25px;
+      position: relative;
 
-                .modiBtn {
-                    width: 50px;                    
-                    border: none;
-                    border-radius: 10px;
-                    font-size: 12px;
-                    background-color: #787878;
-                    color: white;
-                }
-                .delBtn {
-                    width: 50px;
-                    border: none;
-                    border-radius: 10px;
-                    font-size: 12px;    
-                    background-color: #f16168;    
-                    color: white;
-                }
-            }
-        }
+      #back {
+        font-size: 12px;
+        padding-right: 160px;
+      }
+
+      #WRtitle {
+        color: #2d2d2d;
+        text-align: center;
+        font-family: Inter;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding-right: 245px;
+      }
+
+      #revRegist {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 25px;
+        left: 520px;
+        z-index: 1;
+      }
+      #revRegistBack {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d79a00;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 30px;
+        left: 520px;
+      }
+    }
+
+    .writeRevNiPw {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding-left: 22px;
+      padding-right: 20px;
+
+      #nickName {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+      #passWord {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+    }
+
+    .writeRevPoint {
+      display: flex;
+      font-size: 12px;
+      align-items: center;
+      padding-top: 22px;
+      padding-bottom: 22px;
+      padding-left: 25px;
+
+      #starPoint {
+        width: 240px;
+        height: 40px;
+        margin-left: 32px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+    }
+
+    .writeRevContent {
+      display: flex;
+      font-size: 12px;
+      padding-left: 24px;
+      padding-right: 20px;
+
+      #revContent {
+        width: 580px;
+        height: 200px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        margin-left: 32px;
+        text-indent: 20px;
+      }
+    }
+  }
+
+  .modiRevPrev {
+    width: 680px;
+    height: 110px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .modiRevPrevTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      position: relative;
+
+      #back {
+        font-size: 12px;
+        padding-right: 160px;
+      }
+
+      #MRtitle {
+        color: #2d2d2d;
+        text-align: center;
+        font-family: Inter;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        padding-right: 245px;
+      }
+
+      #revConfirm {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 20px;
+        left: 520px;
+        z-index: 1;
+      }
+
+      #revConfirmBack {
+        position: absolute;
+        width: 140px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d79a00;
+        color: white;
+        font-size: 14px;
+        font-weight: normal;
+        top: 25px;
+        left: 520px;
+      }
+    }
+
+    .ModiRevNiPw {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      padding-left: 22px;
+      padding-right: 20px;
+
+      #nickName {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
+      #passWord {
+        width: 240px;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        background-color: #fff;
+        text-indent: 20px;
+      }
     }
   }
 }
