@@ -34,14 +34,14 @@ const clickRevRegist = () => {
 
 /////
 
-const clickModiBtn = () => {
-  const modiBtn = document.getElementById("modiBtn");
-  console.log(modiBtn);
-  modiBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    modiRevPrev.classList.remove("hidden");
-  })
-}
+// const clickModiBtn = () => {
+//   const modiBtn = document.getElementById("modiBtn");
+//   console.log(modiBtn);
+//   modiBtn.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     modiRevPrev.classList.remove("hidden");
+//   })
+// }
 
 const clickModiRevBackSpace = () => {
   const modiRevBackSpace = document.getElementById("modiRev-backspace");
@@ -68,7 +68,7 @@ const clickEvents = () => {
   clickWriteRvButton();
   clickBackSpace();
   clickRevRegist();
-  clickModiBtn();
+  //clickModiBtn();
   clickModiRevBackSpace();
   clickConfirm();
 };
