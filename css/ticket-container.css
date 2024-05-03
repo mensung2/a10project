@@ -133,7 +133,6 @@ body {
       top: -400px;
       /* animation-name: printingTicket; */
       animation-duration: 4s;
-      animation-fill-mode: forwards;
     }
   }
 }
@@ -158,6 +157,5 @@ body {
     top: 360px;
   }
   100% {
-    top: 360px;
   }
 }

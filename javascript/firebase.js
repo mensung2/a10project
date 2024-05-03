@@ -12,31 +12,17 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Firebase POST data
-const postData = async (dbCollection, dataName, data) => {
-  const docRef = await db.collection(dbCollection).doc(dataName).set({
-    movies: data,
-    date: new Date(),
-  });
-  localStorage.setItem("postData", true);
+const postData = async (dbCollection, dataName, data, key) => {
+  const docRef = await db
+    .collection(dbCollection)
+    .doc(dataName)
+    .set({
+      [key]: data,
+      date: new Date(),
+    });
 
   return docRef;
-  // docRef.get().then((doc) => {
-  //   console.log(doc.data());
-  // });
-  // db.collection("event")
-  //   .get()
-  //   .then(function (querySnapshot) {
-  //     querySnapshot.forEach(function (doc) {
-  //       console.log(doc.id, " => ", doc.data());
-  //       currTime = doc.data()["units"];
-  //       console.log(currTime);
-  //       db.collection("cat")
-  //         .doc("wakeUpTime")
-  //         .update({ time: Number(currTime) + 1 });
-  //     });
-  //   });
 };
-// export default postData;
 
 const getData = async (dbcollection, docName, dataName) => {
   let result;
@@ -55,33 +41,27 @@ const getData = async (dbcollection, docName, dataName) => {
   return result;
 };
 
-const readData = async () => {
-  const data = await getData();
-  console.log(data);
-  return data;
-};
-
-const updateData = async () => {
-  const data = await getData();
-
-  db.collection("event")
-    .doc("tickets")
-    .update({ units: Number(data) - Number(1) });
-
-  const currData = await getData();
-  console.log(currData);
-};
-
 // console.log(getData());
 
-<<<<<<< HEAD
-readData();
-
-// db.collection("event").doc("kwak").set({
-//   username: "kwak",
-//   description: "hello",
-//   date: new Date(),
-// });
-=======
 // readData();
->>>>>>> 3e8a37fc130be1c6129d335c9cb505e6fbba2396
+
+// db.collection(컬렉션이름).onSnapshot((snapshot) => {
+
+//     snapshot.docChanges().forEach((change) => {
+//     if (change.type === "added") {
+
+//       const post = change.doc.data();
+//       const id = change.doc.id;
+//       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+//     } else if (change.type === "modified") {
+
+//     } else if (change.type === "removed") {
+//       // 삭제된 데이터 처리
+//       const postId = change.doc.id;
+//       const postElement = document.getElementById(postId);
+//       if (postElement) {
+//         postElement.remove();
+//       }
+//     }
+//   });
+// });

@@ -6,6 +6,8 @@ const createDiv = (id, text) => {
   return div;
 };
 
+let eventObj = {};
+
 const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
   const headerDiv = createDiv("event-join-header", "");
@@ -22,8 +24,7 @@ const askiiCodeGenerator = (askiiNum) => {
 
 const checkSeatGrade = (seatCode) => {
   if (seatCode === "A5" || seatCode === "A6") return "VIP";
-  console.log("seatCode[-1]", seatCode[1]);
-  if (seatCode[1] === "0") return "seat-en";
+  if (seatCode[1] === "0") return "seat-standard";
   if (seatCode.includes("A")) return "R";
   if (
     seatCode.includes("B") ||
@@ -50,20 +51,35 @@ const makeSeat = () => {
         seatGrade = checkSeatGrade(askiiChar + j);
         seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${j}</div>`;
       }
+      eventObj = {
+        ...eventObj,
+        [askiiChar + j]: {
+          seatId: askiiChar + j,
+          ticketGrade: seatGrade,
+          isSold: false,
+        },
+      };
     }
     seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-  console.log("seat.innerHTMl", seat.innerHTML);
+  getData("event", "tickets", "seats").then((data) =>
+    data
+      ? console.log("티켓 데이터가 존재합니다.")
+      : (postData("event", "tickets", eventObj, "seats"),
+        makeSeat(),
+        console.log("재귀"))
+  );
   return seat.innerHTML;
 };
+const seatInfo = makeSeat();
 
-const renderJoinPage = () => {
+const renderJoinPage = (info) => {
   const divObj = makeJoinDivObj();
   console.log(divObj);
   divObj.containerDiv.innerHTML = `
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
-  <div id = "main-seat">${makeSeat()}</div>
+  <div id = "main-seat">${info}</div>
   `)}
   `;
 
@@ -71,4 +87,5 @@ const renderJoinPage = () => {
   document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   // document.body.appendChild(divObj.containerDiv);
 };
-renderJoinPage();
+
+renderJoinPage(seatInfo);
