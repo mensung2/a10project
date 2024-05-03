@@ -62,8 +62,11 @@ const makeSeat = () => {
     }
     seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-  postData("event", "tickets", eventObj, "seats");
-  getData("event", "tickets", "A0").then((data) => console.log(data));
+  getData("event", "tickets", "seats").then((data) =>
+    data
+      ? console.log("티켓 데이터가 존재합니다.")
+      : postData("event", "tickets", eventObj, "seats")
+  );
   return seat.innerHTML;
 };
 
