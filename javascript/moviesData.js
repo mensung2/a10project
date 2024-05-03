@@ -59,9 +59,31 @@ class Movies {
       }
 
       this.#parseMovieData(datas);
+
+      getData("event", "moviesDoc", "movies").then((data) =>
+        data
+          ? console.log("data가 있습니다.")
+          : (postData("event", "moviesDoc", this.#movies, "movies"),
+            this.#fetchMovieInfo(),
+            console.log("재귀"))
+      );
     } catch (error) {
       console.error("Error fetching movies:", error.message);
     }
+  }
+
+  #parseMovieData(data) {
+    // 아래는 기준 별 정렬
+    // results.sort((a, b) => b.popularity - a.popularity); 유명도
+    // results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)); 날짜
+    // vote average는 같은 값이 너무 많음.
+    data.forEach((item) => {
+      if (item.overview !== "" && item.poster_path !== null) {
+        this.#movies.set(item.poster_path, item);
+      }
+    });
+    this.#findMovieContext();
+    this.#makeContext();
   }
   #findMovieContext() {
     this.#movies.forEach((movieItem) => {
@@ -70,23 +92,6 @@ class Movies {
       });
       if (context) movieItem.context = context[0];
     });
-  }
-  #parseMovieData(results) {
-    // firbase에 넣을 땐 Custome된 Map객체는 post가 안된다.
-    const firebaseData = getData("event", "1kDF7HJYnREWTtSvS1ck", "movies");
-    // firebaseData.then((data) => console.log("data", data));
-    postData("event", "moviesDoc", results);
-    // 아래는 기준 별 정렬
-    // results.sort((a, b) => b.popularity - a.popularity); 유명도
-    // results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)); 날짜
-    // vote average는 같은 값이 너무 많음.
-    results.forEach((item) => {
-      if (item.overview !== "" && item.poster_path !== null) {
-        this.#movies.set(item.poster_path, item);
-      }
-    });
-    this.#findMovieContext();
-    this.#makeContext();
   }
 
   // 영화 리뷰를 생성 시 미리 생성된 영화 배열의 인덱스 값에 해당 context를 덮어씌어준다.

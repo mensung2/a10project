@@ -19,7 +19,9 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.sold {
+  background-color: #8d8d8d;
+}
 .event-area {
   overflow: hidden;
   margin-top: 100px;
@@ -29,7 +31,6 @@ body {
   width: 100%;
   max-width: 1440px;
   justify-content: center;
-  
 
   .print-btn {
     margin-top: 300px;
@@ -133,7 +134,6 @@ body {
       top: -400px;
       /* animation-name: printingTicket; */
       animation-duration: 4s;
-      animation-fill-mode: forwards;
     }
   }
 }
@@ -158,6 +158,5 @@ body {
     top: 360px;
   }
   100% {
-    top: 360px;
   }
 }
