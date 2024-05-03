@@ -12,31 +12,18 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Firebase POST data
-const postData = async (dbCollection, dataName, data) => {
-  const docRef = await db.collection(dbCollection).doc(dataName).set({
-    movies: data,
-    date: new Date(),
-  });
+const postData = async (dbCollection, dataName, data, key) => {
+  const docRef = await db
+    .collection(dbCollection)
+    .doc(dataName)
+    .set({
+      [key]: data,
+      date: new Date(),
+    });
   localStorage.setItem("postData", true);
 
   return docRef;
-  // docRef.get().then((doc) => {
-  //   console.log(doc.data());
-  // });
-  // db.collection("event")
-  //   .get()
-  //   .then(function (querySnapshot) {
-  //     querySnapshot.forEach(function (doc) {
-  //       console.log(doc.id, " => ", doc.data());
-  //       currTime = doc.data()["units"];
-  //       console.log(currTime);
-  //       db.collection("cat")
-  //         .doc("wakeUpTime")
-  //         .update({ time: Number(currTime) + 1 });
-  //     });
-  //   });
 };
-// export default postData;
 
 const getData = async (dbcollection, docName, dataName) => {
   let result;
