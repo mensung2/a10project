@@ -20,7 +20,6 @@ const postData = async (dbCollection, dataName, data, key) => {
       [key]: data,
       date: new Date(),
     });
-  localStorage.setItem("postData", true);
 
   return docRef;
 };
