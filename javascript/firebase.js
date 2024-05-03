@@ -74,14 +74,25 @@ const updateData = async () => {
 
 // console.log(getData());
 
-<<<<<<< HEAD
-readData();
-
-// db.collection("event").doc("kwak").set({
-//   username: "kwak",
-//   description: "hello",
-//   date: new Date(),
-// });
-=======
 // readData();
->>>>>>> 3e8a37fc130be1c6129d335c9cb505e6fbba2396
+
+db.collection(컬렉션이름).onSnapshot((snapshot) => {
+
+    snapshot.docChanges().forEach((change) => {
+    if (change.type === "added") {
+
+      const post = change.doc.data();
+      const id = change.doc.id;
+      //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+    } else if (change.type === "modified") {
+
+    } else if (change.type === "removed") {
+      // 삭제된 데이터 처리
+      const postId = change.doc.id;
+      const postElement = document.getElementById(postId);
+      if (postElement) {
+        postElement.remove();
+      }
+    }
+  });
+});
