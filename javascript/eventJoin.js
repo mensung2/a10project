@@ -72,4 +72,3 @@ const renderJoinPage = () => {
   // document.body.appendChild(divObj.containerDiv);
 };
 renderJoinPage();
-
