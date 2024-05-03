@@ -1,0 +1,54 @@
+@import "./reset.css";
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2d2d2d;
+  color: white;
+}
+
+/* 상단 비어놓는 영역(임의 색상 지정) */
+nav {
+  width: 1440px;
+  height: 200px;
+  background-color: white;
+}
+
+/* 영화 장르 */
+h2 {
+  margin-top: 100px;
+  line-height: 100px;
+  font-size: 40px;
+  font-weight: bold;
+  padding-left: 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1440px;
+  height: 600px;
+}
+
+.card {
+  width: 320px;
+  height: 550px;
+  margin: 0 20px;
+}
+
+#cardImg {
+  background-image: cover;
+  background-position: center;
+  border-radius: 40px;
+  width: 320px;
+  height: 500px;
+  margin-bottom: 20px;
+}
+
+#movieTitle {
+  font-size: 24px;
+  text-align: start;
+  font-weight: bold;
+}

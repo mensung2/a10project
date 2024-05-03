@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
+
+body {
+  background-color: #2d2d2d;
+  font-family: "Noto Sans KR", sans-serif;
+  color: white;
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header {
+  width: 1440px;
+  height: 200px;
+  display: flex;
+  background-color: pink;
+  font-size: 40px;
+  align-items: center;
+  text-indent: 20px;
+}
+
+#firstTitle {  
+  font-size: 40px;
+  background-color: bisque;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  text-indent: 20px;
+}
+
+#secondTitle {  
+    font-size: 40px;
+    background-color: bisque;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    text-indent: 20px;
+  }
+
+#detail {
+  width: 1440px;
+  height: 745px;
+  background-color: rgb(233, 101, 123);
+
+  .movie_card {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #poster {
+    margin-left: 100px;
+    width: 400px;
+    height: 600px;
+  }
+
+  .infoBox {
+    width: 720px;
+    height: 600px;
+    margin-left: 80px;
+
+    #title {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    #score {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    #genre {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    #releaseDate {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    #content {
+      font-size: 18px;
+      margin-top: 120px;
+      line-height: 200%;
+    }
+  }
+}
+
+#middleBlock {
+    display: flex;
+    justify-content: space-between;
+
+    #secondTitle {  
+        background-color: bisque;
+        height: 130px;
+        font-size: 40px;
+        display: flex;
+        align-items: center;
+        text-indent: 20px;
+    }
+
+    .writeBox{
+        position: relative;
+        margin-top: 40px;
+        right: 200px;
+    }
+
+    #writeRv {
+        position: absolute;
+        width: 200px;
+        height: 50px;
+        border-radius: 15px;
+        border: none;
+        background-color: #ffb701;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    #writeRvBack {
+        position: absolute;
+        top: 15px;
+        width: 200px;
+        height: 50px;        
+        border: none;
+        border-radius: 15px;
+        background-color: #d79a00;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    
+}
+
+#reviewContainer {
+  width: 1440px;
+  height: 690px;
+  background-color: rgb(116, 84, 133);
+
+  #review {
+    width: 1400px;
+    height: 240px;
+    margin: 0 20px 0 20px;
+    background-color: rgb(151, 93, 119);
+    display: flex;
+    justify-content: space-between;
+
+    #revBox {
+        width: 320px;
+        height: 240px;
+        border-radius: 10px;
+        background-color: #F2F2F2;
+        color: black;
+
+        .revTop {
+            display:flex;
+            margin: 0 20px 0 20px;            
+            align-items: center;
+            justify-content: space-between;           
+            width: 280px;
+            height: 68px;
+            border-bottom: 1px solid #787878;
+            font-size: 20px;
+
+            #revName {
+                text-indent: 40px;
+            }
+
+            #starPoint {
+                margin-right: 10px;
+                width: 70px;
+                height: 32px;
+                border-radius: 15px;
+                background-color: #FFFFFF;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        
+        .revMid {
+            display:flex;
+            width: 280px;
+            height: 120px;
+            font-size: 12px;
+            text-indent: 10px;
+            margin: 0 20px 0 20px; 
+            padding-top: 10px;
+            border-bottom: 1px solid #787878;
+        }
+
+        .revBase {
+            display:flex;
+            align-items: center;
+            justify-content: space-between;           
+            margin: 0 20px 0 20px;
+            width: 280px;
+            height: 40px;
+            color: #787878;
+
+
+            .revBtn {
+                display: flex;
+                justify-content: space-between; 
+                width: 105px;
+                height: 30px;
+
+                .modiBtn {
+                    width: 50px;                    
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 12px;
+                    background-color: #787878;
+                    color: white;
+                }
+                .delBtn {
+                    width: 50px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 12px;    
+                    background-color: #f16168;    
+                    color: white;
+                }
+            }
+        }
+    }
+  }
+}
+
+/* .movie_card {
+    width: 800px;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px auto 40px auto;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(26, 26, 26);
+    color: white;
+  
+    #poster {
+      border-radius: 10px;
+      width: 350px;
+    }
+  
+    h3 {
+      font-weight: bold;
+      font-size: 20px;
+      padding-top: 10px;
+      line-height: 120%;
+    }
+  
+    #score {
+      padding-top: 10px;
+      font-size: 12px;
+      color: rgb(255, 237, 43)
+    }
+  
+    #content {
+      padding-top: 10px;
+      font-size: 10px;
+      line-height: 140%;
+      color:rgb(125, 125, 125)
+    }
+
+    box {
+        display: flex;
+        flex-direction: row;
+    }
+  } */

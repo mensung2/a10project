@@ -32,9 +32,18 @@ const db = firebase.firestore();
 // };
 const getData = async () => {
   let result;
-  await db.collection("event").doc("tickets").get().then(doc => {
-    result = doc.data()["units"];
-  })
+  await db
+    .collection("event")
+    .doc("tickets")
+    .get()
+    .then((doc) => {
+      result = doc.data()["units"];
+    });
+  // docRef.get().then((doc) => {
+  //   data = doc.data()["units"];
+  //   ticketCounter.innerText = doc.data()["units"];
+  //   return data;
+  // });
   return result;
 };
 
@@ -42,14 +51,14 @@ const readData = async () => {
   const data = await getData();
   console.log(data);
   return data;
-}
+};
 
-const updateData = async () => {  
+const updateData = async () => {
   const data = await getData();
 
   db.collection("event")
     .doc("tickets")
-    .update({ units: Number(data)-Number(1) });
+    .update({ units: Number(data) - Number(1) });
 
   const currData = await getData();
   console.log(currData);
