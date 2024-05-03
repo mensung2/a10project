@@ -73,8 +73,8 @@ class Movies {
   }
   #parseMovieData(results) {
     // firbase에 넣을 땐 Custome된 Map객체는 post가 안된다.
-    const firebaseData = getData("event", "1kDF7HJYnREWTtSvS1ck", "movies");
-    // firebaseData.then((data) => console.log("data", data));
+    const firebaseData = getData("event", "moviesDoc", "movies");
+    firebaseData.then((data) => console.log("data", data));
     postData("event", "moviesDoc", results);
     // 아래는 기준 별 정렬
     // results.sort((a, b) => b.popularity - a.popularity); 유명도
