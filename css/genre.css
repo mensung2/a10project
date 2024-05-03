@@ -38,7 +38,7 @@ h2 {
   margin: 0 20px;
 }
 
-#cardImg {
+.cardImg {
   background-image: cover;
   background-position: center;
   border-radius: 40px;
@@ -47,7 +47,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-#movieTitle {
+.movieTitle {
   font-size: 24px;
   text-align: start;
   font-weight: bold;
