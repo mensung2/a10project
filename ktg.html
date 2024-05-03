@@ -4,124 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/search.css">
     <title>Document</title>
 </head>
-<style>
-    body {
-        margin: 0%;
-        margin-left: 5%;
-        margin-right: 5%;
-        background-color: #2d2d2d;
-        color: white;
-    }
-    .container {
-        display: grid;
-        grid-template-areas: 
-        'header header header header'
-        'back back back back'
-        'search search search search'
-        'search search search search'
-        'list list list list'
-        'screen1 screen2 screen3 screen3'
-        'screen4 screen5 screen3 screen3'
-        'screen6 screen6 screen7 screen8'
-        'screen6 screen6 screen9 screen10'
-        'footer footer footer footer';
-
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(7,1fr);
-        height: 100vh;
-        grid-gap: 10px;
-    }
-    .container div {
-        background-color: skyblue;
-        padding: 20px;
-        border: 1px solid black;
-    }
-   .header {
-    grid-area: header;
-   }
-   .back {
-    grid-area: back;
-   }
-   .search {
-    grid-area: search;
-    height: 60px;
-    justify-content: center;
-    display: flex;
-    
-   }
-   .list {
-    grid-area: list;
-   }
-   .screen1 {
-    grid-area: screen1;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen2 {
-    grid-area: screen2;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen3 {
-    grid-area: screen3;
-    height: 750px;
-    border-radius: 6px;
-   }
-   .screen4 {
-    grid-area: screen4;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen5 {
-    grid-area: screen5;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen6 {
-    grid-area: screen6;
-    height: 750px;
-    border-radius: 6px;
-   }
-   .screen7 {
-    grid-area: screen7;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen8 {
-    grid-area: screen8;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen9 {
-    grid-area: screen9;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .screen10 {
-    grid-area: screen10;
-    height: 350px;
-    border-radius: 6px;
-   }
-   .footer {
-    grid-area: footer;
-   }
-</style>
 
 <body>
     <section>
         <article class="card-list">
         </article>
         <div class="container">
-            <div class="header">
-
+            <div class="nav">
+                <img class="logo" src="./img/logo_white.svg" alt="duckflix">
+                <ul class="category">
+                    <li><a href="#a">영화검색</a>
+                        <div class="underscore"></div>
+                    </li>
+                    <li><a href="#a">영화리뷰</a>
+                        <div class="underscore"></div>
+                    </li>
+                    <li><a href="#a">이벤트</a>
+                        <div class="underscore"></div>
+                    </li>
+                    <li><a href="#a">영화예매</a>
+                        <div class="underscore"></div>
+                    </li>
+                </ul>
+                <form class="search-bar">
+                    <input type="textarea" placeholder="영화 제목을 입력해주세요.">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
             </div>
             <div class="back">뒤로가기 버튼 들어가는 자리</div>
-            <div class="search"> <form>
-                <input class="search-txt" type="text" placeholder="Search..." />
-                <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form></div>
+            <div class="search">
+                <form class="search-bar">
+                    <input type="textarea" placeholder="영화 제목을 입력해주세요.">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
             <div class="list">인기높은순/인기낮은순/별점높은순/별점낮은순 들어가는 자리</div>
             <div class="screen1"></div>
             <div class="screen2"></div>
@@ -133,60 +52,51 @@
             <div class="screen8"></div>
             <div class="screen9"></div>
             <div class="screen10"></div>
-            <div class="footer"></div>
+            <div class="footer">
+                <img class="logo" src="./img/logo_yellow.svg" alt="duckflix">
+                <ul class="info">
+                    <li>
+                        <a href="#a">
+                            회사소개
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#a">
+                            채용정보
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#a">
+                            제휴/광고/부대사업 문의
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#a">
+                            이용약관
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#a">
+                            개인정보취급방침
+                        </a>
+                    </li>
+                    |
+                    <li>
+                        <a href="#a">
+                            고객센터
+                        </a>
+                    </li>
+                </ul>
+                <a>Github : Https://github.com/mensung2/a10project</a>
+            </div>
         </div>
     </section>
 </body>
 
-<script>
-    const options = {
-        method: 'GET',
-        headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMWNjN2I5YzczNmEzZDg4MWMwNzUyZTVhNzI1NWE5YiIsInN1YiI6IjY2MjViODQ3MjU4ODIzMDE3ZDkyMmM2NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.F6EJrBQXrAlZmikcp8C38XXxn8_UkWZ6PZw0NA9z0a0'
-        }
-    };
-
-    fetch('https://api.themoviedb.org/3/movie/now_playing?region=KR&language=ko-KR&page=1', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
-
-    const searchBox = document.querySelector(".search-txt");
-    const searchButton = document.querySelector(".search-btn");
-    const cardList = document.querySelector(".card-list");
-    const movieCards = document.querySelectorAll('.movie-card');
-
-    searchButton.addEventListener('click', async function (event) {
-        event.preventDefault();
-        const searchText = searchBox.value.trim().toLowerCase();
-        const res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchText}&region=KR&language=ko-KR&api_key=01cc7b9c736a3d881c0752e5a7255a9b`)
-            .then(response => response.json())
-            .catch(err => console.error(err));
-        console.log(res)
-        movieCards.innerHtml = '';
-        res.results.forEach(data => {
-            console.log(data);
-            const div = document.createElement("div");
-            div.setAttribute("class", "movie-card");
-            div.setAttribute("id", "data.id")
-
-            const img = document.createElement("img");
-            img.src = `https://image.tmdb.org/t/p/w300/${data.poster_path}`;
-
-            const title = document.createElement("h3");
-            title.innerText = data.title;
-
-            const overview = document.createElement("p");
-            overview.innerText = data.overview;
-
-            div.append(img, title, overview,);
-            cardList.append(div);
-        });
-    });
-
-
-
-</script>
+<script src="search.js"></script>
 
 </html>
