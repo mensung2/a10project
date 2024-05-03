@@ -7,11 +7,6 @@ body {
 .container {
   display: grid;
   grid-template-areas:
-    'nav nav nav nav'
-    'back back back back'
-    'search search search search'
-    'search search search search'
-    'list list list list'
     'screen1 screen2 screen3 screen3'
     'screen4 screen5 screen3 screen3'
     'screen6 screen6 screen7 screen8'
@@ -19,21 +14,19 @@ body {
     'footer footer footer footer';
 
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   height: 100vh;
   grid-gap: 10px;
   max-width: 1440px;
 }
 
-.container div {
+/* .container div {
   background-color: skyblue;
-  padding: 20px;
-  }
+} */
 
-.nav {
-  grid-area: nav;
+nav {
   width: 100%;
-  max-width: 1440px; 
+  max-width: 1440px;
   height: 100px;
   display: flex;
   justify-content: space-between;
@@ -132,79 +125,91 @@ body {
 }
 
 .back {
-  grid-area: back;
+  height: 200px;
+
+  a {
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0 30px;
+    height: 100px;
+    text-decoration: none;
+    font-size: 20px;
 }
-
-.search {
-  grid-area: search;
-  height: 60px;
-  justify-content: center;
-  display: flex;
-
 }
-
 .list {
-  grid-area: list;
+  height: 40px
+  
 }
 
 .screen1 {
   grid-area: screen1;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen2 {
   grid-area: screen2;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen3 {
   grid-area: screen3;
   height: 750px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen4 {
   grid-area: screen4;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen5 {
   grid-area: screen5;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen6 {
   grid-area: screen6;
   height: 750px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen7 {
   grid-area: screen7;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen8 {
   grid-area: screen8;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen9 {
   grid-area: screen9;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .screen10 {
   grid-area: screen10;
   height: 350px;
   border-radius: 6px;
+  padding: 20px;
 }
 
 .footer {
@@ -214,11 +219,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* margin-left: 64px; */ /* 이걸 없앴더니 좌측 공백이 사라져 임시로 주석처리 함. */
+  /* margin-left: 64px; */
   width: 100%;
-  max-width: 1440px; 
+  max-width: 1440px;
   height: 440px;
   background-color: #2d2d2d;
+  
 
   .logo {
     height: 50px;
@@ -294,4 +300,13 @@ body {
       font-size: 24px;
     }
   }
+}
+
+.screen1 img, .screen2 img, .screen3 img, .screen4 img, .screen5 img,
+.screen6 img, .screen7 img, .screen8 img, .screen9 img, .screen10 img {
+    /* 각각의 이미지를 부모 요소에 맞게 조정합니다. */
+    width: 100%; /* 부모 요소에 맞게 가로 너비를 조정합니다. */
+    height: 100%; /* 부모 요소에 맞게 세로 높이를 조정합니다. */
+    object-fit: fill; /* 이미지를 화면에 맞게 조절합니다. */
+    border-radius: 10px;
 }
