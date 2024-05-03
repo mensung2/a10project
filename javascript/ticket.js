@@ -25,20 +25,22 @@ const getRestTickets = async () => {
 };
 
 const generateTicketData = async () => {
-  getRestTickets().then((availableSeats) => {
-    console.log(availableSeats);
-    const randomIndex = Math.floor(Math.random() * availableSeats.length);
-    const seat = availableSeats[randomIndex];
-    return seat;
-  }).then(seat => {
-    getData("event", "tickets", "seats").then((data) => {
-      data[seat].isSold = true;
-      console.log(data[seat].isSold);
-      postData("event", "tickets", data, "seats");
+  getRestTickets()
+    .then((availableSeats) => {
+      console.log(availableSeats);
+      const randomIndex = Math.floor(Math.random() * availableSeats.length);
+      const seat = availableSeats[randomIndex];
+      return seat;
+    })
+    .then((seat) => {
+      getData("event", "tickets", "seats").then((data) => {
+        data[seat].isSold = true;
+        const soldSeat = document.getElementById(data[seat].seatId);
+        soldSeat.classList.add("sold");
+        postData("event", "tickets", data, "seats");
+      });
+      console.log(seat);
     });
-    console.log(seat);
-  });
-
 };
 
 generateTicketData();
