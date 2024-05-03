@@ -5,8 +5,11 @@ const getMoviesData = () => {
   });
 };
 
-const clickWriteRvButton = () => {
+const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효성 검사
   const writeRv = document.getElementById("writeRv");
+  if(!writeRv){
+    return;
+  }
   const writeRev = document.getElementsByClassName("writeRev")[0];
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
@@ -16,6 +19,9 @@ const clickWriteRvButton = () => {
 
 const clickBackSpace = () => {
   const backSpace = document.getElementById("writeRev-backspace");
+  if(!backSpace){
+    return;
+  }
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
@@ -25,6 +31,9 @@ const clickBackSpace = () => {
 
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
+  if(!revRegist){
+    return;
+  }
   revRegist.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
@@ -33,7 +42,9 @@ const clickRevRegist = () => {
 
 const clickConfirm = () => {
   const confirmBtn = document.getElementById("revConfirm");
-  console.log(confirmBtn);
+  if(!confirmBtn){
+    return;
+  }
   confirmBtn.addEventListener("click", (e) => {
     e.preventDefault();
     modiRevPrev.classList.add("hidden");
