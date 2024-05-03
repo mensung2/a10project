@@ -13,6 +13,10 @@ body {
   margin: 0 auto;
 }
 
+.hidden {
+  display: none;
+}
+
 .detailContainer {
   display: flex;
   flex-direction: column;
@@ -234,7 +238,7 @@ header {
         }
       }
     }
-  }  
+  }
 
   .arrow {
     display: flex;
@@ -250,13 +254,11 @@ header {
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
-    display: none;
+    /* display: none; */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    
 
     .writeRevTop {
       display: flex;
@@ -380,7 +382,7 @@ header {
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
-    /*display: none;*/
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -405,7 +407,7 @@ header {
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
-        line-height: normal;        
+        line-height: normal;
         padding-right: 245px;
       }
 
@@ -464,10 +466,8 @@ header {
         text-indent: 20px;
       }
     }
-
-    }
   }
-
+}
 
 /* .movie_card {
     width: 800px;

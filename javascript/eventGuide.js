@@ -23,7 +23,5 @@ const renderGuidPage = () => {
 
   `;
   document.body.appendChild(divObj.containerDiv);
-  const firebaseData = getData("event", "1kDF7HJYnREWTtSvS1ck", "movies");
-  firebaseData.then((data) => console.log("data", data));
 };
 // renderGuidPage();
