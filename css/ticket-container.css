@@ -1,7 +1,8 @@
 @import "./reset.css";
 @font-face {
-  font-family: 'TTHakgyoansimMulgyeolB';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMulgyeolB.woff2') format('woff2');
+  font-family: "TTHakgyoansimMulgyeolB";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMulgyeolB.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -33,13 +34,14 @@ body {
   align-items: center;
   width: 100%;
   max-width: 1440px;
+  min-width: 1000px;
   height: 300px;
   background-color: #423781;
   .ticket {
     z-index: 10;
   }
   > p {
-    font-family: 'TTHakgyoansimMulgyeolB';
+    font-family: "TTHakgyoansimMulgyeolB";
     position: relative;
     color: white;
     right: 200px;
@@ -58,13 +60,12 @@ body {
   z-index: 1;
   transform: rotateZ(90deg);
   p {
-    font-family: 'TTHakgyoansimMulgyeolB';
+    font-family: "TTHakgyoansimMulgyeolB";
     z-index: 10;
     font-size: 36px;
     margin-bottom: 40px;
   }
 }
-
 
 .ticket {
   opacity: 0;
@@ -83,7 +84,7 @@ body {
   animation-fill-mode: forwards;
 
   p {
-    font-family: 'TTHakgyoansimMulgyeolB';
+    font-family: "TTHakgyoansimMulgyeolB";
     z-index: 10;
     font-size: 36px;
     margin-bottom: 40px;
@@ -91,28 +92,27 @@ body {
 }
 
 .curr-ticket.grade-none {
-  background-image: url('../img/ticket/random-ticket.svg');
+  background-image: url("../img/ticket/random-ticket.svg");
 }
-
 
 .curr-ticket.grade-VIP,
 .ticket.grade-VIP {
-  background-image: url('../img/ticket/vip-ticket.svg');
+  background-image: url("../img/ticket/vip-ticket.svg");
   color: #d673ff;
 }
 .curr-ticket.grade-R,
 .ticket.grade-R {
-  background-image: url('../img/ticket/r-ticket.svg');
+  background-image: url("../img/ticket/r-ticket.svg");
   color: #cc9933;
 }
 .curr-ticket.grade-S,
 .ticket.grade-S {
-  background-image: url('../img/ticket/s-ticket.svg');
+  background-image: url("../img/ticket/s-ticket.svg");
   color: #9c1d1d;
 }
 .curr-ticket.grade-A,
 .ticket.grade-A {
-  background-image: url('../img/ticket/a-ticket.svg');
+  background-image: url("../img/ticket/a-ticket.svg");
   color: #9c1d1d;
 }
 
@@ -123,13 +123,35 @@ body {
   height: 1000px;
   width: 100%;
   max-width: 1440px;
+  min-width: 1000px;
   justify-content: center;
 
+  .info-area {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    height: 500px;
+  }
+
+  .my-rest-tickets {
+    font-family: "TTHakgyoansimMulgyeolB";
+    color:white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+  }
+
   .print-btn {
-    margin-top: 300px;
     cursor: pointer;
     position: relative;
-    margin-right: 100px;
 
     .topside {
       width: 300px;
@@ -241,7 +263,13 @@ body {
   height: 40px;
   padding: 12px;
   border-radius: 20px;
-  background: linear-gradient(180deg, #6958CC 0%, #6958CC 50.5%, #5C4DB2 50.51%, #362D69 100%);
+  background: linear-gradient(
+    180deg,
+    #6958cc 0%,
+    #6958cc 50.5%,
+    #5c4db2 50.51%,
+    #362d69 100%
+  );
 }
 
 .loading-bar {
@@ -252,21 +280,27 @@ body {
 }
 
 .loading-bar.front {
-  width:0;
-  animation-timing-function: cubic-bezier(.16,.66,.78,.59);
+  width: 0;
+  animation-timing-function: cubic-bezier(0.16, 0.66, 0.78, 0.59);
   animation-delay: 0.5s;
   animation-duration: 5.5s;
   animation-fill-mode: forwards;
   z-index: 2;
-  box-shadow: inset 0 6px rgba(0,0,0,0.3);
-  background: linear-gradient(168deg, #E1A2EA 1.54%, #BF5CF4 18.99%, #A36AF4 36.44%, #83BCFD 58.73%, #BAFAA6 82%, #E5FE67 98.48%);
- ;
+  box-shadow: inset 0 6px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
 }
 .loading-bar.back {
   width: 276px;
   background-color: #2d2d2d;
 }
-
 
 .modal-background {
   display: none;
@@ -277,7 +311,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 10;
   backdrop-filter: blur(5px);
 }
@@ -290,9 +324,9 @@ body {
   align-items: center;
   width: 400px;
   height: 300px;
-  background-color:#ffed4b;
+  background-color: #ffed4b;
   border-radius: 40px;
-  filter: drop-shadow(0 10px #e0d041) 
+  filter: drop-shadow(0 10px #e0d041);
 }
 
 .modal p {
@@ -302,17 +336,21 @@ body {
   margin-bottom: 20px;
   font-weight: 900;
 }
+.btns-box {
+  width: 240px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
 
+}
 .closeBtnBox {
   opacity: 1;
-  transition: all .3s;
+  transition: all 0.3s;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
-
-
 .btnBg {
   position: absolute;
   bottom: -18px;
@@ -333,19 +371,43 @@ body {
   position: relative;
   bottom: 0;
   color: white;
-  background-color:#6958cc;
+  background-color: #6958cc;
   border: none;
   font-weight: 900;
   font-size: 24px;
   border-radius: 20px;
   width: 100px;
   height: 60px;
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
 }
 
 .closeModal:hover {
   bottom: -8px;
+}
+
+.closeModal.print {
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
+}
+.btnBg.print {
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
+  filter:brightness(50%)
 }
 
 .hidden {
@@ -390,28 +452,28 @@ body {
   }
 }
 
-@keyframes wiggle{
-    0%,
-    5% {
-      transform: rotateZ(0);
-    }
-    15%{
-      transform: rotateZ(-15deg);
-    }
-    20%{
-      transform: rotateZ(10deg);
-    }
-    25%{
-      transform: rotateZ(-10deg);
-    }
-    30%{
-      transform: rotateZ(6deg);
-    }
-    35%{
-      transform: rotateZ(-4deg);
-    }
-    40%,
-    100% {
-      transform: rotateZ(0);
-    }
+@keyframes wiggle {
+  0%,
+  5% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
 }
