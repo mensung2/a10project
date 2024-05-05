@@ -27,11 +27,25 @@
             </div>
             <p class="unit">장</p>
           </div>
+          <div class="loading-box">
+            <div class="loading-bar front"></div>
+            <div class="loading-bar back"></div>
+          </div>
         </div>
         <div class="ticket-printer back"></div>
         <div class="ticket"></div>
       </article>
     </section>
+    <div class="modal-background warning" display="none">
+      <div class="modal">
+        <p>이미 티켓을 발권하셨습니다!</p>
+        <div class="closeBtnBox">
+          <button class="closeModal warning">닫기</button>
+          <div class="btnBg"></div>
+        </div>
+        
+      </div>
+    </div>
   </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>

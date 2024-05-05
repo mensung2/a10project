@@ -16,6 +16,31 @@ const renderMyTicket = () => {
 };
 renderMyTicket();
 
+const makeModal = (ticketGrade, seatInfo) => {
+  const template = `
+      <div class="modal forbidden visible">
+        <p>축하드려요 고객님!<br>
+        "${ticketGrade}"등급 티켓을 뽑으셨군요!<br>
+        고객님의 좌석은 "${seatInfo}" 입니다!</p>
+        <div class="closeBtnBox">
+          <button class="closeModal">닫기</button>
+          <div class="btnBg"></div>
+        </div을
+      </div>
+  `;
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("modal-background");
+  newDiv.classList.add("forbidden");
+  newDiv.classList.add("visible");
+  newDiv.innerHTML += template;
+  document.body.append(newDiv);
+  const modalBack = document.querySelector(".modal-background.forbidden");
+  const modalBtn = document.querySelector(".modal.forbidden .closeModal");
+    modalBtn.addEventListener("click", (e) => {
+    modalBack.classList.remove("visible");
+  });
+};
+
 const decreaseTicketCount = async () => {
   const data = await getData("event", "ticket-count", "units");
 
@@ -39,6 +64,7 @@ const getRestTickets = async () => {
       }
     }
   });
+  console.log(availableSeats);
   return availableSeats;
 };
 
@@ -80,28 +106,63 @@ const updateTicketCount = () => {
     console.log("rest ticket:", availableSeats.length);
   });
 };
-
+const eventArea = document.querySelector(".event-area");
+const ticketBox = document.querySelector(".ticket-container");
 const ticket = document.querySelector(".ticket-container .ticket");
 const printBtn = document.querySelector(".print-btn");
+const loadingBar = document.querySelector(".loading-bar.front");
 printBtn.addEventListener("click", () => {
   const ticketGrade = localStorage.getItem("ticketGrade");
-  if(ticketGrade) {
-    alert("이미 티켓을 뽑으셨습니다!");
+  if (ticketGrade) {
+    modalBack.classList.add("visible");
     return;
   }
   printBtn.classList.add("working");
+  loadingBar.style.animationName = "loading";
+  setTimeout(() => {
+    ticketBox.style.animationName = "wiggle";
+  }, 6000);
 
   setTimeout(() => {
-    generateTicketData();
-    decreaseTicketCount();
-    ticket.style.animationName = "printingTicket";
-  }, 1000);
+    eventArea.style.overflow = "hidden";
+    ticket.style.opacity = "1";
 
-  setTimeout(() => {
-    updateTicketCount();
-    printBtn.classList.remove("working");
-    // ticket.style.animationName = "none";
-  }, 5000);
+    setTimeout(() => {
+      generateTicketData();
+      decreaseTicketCount();
+      ticket.style.animationName = "printingTicket";
+
+      setTimeout(() => {
+        updateTicketCount();
+        printBtn.classList.remove("working");
+        // ticket.style.animationName = "none";
+        setTimeout(() => {
+          const ticketGrade = localStorage.getItem("ticketGrade");
+          const seatInfo = localStorage.getItem("seatInfo");
+          makeModal(ticketGrade, seatInfo);
+
+          const $body = document.querySelector("body");
+          function preventScroll(e) {
+            e.preventDefault();
+          }
+          // 'wheel' 이벤트를 사용하여 스크롤 감지 후 방지
+          $body.addEventListener("wheel", preventScroll, { passive: false });
+          $body.addEventListener("click", function () {
+            // body 를 다시 클릭하면 스크롤 재개
+            $body.removeEventListener("wheel", preventScroll, {
+              passive: false,
+            });
+          });
+        }, 1000);
+      }, 4000);
+    }, 1000);
+  }, 9000);
 });
 
 updateTicketCount();
+
+const modalBack = document.querySelector(".modal-background.warning");
+const modalBtn = document.querySelector(".closeModal.warning");
+modalBtn.addEventListener("click", (e) => {
+  modalBack.classList.remove("visible");
+});

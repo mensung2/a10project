@@ -103,3 +103,4 @@ const renderJoinPage = async () => {
   });
 };
 renderJoinPage();
+// makeSeat();

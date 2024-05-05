@@ -25,9 +25,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-.sold {
-  background-color: #8d8d8d !important;
-}
 
 .my-ticket {
   margin-top: 100px;
@@ -70,6 +67,7 @@ body {
 
 
 .ticket {
+  opacity: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -78,6 +76,8 @@ body {
   position: relative;
   z-index: 1;
   top: -400px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
   /* animation-name: printingTicket; */
   animation-duration: 4s;
   animation-fill-mode: forwards;
@@ -117,7 +117,6 @@ body {
 }
 
 .event-area {
-  overflow: hidden;
   margin-top: 100px;
   display: flex;
   align-items: flex-start;
@@ -176,6 +175,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
     .ticket-printer {
       position: absolute;
       width: 100%;
@@ -184,6 +185,9 @@ body {
     .ticket-printer.front {
       background-image: url("../img/printer-front.svg");
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .ticket-counter {
         display: flex;
@@ -213,6 +217,7 @@ body {
           }
         }
         .unit {
+          margin-left: 20px;
           font-family: "JalnanGothic";
           font-size: 80px;
           font-weight: 500;
@@ -222,6 +227,142 @@ body {
     .ticket-printer.back {
       background-image: url("../img/printer-back.svg");
     }
+  }
+}
+
+.loading-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-top: 24px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #6958CC 0%, #6958CC 50.5%, #5C4DB2 50.51%, #362D69 100%);
+}
+
+.loading-bar {
+  height: 16px;
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.loading-bar.front {
+  width:0;
+  animation-timing-function: cubic-bezier(.16,.66,.78,.59);
+  animation-delay: 0.5s;
+  animation-duration: 5.5s;
+  animation-fill-mode: forwards;
+  z-index: 2;
+  box-shadow: inset 0 6px rgba(0,0,0,0.3);
+  background: linear-gradient(168deg, #E1A2EA 1.54%, #BF5CF4 18.99%, #A36AF4 36.44%, #83BCFD 58.73%, #BAFAA6 82%, #E5FE67 98.48%);
+ ;
+}
+.loading-bar.back {
+  width: 276px;
+  background-color: #2d2d2d;
+}
+
+
+.modal-background {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  background-color:#ffed4b;
+  border-radius: 40px;
+  filter: drop-shadow(0 10px #e0d041) 
+}
+
+.modal p {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+
+.closeBtnBox {
+  opacity: 1;
+  transition: all .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.btnBg {
+  position: absolute;
+  bottom: -18px;
+
+  width: 100px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #423781;
+}
+
+.closeModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+  bottom: 0;
+  color: white;
+  background-color:#6958cc;
+  border: none;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 20px;
+  width: 100px;
+  height: 60px;
+  padding:0;
+  margin:0;
+}
+
+.closeModal:hover {
+  bottom: -8px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  display: flex;
+}
+
+@keyframes loading {
+  0% {
+    width: 0px;
+  }
+  95%,
+  100% {
+    width: 276px;
   }
 }
 
@@ -247,4 +388,30 @@ body {
   100% {
     top: 360px;
   }
+}
+
+@keyframes wiggle{
+    0%,
+    5% {
+      transform: rotateZ(0);
+    }
+    15%{
+      transform: rotateZ(-15deg);
+    }
+    20%{
+      transform: rotateZ(10deg);
+    }
+    25%{
+      transform: rotateZ(-10deg);
+    }
+    30%{
+      transform: rotateZ(6deg);
+    }
+    35%{
+      transform: rotateZ(-4deg);
+    }
+    40%,
+    100% {
+      transform: rotateZ(0);
+    }
 }
