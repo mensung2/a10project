@@ -46,12 +46,15 @@ const makeSeat = () => {
       if (j !== 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
       }
+      const serialNumber = Math.floor(new Date().getTime()*Math.random());
       eventObj = {
         ...eventObj,
         [askiiChar + String(j).padStart(2, 0)]: {
           seatId: askiiChar + String(j).padStart(2, 0),
           ticketGrade: seatGrade,
           isSold: false,
+          //시리얼 넘버 생성
+          serialNumber: serialNumber,
         },
       };
     }
@@ -71,7 +74,6 @@ const getSeat = async () => {
   const seatKeys = Object.keys(seatData).sort((a, b) => a.localeCompare(b));
   seatKeys.forEach((seat) => {
     const { seatId, ticketGrade, isSold } = seatData[seat];
-    console.log(seatId, ticketGrade, isSold);
     let seatColumnHTML = "";
 
     const seatRow = seat[0];
@@ -88,9 +90,9 @@ const getSeat = async () => {
   });
   return seatDiv.innerHTML;
 };
+
 const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
-  console.log(divObj);
   await getSeat().then((data) => {
     divObj.containerDiv.innerHTML = `
   ${(divObj.mainDiv.innerHTML = `
@@ -102,4 +104,6 @@ const renderJoinPage = async () => {
     document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   });
 };
-// renderJoinPage();
+
+renderJoinPage();
+makeSeat();
