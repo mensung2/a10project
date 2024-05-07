@@ -33,24 +33,6 @@ reviewRegist.addEventListener("click", (e) => {
   });
 });
 
-const test = (id) => {
-  console.log(id);
-};
-
-const reviewModify = document.getElementById("revConfirm"); //첫 번째 수정 모달창의 확인 버튼
-reviewModify.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const nickname = document.querySelector(".modiPrevNickname").value; // 리뷰 삭제 모달창에 입력한 닉네임, 비밀번호 가져와서 할당
-  const password = document.querySelector(".modiPrevPassword").value;
-
-  console.log(nickname, password);
-  // 리뷰 수정 모달창에 입력한 닉네임, 비밀번호 가져와서 할당하고
-  // get 요청을 받아온 닉네임과 비밀번호가 일치하는지 확인해서
-  // 일치하면 다음 별점/내용 수정 모달창 띄우기
-
-  // 별점과 내용이 존재하면 별점, 내용을 바꾸고 업데이트하기
-});
 
 db.collection("movie-comments").onSnapshot((snapshot) => {
   snapshot.docChanges().forEach((change) => {
@@ -334,25 +316,27 @@ const clickDelConfirm = () => {
 };
 
 const setCarouselLeft = () => {
+  // if(current === 0){
+  //   return;
+  // }
   const carousel_Length = document.querySelectorAll(".revBox").length-1;
-  // 360px(margin: 40px);
-  if (current !== 0) {
-    carousel.style.transform = `translateX(${current * -360}px)`;
-    current--;
-  } else {
+  if (current === 0) {
     current = carousel_Length;
     carousel.style.transform = `translateX(${carousel_Length * -360}px)`;
+  } else {
+    carousel.style.transform = `translateX(${current * -360}px)`;
+    current--;
   }
 };
 
 const setCarouselRight = () => {
   const carousel_Length = document.querySelectorAll(".revBox").length-1;
-  if (current !== carousel_Length) {
-    carousel.style.transform = `translateX(${(current + 1) * -360}px)`;
-    current++;
-  } else {
+  if (current === carousel_Length) {
     current = 0;
     carousel.style.transform = `translateX(0px)`;
+  } else {
+    carousel.style.transform = `translateX(${(current + 1) * -360}px)`;
+    current++;
   }
 };
 
