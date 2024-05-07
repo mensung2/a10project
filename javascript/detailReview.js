@@ -1,44 +1,53 @@
 const getMoviesData = () => {
   const firebaseData = getData("event", "moviesDoc", "movies");
   firebaseData.then((data) => {
-    console.log("data", data);
     loadThisMovie(data);
   });
 };
 
-const clickWriteRvButton = () => {
+const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효성 검사
   const writeRv = document.getElementById("writeRv");
+  if(!writeRv){
+    return;
+  }
   const writeRev = document.getElementsByClassName("writeRev")[0];
-  console.log("writeRev", writeRev);
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.remove("hidden");
-    console.log("w", writeRv);
   });
 };
-const clickClickBackSpace = () => {
+
+const clickBackSpace = () => {
   const backSpace = document.getElementById("writeRev-backspace");
-  console.log("backSpace", backSpace);
+  if(!backSpace){
+    return;
+  }
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
   });
 };
 
+
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
+  if(!revRegist){
+    return;
+  }
   revRegist.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
   });
 };
 
+
+
 const clickEvents = () => {
   clickWriteRvButton();
-  clickClickBackSpace();
+  clickBackSpace();
   clickRevRegist();
 };
-clickEvents();
+
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
@@ -46,8 +55,6 @@ const loadThisMovie = (movies) => {
   card.classList.add("movie_card");
   const prevId = window.location.search;
   const thisPageId = prevId.substr(3);
-
-  console.log("thisPageId", thisPageId);
   // movie.id는 넘버타입이고, thisPageId는 스트링이라 오류가 발생해 형변환을 해주었다.
   movies.forEach((movie, id) => {
     const selectedMovie = movie.id === Number(thisPageId);
@@ -67,4 +74,6 @@ const loadThisMovie = (movies) => {
   });
 };
 
+
+clickEvents();
 getMoviesData();

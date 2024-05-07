@@ -1,5 +1,5 @@
 // API url
-const getMoviesData = () => {
+const getMoviesData1 = () => {
   const firebaseData = getData("event", "moviesDoc", "movies");
   firebaseData.then((data) => {
     console.log("data", data);
@@ -36,7 +36,7 @@ const updateMovieList = (movies) => {
   });
 };
 
-getMoviesData();
+getMoviesData1();
 
 // searchBox.addEventListener("keyup", (e) => {
 //   if(e.key === 'Enter'){

@@ -8,12 +8,31 @@
     <link href="./css/eventJoin.css" rel="stylesheet" />
   </head>
   <body>
+    <article class="my-ticket">
+      <p>나의 티켓 :</p>
+      <div class="curr-ticket"></div>
+    </article>
     <section class="event-area">
-      <div class="print-btn">
-        <div class="frontside">티켓 뽑기</div>
-        <div class="topside"></div>
+      <div class="info-area">
+        <p class="my-rest-tickets"></p>
+        <img
+          class="coin hidden blocked"
+          src="./img/coins/gold01.svg"
+          draggable="true"
+          alt=""
+        />
+        <div class="get-coin-btn">
+          <div class="frontside">티켓 뽑기</div>
+          <div class="topside"></div>
+        </div>
       </div>
       <article class="ticket-container">
+        <div class="coinbox">
+          <div class="guide-line hidden"></div>
+          <img src="./img/coins/gold04.svg" class="animation-coin hidden" />
+          <div class="coinbox-topside"></div>
+          <div class="coinbox-frontside"></div>
+        </div>
         <div class="ticket-printer front">
           <div class="ticket-counter">
             <div class="count-box">
@@ -22,16 +41,20 @@
             </div>
             <p class="unit">장</p>
           </div>
+          <div class="loading-box">
+            <div class="loading-bar front"></div>
+            <div class="loading-bar back"></div>
+          </div>
         </div>
         <div class="ticket-printer back"></div>
-        <img class="ticket" src="./img/SVG/rainbow-ticket.svg" alt="" />
+        <div class="ticket"></div>
       </article>
     </section>
   </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="./javascript/firebase.js"></script>
   <script src="./javascript/eventJoin.js"></script>
   <!-- <script src="./javascript/eventGuide.js"></script> -->
