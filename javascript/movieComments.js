@@ -317,13 +317,20 @@ const clickDelConfirm = () => {
 
 let current = 0;
 
-const setCarouselLeft = () => {
+const setCarouselLeft = () => {  
   //carousel_Length에서 4를 빼서 슬라이드 길이를 딱 맞춤.
   const carousel_Length = document.querySelectorAll(".revBox").length-4;
+  //리뷰 한줄평의 개수가 4개 이하라면 버튼이 작동하지 않도록 설정.
+  if(carousel_Length<1) {
+    console.log("캐러셀 카드 개수가 4개 이하임!")
+    return;
+  } 
   if (current === 0) {
+    console.log("left if!");
     current = carousel_Length;
     carousel.style.transform = `translateX(${carousel_Length * -360}px)`;
   } else {
+    console.log("left else!");
     // currnt 숫자를 먼저 계산하고 그에 맞춰서 움직여줌.
     current--;
     carousel.style.transform = `translateX(${current * -360}px)`;
@@ -333,14 +340,18 @@ const setCarouselLeft = () => {
 
 const setCarouselRight = () => {
   const carousel_Length = document.querySelectorAll(".revBox").length-4;
+  if(carousel_Length<1) {
+    console.log("캐러셀 카드 개수가 4개 이하임!")
+    return;
+  } 
   console.log('current', current);
   console.log('carousel_Length', carousel_Length);
   if (current === carousel_Length) {
-    console.log("if!");
+    console.log("right if!");
     current = 0;
     carousel.style.transform = `translateX(0px)`;
   } else {
-    console.log("else!");
+    console.log("right else!");
     current++;
     // 여기가 아마 carousel.style.transform = `translateX(${(current + 1) * -360}px)`;
     // 로 되어 있어서 계속 첫 번째 칸에 걸려서 시작했던 것 같아요.
