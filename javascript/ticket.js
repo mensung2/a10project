@@ -493,6 +493,7 @@ const moveStart = (event) => {
   const insertGuide = document.querySelector(".guide-line");
   insertGuide.classList.remove("hidden");
   const element = event.target;
+  element.style.zIndex = 14;
   event.preventDefault();
   element.addEventListener("mousemove", moveElement);
 };
@@ -506,6 +507,7 @@ const moveStop = (event) => {
   const top = event.pageY - offsetTop;
   const centerX = left - offsetWidth / 2;
   const centerY = top - offsetHeight / 2;
+  element.style.zIndex = 12;
 
   element.src = "./img/coins/gold01.svg";
   element.removeEventListener("mousemove", moveElement);
