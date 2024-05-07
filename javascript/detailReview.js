@@ -14,6 +14,8 @@ const clickWriteRvButton = () => {
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.remove("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.remove("hidden");
   });
 };
 
@@ -25,6 +27,7 @@ const clickBackSpace = () => {
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    writeRev.parentElement.classList.add("hidden");
   });
 };
 
@@ -36,6 +39,8 @@ const clickRevRegist = () => {
   revRegist.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.add("hidden");
   });
 };
 

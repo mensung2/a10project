@@ -138,6 +138,7 @@ const clickModiBtn = () => {
       const modiReview = document.querySelector(".modiRevPrev");
       modiReview.dataset.commentId = commentId;
       modiRevPrev.classList.remove("hidden");
+      modiRevPrev.parentElement.classList.remove("hidden");
     });
   });
 };
@@ -150,6 +151,7 @@ const clickModiRevPrevBackSpace = () => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       modiRevPrev.classList.add("hidden");
+      modiRevPrev.parentElement.classList.add("hidden");
       0;
     });
   });
@@ -197,8 +199,10 @@ const clickConfirm = () => {
       return;
     }
     modiRevPrev.classList.add("hidden");
+    modiRevPrev.parentElement.classList.add("hidden");
     /* 리뷰 수정하기에서 확인버튼 누르면 내용 수정 모달창이 뜨게 modiRev클래스 hidden 없애주기*/
     modiRev.classList.remove("hidden");
+    modiRev.parentElement.classList.remove("hidden");
     modiRev.dataset.commentId = commentId;
 
     const Nickmodi = document.querySelector(".modiNickname");
@@ -219,7 +223,7 @@ const clickModiRevBackSpace = () => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       modiRev.classList.add("hidden");
-      modiRevPrev.classList.remove("hidden");
+      modiRev.parentElement.classList.add("hidden"); 
     });
   });
 };
@@ -245,6 +249,7 @@ const clickReviewModi = () => {
       });
 
       revmodibox.classList.add("hidden");
+      revmodibox.parentElement.classList.add("hidden");
     });
   });
 };
@@ -259,6 +264,7 @@ const clickDelBtn = () => {
       const delreview = document.querySelector(".delRev");
       delreview.dataset.commentId = commentId; // 값 넣어주기
       delRev.classList.remove("hidden");
+      delRev.parentElement.classList.remove("hidden");
     });
   });
 };
@@ -269,6 +275,7 @@ const clickDelRevBackSpace = () => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       delRev.classList.add("hidden");
+      delRev.parentElement.classList.add("hidden");
     });
   });
 };
@@ -311,6 +318,7 @@ const clickDelConfirm = () => {
 
       await db.collection("movie-comments").doc(commentId).delete();
       delRev.classList.add("hidden");
+      delRev.parentElement.classList.add("hidden");
     });
   });
 };
@@ -325,7 +333,7 @@ const setCarouselLeft = () => {
     console.log("캐러셀 카드 개수가 4개 이하임!")
     return;
   } 
-  if (current === 0) {
+  if (current <= 0) {
     console.log("left if!");
     current = carousel_Length;
     carousel.style.transform = `translateX(${carousel_Length * -360}px)`;
@@ -346,7 +354,7 @@ const setCarouselRight = () => {
   } 
   console.log('current', current);
   console.log('carousel_Length', carousel_Length);
-  if (current === carousel_Length) {
+  if (current >= carousel_Length) {
     console.log("right if!");
     current = 0;
     carousel.style.transform = `translateX(0px)`;
