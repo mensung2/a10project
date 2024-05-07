@@ -8,13 +8,6 @@ body {
   color: white;
 }
 
-/* 상단 비어놓는 영역(임의 색상 지정) */
-nav {
-  width: 1440px;
-  height: 200px;
-  background-color: white;
-}
-
 /* 영화 장르 */
 h2 {
   margin-top: 100px;
@@ -30,6 +23,7 @@ h2 {
   align-items: center;
   width: 1440px;
   height: 600px;
+  cursor: pointer;
 }
 
 .card {
