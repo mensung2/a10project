@@ -76,7 +76,7 @@ const getSeat = async () => {
 
     const seatRow = seat[0];
     const seatCol = [...seat].slice(1).join("");
-    
+
     if (isSold === true) {
       seatColumnHTML += `<div id="${seatId}" class = "${ticketGrade} seat-element sold">${seatCol}</div>`;
     } else if (seatCol === "00") {
@@ -102,4 +102,4 @@ const renderJoinPage = async () => {
     document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   });
 };
-renderJoinPage();
+// renderJoinPage();
