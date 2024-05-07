@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/7b1132fec1.js" crossorigin="anonymous"></script>
+    <link href="./css/mainms.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="mainmovie-background">
+    </div>
+    <div class="mainview">
+      <section class="billboard-container">
+        <nav>
+          <img class="logo" src="./img/logo_white.svg" alt="duckflix">
+          <ul class="category">
+            <li><a href="#a">영화검색</a><div class="underscore"></div></li>
+            <li><a href="#a">영화리뷰</a><div class="underscore"></div></li>
+            <li><a href="#a">이벤트</a><div class="underscore"></div></li>
+            <li><a href="#a">영화예매</a><div class="underscore"></div></li>
+          </ul>
+          <form class="search-bar">
+            <input type="textarea" placeholder="영화 제목을 입력해주세요.">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </nav>
+        <div class="prevBtn"></div>
+        <section class="mainmovie-container">
+          <div class="rogobox">
+            logo
+            <img src="" alt>
+          </div>  
+          <button type="button"><i class="fa-solid fa-info"></i>상세 정보</button>
+        </section>
+        <section class="top-5-container">
+          <h2>박스오피스</h2>
+          <div class="top-5-container-list">
+            <div class="list-item">
+              <img src="img\rank-1.svg" class="rank"></img>
+              <div class="rank-img-container">
+                <img class="rank-img" src="" alt />
+              </div>
+            </div>
+            <div class="list-item">
+              <img src="img\rank-2.svg" class="rank"></img>
+              <div class="rank-img-container">
+                <img class="rank-img" src="" alt />
+              </div>
+            </div>
+            <div class="list-item">
+              <img src="img\rank-3.svg" class="rank"></img>
+              <div class="rank-img-container">
+                <img class="rank-img" src="" alt />
+              </div>
+            </div>
+            <div class="list-item">
+              <img src="img\rank-4.svg" class="rank"></img>
+              <div class="rank-img-container">
+                <img class="rank-img" src="" alt />
+              </div>
+            </div>
+            <div class="list-item">
+              <img src="img\rank-5.svg" class="rank"></img>
+              <div class="rank-img-container">
+                <img class="rank-img" src="" alt />
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <section id="reviewContainer">
+        <div class="rivewheader">
+        <h2>최신 리뷰 한줄평</h2>
+        <div class="rivewslider">
+          <button type="button" id="prev" onclick="prevevent()">
+          <button type="button" id="next" onclick="nextevent()">
+        </div>
+      </div>
+    <div class="slide">
+      <ul id="review1">
+          <li id="revBox">
+              <div class="revTop">
+                  <h3 id="revName">고질라x킹콩</h3>                 
+              </div>               
+              <div class="revMid">
+                  <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+              </div>
+              <div class="revBase">
+                  <p id="revnick">Nickname</p>
+              </div>
+          </li>
+          <li id="revBox">
+            <div class="revTop">
+                <h3 id="revName">고질라x킹콩</h3>                 
+            </div>               
+            <div class="revMid">
+                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+            </div>
+            <div class="revBase">
+                <p id="revnick">Nickname</p>
+            </div>
+        </li>
+        <li id="revBox">
+          <div class="revTop">
+              <h3 id="revName">고질라x킹콩</h3>                 
+          </div>               
+          <div class="revMid">
+              <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+          </div>
+          <div class="revBase">
+              <p id="revnick">Nickname</p>
+          </div>
+      </li>
+      <li id="revBox">
+              <div class="revTop">
+                  <h3 id="revName">고질라x킹콩</h3>                 
+              </div>               
+              <div class="revMid">
+                  <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+              </div>
+              <div class="revBase">
+                  <p id="revnick">Nickname</p>
+              </div>
+          </li>
+          
+      </ul>
+      <ul id="review2">
+        <li id="revBox">
+            <div class="revTop">
+                <h3 id="revName">쿵푸팬더 4</h3>                 
+            </div>               
+            <div class="revMid">
+                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+            </div>
+            <div class="revBase">
+                <p id="revnick">Nickname</p>
+            </div>
+        </li>
+        <li id="revBox">
+          <div class="revTop">
+              <h3 id="revName">쿵푸팬더 4</h3>                 
+          </div>               
+          <div class="revMid">
+              <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+          </div>
+          <div class="revBase">
+              <p id="revnick">Nickname</p>
+          </div>
+      </li>
+      <li id="revBox">
+        <div class="revTop">
+            <h3 id="revName">쿵푸팬더 4</h3>                 
+        </div>               
+        <div class="revMid">
+            <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+        </div>
+        <div class="revBase">
+            <p id="revnick">Nickname</p>
+        </div>
+    </li>
+    <li id="revBox">
+            <div class="revTop">
+                <h3 id="revName">쿵푸팬더 4</h3>                 
+            </div>               
+            <div class="revMid">
+                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
+            </div>
+            <div class="revBase">
+                <p id="revnick">Nickname</p>
+            </div>
+        </li>
+        
+    </ul>
+    </div>
+    </section>
+    <section id="eventcontainer">
+      <h2>DUCKPLIX EVENT</h2>
+      <div class="eventbanner">
+      <img src="" alt="">
+    </div>
+    </section>
+    <footer>
+      <img class="logo" src="./img/logo_yellow.svg" alt="duckflix">
+      <ul class="info">
+        <li>
+          <a href="#a">
+            회사소개
+          </a>
+        </li>
+        |
+        <li>
+          <a href="#a">
+            채용정보
+          </a>
+        </li>
+        |
+        <li>
+          <a href="#a">
+            제휴/광고/부대사업 문의
+          </a>
+        </li>
+        |
+        <li>
+          <a href="#a">
+            이용약관
+          </a>
+        </li>
+        |
+        <li>
+          <a href="#a">
+            개인정보취급방침
+          </a>
+        </li>
+        |
+        <li>
+          <a href="#a">
+            고객센터
+          </a>
+        </li>
+      </ul>
+      <a>Github : Https://github.com/mensung2/a10project</a>
+    </footer>
+    </div>
+    <script src="./mainms.js"></script>
+  </body>
+</html>
