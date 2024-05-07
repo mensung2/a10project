@@ -11,7 +11,8 @@
 //   };
 
 const reviewRegist = document.getElementById("revRegist"); // 리뷰 등록버튼 아이디 가져와서 할당
-console.log(reviewRegist);
+  const prevId = window.location.search;
+  const thisPageId = prevId.substr(3); // 현재 페이지의 영화 id 값만 할당
 
 reviewRegist.addEventListener("click", (e) => {
   // 리뷰 등록버튼 클릭하면 이벤트 발생
@@ -21,9 +22,6 @@ reviewRegist.addEventListener("click", (e) => {
   const password = document.getElementById("passWord").value;
   const revpoint = document.getElementById("revPoint").value;
   const revcontent = document.getElementById("revContent").value;
-
-  const prevId = window.location.search;
-  const thisPageId = prevId.substr(3); // 현재 페이지의 영화 id 값만 할당
 
   db.collection("movie-comments").add({
     // 파이어베이스 db에 인풋값 넣어주기
@@ -35,21 +33,42 @@ reviewRegist.addEventListener("click", (e) => {
   });
 });
 
+const test = (id) => {
+  console.log(id);
+};
+
+const reviewModify = document.getElementById("revConfirm"); //첫 번째 수정 모달창의 확인 버튼
+reviewModify.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const nickname = document.querySelector(".modiPrevNickname").value; // 리뷰 삭제 모달창에 입력한 닉네임, 비밀번호 가져와서 할당
+  const password = document.querySelector(".modiPrevPassword").value;
+
+  console.log(nickname, password);
+  // 리뷰 수정 모달창에 입력한 닉네임, 비밀번호 가져와서 할당하고
+  // get 요청을 받아온 닉네임과 비밀번호가 일치하는지 확인해서
+  // 일치하면 다음 별점/내용 수정 모달창 띄우기
+
+  // 별점과 내용이 존재하면 별점, 내용을 바꾸고 업데이트하기
+});
 
 db.collection("movie-comments").onSnapshot((snapshot) => {
-  snapshot.docChanges().forEach((change) => {
+  snapshot.docChanges().forEach((change) => {    //담겨있는 문서들. change는 문서 하나하나
     if (change.type === "added") {
       const post = change.doc.data();
-      const id = change.doc.id;
-      console.log(post, id); //파이어베이스 문서 각각의 아이디
+      const id = change.doc.id; //파이어베이스 문서 각각의 아이디
+      console.log(post, id);
       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+      if(thisPageId !== post.movieId){
+        return;        // 간단하게 !
+      }
 
       const li = document.createElement("li"); // createElement 메서드를 사용하여 새로운 <li> 요소를 생성
       li.dataset.id = id; // 생성된 <li> 요소에 dataset을 사용하여 데이터 속성을 추가,  id는 파이어베이스 문서에서 가져온 값으로, 이것을 데이터 속성으로 할당하여 나중에 JavaScript에서 사용할 수 있도록 함
+      li.classList.add(id);
       li.id = "revBox"; // <li> 요소에 id 속성을 추가
 
       const rvTemplate = `
-        <li data-id=${id} id="revBox">
             <div class="revTop">
                 <h3 id="revName">${post.nickname}</h3>
                 <h3 id="starPoint">★ ${post.score}</h3>                    
@@ -66,103 +85,233 @@ db.collection("movie-comments").onSnapshot((snapshot) => {
             <div class="revBtn">
               <button id="modiBtn">수정</button>
               <button id="delBtn">삭제</button>                    
-            </div>
-        </li>`;
+            </div>`;
 
       const reviewContainer = document.getElementById("review");
       li.innerHTML = rvTemplate;
       reviewContainer.appendChild(li);
     } else if (change.type === "modified") {
-        // 데이터 수정하기
+      // 데이터 수정하기
+      const commentId = change.doc.id;  // 변화가 생긴 문서 아이디
+      const commentList = document.querySelectorAll("#revBox");
+      commentList.forEach(async (comment)=>{
+        if(commentId === comment.dataset.id){
+            await db.collection("movie-comments").doc(commentId).get().then((data)=>{       
+                const userData = data.data();
+                console.log(userData);
+                compareNickname = userData["nickname"];
+                comparePassword = userData["password"];
+                comparePoint = userData["score"];
+                compareContent = userData["text"];
+
+                const changedNickname = comment.querySelector("#revName");
+                const changedPoint = comment.querySelector("#starPoint");
+                const changedContent = comment.querySelector(".contents");
+
+                changedPoint.innerText = `★ ${comparePoint}`;
+                changedContent.innerText = compareContent;
+            })
+        }
+      })
     } else if (change.type === "removed") {
-       // 삭제된 데이터 처리
-      const postId = change.doc.id;
-      const postElement = document.getElementById(postId);
-      if (postElement) {
-        postElement.remove();
-      }
+      // 삭제된 데이터 렌더링
+      const commentId = change.doc.id;  // 변화가 생긴 문서 아이디(삭제한 문서의 아이디)
+      const commentList = document.querySelectorAll("#revBox");
+      commentList.forEach((comment)=>{
+        if(commentId === comment.dataset.id){
+            comment.remove();
+        }
+      })
     }
   });
   clickButtons();
 });
 
 const clickButtons = () => {
-    clickModiBtn();
-    clickModiRevPrevBackSpace();
-    clickModiRevBackSpace();
-    clickReviewModi();
-    clickDelBtn();
-    clickDelRevBackSpace();
-    clickDelConfirm();
-}
+  clickModiBtn();
+  clickModiRevPrevBackSpace();
+  clickConfirm();
+  clickModiRevBackSpace();
+  clickReviewModi();
+  clickDelBtn();
+  clickDelRevBackSpace();
+  clickDelConfirm();
+};
 
 const clickModiBtn = () => {
-    const modiBtn = document.querySelectorAll("#modiBtn");
-    modiBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            modiRevPrev.classList.remove("hidden");
-        })
-    })
-}
+  const modiBtn = document.querySelectorAll("#modiBtn");
+  modiBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parentNoderev = e.target.parentElement.parentElement.parentElement;
+      const commentId = parentNoderev.dataset.id;
+      const modiReview = document.querySelector(".modiRevPrev");
+      modiReview.dataset.commentId = commentId;
+      modiRevPrev.classList.remove("hidden");
+    });
+  });
+};
 
 const clickModiRevPrevBackSpace = () => {
-    const modiRevPrevBackBtn = document.querySelectorAll("#modiRevPrev-backspace");
-    modiRevPrevBackBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            modiRevPrev.classList.add("hidden");
-        })
+  const modiRevPrevBackBtn = document.querySelectorAll(
+    "#modiRevPrev-backspace"
+  );
+  modiRevPrevBackBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      modiRevPrev.classList.add("hidden");
+    });
+  });
+};
+
+const clickConfirm = () => {
+    const confirmBtn = document.getElementById("revConfirm");
+    if(!confirmBtn){
+      return;
+    }
+    confirmBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const inputNickname = document.querySelector(".modiPrevNickname").value; // 리뷰 수정 모달창에 입력한 닉네임, 비밀번호 가져와서 할당
+      const inputPassword = document.querySelector(".modiPrevPassword").value;
+
+      const parentNoderev = e.target.parentElement.parentElement;
+      const commentId = parentNoderev.dataset.commentId; // html에서 -소문자, 자바스크립트에서는 대문자
+      let compareNickname = null;
+      let comparePassword = null;
+      let comparePoint = null;
+      let compareContent = null;
+      console.log(commentId);
+
+      await db.collection("movie-comments").doc(commentId).get().then((data)=>{       
+        const userData = data.data();
+        console.log(userData);
+        compareNickname = userData["nickname"];
+        comparePassword = userData["password"];
+        comparePoint = userData["score"];
+        compareContent = userData["text"];
+        console.log(compareNickname, comparePassword);
+      })
+
+      if(inputNickname !== compareNickname){
+        alert("닉네임이 일치하지 않습니다.");
+        return;
+      }
+      if(inputPassword !== comparePassword){
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+      }
+      modiRevPrev.classList.add("hidden");
+      /* 리뷰 수정하기에서 확인버튼 누르면 내용 수정 모달창이 뜨게 modiRev클래스 hidden 없애주기*/
+      modiRev.classList.remove("hidden");
+      modiRev.dataset.commentId = commentId;
+
+      const Nickmodi = document.querySelector(".modiNickname");
+      const Passmodi = document.querySelector(".modiPassword");
+      const Pointmodi = document.querySelector(".revPoint");
+      const Contentmodi = document.querySelector(".revContent");
+
+      Nickmodi.value = compareNickname;
+      Passmodi.value = comparePassword;
+      Pointmodi.value = comparePoint;
+      Contentmodi.value = compareContent;
     })
-}
+  }
 
 const clickModiRevBackSpace = () => {
-    const modiRevBackBtn = document.querySelectorAll("#modiRev-backspace");
-    modiRevBackBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            modiRev.classList.add("hidden");           
-            modiRevPrev.classList.remove("hidden");
-        })
-    })
-}
+  const modiRevBackBtn = document.querySelectorAll("#modiRev-backspace");
+  modiRevBackBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      modiRev.classList.add("hidden");
+      modiRevPrev.classList.remove("hidden");
+    });
+  });
+};
 
 const clickReviewModi = () => {
-    const reviewModiBtn = document.querySelectorAll("#modiRev-modiBtn");
-    reviewModiBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            modiRev.classList.add("hidden");
-        })
-    })
-}
+  const reviewModiBtn = document.querySelectorAll("#modiRev-modiBtn");
+  reviewModiBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const revmodibox = document.querySelector(".modiRev");
+      const commentId = revmodibox.dataset.commentId;
+      console.log(revmodibox);
+      console.log(commentId);
+      const Nickmodi = document.querySelector(".modiNickname");
+      const Passmodi = document.querySelector(".modiPassword");
+      const Pointmodi = document.querySelector(".revPoint");
+      const Contentmodi = document.querySelector(".revContent");
+
+      db.collection("movie-comments").doc(commentId).update({
+        score : Pointmodi.value,
+        text: Contentmodi.value,
+      })
+
+      revmodibox.classList.add("hidden");
+    });
+  });
+};
 
 const clickDelBtn = () => {
-    const reviewDelBtn = document.querySelectorAll("#delBtn");
-    reviewDelBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            delRev.classList.remove("hidden");
-        })
-    })
-}
+  const reviewDelBtn = document.querySelectorAll("#delBtn");
+  reviewDelBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      const parentNoderev = e.target.parentElement.parentElement.parentElement;
+      const commentId = parentNoderev.dataset.id; // 값 가져오기
+      const delreview = document.querySelector(".delRev");
+      delreview.dataset.commentId = commentId; // 값 넣어주기
+      delRev.classList.remove("hidden");
+    });
+  });
+};
+
 const clickDelRevBackSpace = () => {
-    const delRevBackBtn = document.querySelectorAll("#delRev-backspace")
-    delRevBackBtn.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            delRev.classList.add("hidden");
-        })
-    })
-}
+  const delRevBackBtn = document.querySelectorAll("#delRev-backspace");
+  delRevBackBtn.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      delRev.classList.add("hidden");
+    });
+  });
+};
 
 const clickDelConfirm = () => {
-    const delConfirm =document.querySelectorAll("#delConfirm");
-    delConfirm.forEach(button => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault();
-            delRev.classList.add("hidden");
-        })
-    })
-}
+  const delConfirm = document.querySelectorAll("#delConfirm");
+  delConfirm.forEach((button) => {
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
 
+      const inputNickname = document.querySelector(".delNickname").value; // 리뷰 삭제 모달창에 입력한 닉네임, 비밀번호 가져와서 할당
+      const inputPassword = document.querySelector(".delPassword").value;
+
+      const parentNoderev = e.target.parentElement.parentElement;
+      const commentId = parentNoderev.dataset.commentId; // html에서 -소문자, 자바스크립트에서는 대문자
+      let compareNickname = null;
+      let comparePassword = null;
+      console.log(commentId);
+
+      await db.collection("movie-comments").doc(commentId).get().then((data)=>{       
+        const userData = data.data();
+        console.log(userData);
+        compareNickname = userData["nickname"];
+        comparePassword = userData["password"];
+        console.log(compareNickname, comparePassword);
+      })
+
+      if(inputNickname !== compareNickname){
+        alert("닉네임이 일치하지 않습니다.");
+        return;
+      }
+      if(inputPassword !== comparePassword){
+        alert("비밀번호가 일치하지 않습니다.");
+        return;
+      }
+      
+      await db.collection("movie-comments").doc(commentId).delete();
+      delRev.classList.add("hidden");
+    });
+  });
+};
