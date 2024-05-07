@@ -161,10 +161,6 @@ const printTicket = () => {
 
 const checkCondition = () => {
   const ticketGrade = localStorage.getItem("ticketGrade");
-  if (+localStorage.getItem("restTickets") === 0) {
-    noTicketModal();
-    return;
-  }
   if (ticketGrade) {
     choiceModal();
     return;
@@ -475,7 +471,7 @@ const coinInsertPlay = () => {
   coinElement.classList.add("blocked");
   const coin = document.querySelector(".animation-coin");
   coin.classList.remove("hidden");
-  coin.style.top = "10px";
+  coin.style.top = "100px";
   coin.style.zIndex = "4";
 
   setTimeout(() => {
@@ -551,6 +547,10 @@ const getCoin = () => {
 
 const getCoinBtn = document.querySelector(".get-coin-btn");
 getCoinBtn.addEventListener("click", (e) => {
+  if (+localStorage.getItem("restTickets") === 0) {
+    noTicketModal();
+    return;
+  }
   getCoinBtn.classList.add("working");
   getCoin();
   setTimeout(()=>{
