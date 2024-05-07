@@ -4,21 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <link href="../css/eventJoin.css" rel="stylesheet" /> -->
+    <link href="../css/eventJoin.css" rel="stylesheet" />
     <link href="../css/eventGuide.css" rel="stylesheet" />
     <link href="../css/nav.css" rel="stylesheet" />
   </head>
 
   <body>
     <div id="external-content"></div>
-    <script>
-      fetch("../nav.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("external-content").innerHTML = data;
-        })
-        .catch((error) => console.error("Error:", error));
-    </script>
   </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
