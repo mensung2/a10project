@@ -90,6 +90,7 @@ const getSeat = async () => {
   });
   return seatDiv.innerHTML;
 };
+
 const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
   await getSeat().then((data) => {
@@ -103,5 +104,6 @@ const renderJoinPage = async () => {
     document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
   });
 };
+
 renderJoinPage();
 makeSeat();

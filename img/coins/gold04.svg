@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 350">
+  <defs>
+    <style>
+      .cls-1 {
+        isolation: isolate;
+      }
+
+      .cls-2 {
+        fill: #db6402;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        mix-blend-mode: soft-light;
+      }
+
+      .cls-4 {
+        fill: #dba97f;
+        mix-blend-mode: multiply;
+      }
+    </style>
+  </defs>
+  <g class="cls-1">
+    <g id="Layer_1" data-name="Layer 1">
+      <g>
+        <rect class="cls-2" x="148" y="1.98" width="53.99" height="346.04"/>
+        <rect class="cls-3" x="148" y="71.21" width="53.99" height="65.94"/>
+        <rect class="cls-4" x="148" y="271.57" width="53.99" height="60.01"/>
+        <rect class="cls-3" x="148" y="338.64" width="53.99" height="9.38"/>
+        <rect class="cls-3" x="148" y="46.78" width="53.99" height="12.35"/>
+        <polygon class="cls-3" points="148 1.98 148 113.63 151.34 6.31 198.66 6.31 202 113.63 202 1.98 148 1.98"/>
+      </g>
+    </g>
+  </g>
+</svg>

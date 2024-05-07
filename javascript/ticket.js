@@ -1,28 +1,26 @@
-console.log(Math.floor(new Date().getTime()*Math.random()));
-
 const renderMyTicket = async () => {
   const localTicketGrade = localStorage.getItem("ticketGrade");
   const localSeatInfo = localStorage.getItem("seatInfo");
   const localSerialNumber = localStorage.getItem("serialNumber");
 
-  if (!localTicketGrade) {
+  if (!localTicketGrade || !localSeatInfo || !localSerialNumber) {
     const myTicket = document.querySelector(".my-ticket .curr-ticket");
     myTicket.classList.add("grade-none");
     return;
   }
   let serialNumber = null;
   await getData("event", "tickets", "seats").then((data) => {
-     serialNumber = data[localSeatInfo]["serialNumber"];
+    serialNumber = data[localSeatInfo]["serialNumber"];
   });
-  
-  if(Number(localSerialNumber) !== Number(serialNumber)) {
+
+  if (Number(localSerialNumber) !== Number(serialNumber)) {
     localStorage.removeItem("serialNumber");
     localStorage.removeItem("seatInfo");
     localStorage.removeItem("ticketGrade");
     illegalModal();
     return;
   }
-  
+
   const myTicket = document.querySelector(".my-ticket .curr-ticket");
   myTicket.classList.add("grade-" + localTicketGrade);
   const pTag = document.createElement("p");
@@ -67,8 +65,6 @@ const generateTicketData = async () => {
     })
     .then((seat) => {
       getData("event", "tickets", "seats").then((data) => {
-        console.log("data[seat].seatId", data[seat].seatId);
-        console.log('data[seat].serialNumber', data[seat].serialNumber)
         data[seat].isSold = true;
         const soldSeat = document.getElementById(data[seat].seatId);
         const ticketGrade = soldSeat.classList[0];
@@ -78,6 +74,10 @@ const generateTicketData = async () => {
         const seatInfo = soldSeat.id;
         const seatSerialNumber = data[seat].serialNumber;
         const ticket = document.querySelector(".ticket");
+        ticket.classList.remove("grade-VIP");
+        ticket.classList.remove("grade-R");
+        ticket.classList.remove("grade-S");
+        ticket.classList.remove("grade-A");
         ticket.classList.add("grade-" + ticketGrade);
         const pTag = document.createElement("p");
         pTag.classList.add("seat-info");
@@ -102,45 +102,61 @@ const updateTicketCount = () => {
 const eventArea = document.querySelector(".event-area");
 const ticketBox = document.querySelector(".ticket-container");
 const ticket = document.querySelector(".ticket-container .ticket");
-const printBtn = document.querySelector(".print-btn");
+const printBtn = document.querySelector(".get-coin-btn");
 const loadingBar = document.querySelector(".loading-bar.front");
 
 const printTicket = () => {
-  printBtn.classList.add("working");
-  loadingBar.style.animationName = "loading";
+  loadingBar.style.animationName = "none";
+  ticketBox.style.animationName = "none";
+  ticket.style.animationName = "none";
+  eventArea.style.overflow = "visible";
+  ticket.style.opacity = "0";
+  const ticketContent = document.querySelector(".ticket p");
+  if (ticketContent) {
+    ticketContent.remove();
+  }
+  coinInsertPlay();
   setTimeout(() => {
-    ticketBox.style.animationName = "wiggle";
-  }, 6000);
-
-  setTimeout(() => {
-    eventArea.style.overflow = "hidden";
-    ticket.style.opacity = "1";
+    printBtn.classList.add("working");
+    setTimeout(() => {
+      loadingBar.style.animationName = "loading";
+    }, 500);
 
     setTimeout(() => {
+      ticketBox.style.animationName = "wiggle";
+    }, 6000);
+
+    setTimeout(() => {
+      eventArea.style.overflow = "hidden";
+      ticket.style.opacity = "1";
+
       generateTicketData();
       decreaseTicketCount();
-      ticket.style.animationName = "printingTicket";
 
       setTimeout(() => {
-        updateTicketCount();
-        printBtn.classList.remove("working");
-        // ticket.style.animationName = "none";
-        localStorage.setItem(
-          "restTickets",
-          localStorage.getItem("restTickets") - 1
-        );
-        myRestTickets.innerText = `남은 티켓: ${localStorage.getItem(
-          "restTickets"
-        )}`;
+        ticket.style.animationName = "printingTicket";
 
         setTimeout(() => {
-          const ticketGrade = localStorage.getItem("ticketGrade");
-          const seatInfo = localStorage.getItem("seatInfo");
-          cardModal(ticketGrade, seatInfo);
-        }, 1000);
-      }, 4000);
-    }, 1000);
-  }, 9000);
+          updateTicketCount();
+          printBtn.classList.remove("working");
+          // ticket.style.animationName = "none";
+          localStorage.setItem(
+            "restTickets",
+            localStorage.getItem("restTickets") - 1
+          );
+          myRestTickets.innerText = `남은 동전: ${localStorage.getItem(
+            "restTickets"
+          )}`;
+
+          setTimeout(() => {
+            const ticketGrade = localStorage.getItem("ticketGrade");
+            const seatInfo = localStorage.getItem("seatInfo");
+            cardModal(ticketGrade, seatInfo);
+          }, 1000);
+        }, 4000);
+      }, 1000);
+    }, 9000);
+  }, 3000);
 };
 
 const checkCondition = () => {
@@ -156,15 +172,15 @@ const checkCondition = () => {
   confirmModal();
 };
 
-printBtn.addEventListener("click", () => {
-  checkCondition();
-});
-
 const noTicketModal = () => {
+  const existModal = document.querySelector(".modal");
+  if (existModal) {
+    return;
+  }
   const template = `
     <div class="modal warning">
-      <p>남은 티켓이 없습니다!
-      <br>퀴즈 푸는 곳에서 티켓을 준다던데...</p>
+      <p>남은 동전이 없습니다!
+      <br>퀴즈 푸는 곳에서 동전을 준다던데...</p>
       <div class="closeBtnBox">
         <button class="closeModal warning">닫기</button>
         <div class="btnBg"></div>
@@ -216,6 +232,7 @@ const illegalModal = () => {
   function preventScroll(e) {
     e.preventDefault();
   }
+
   // 'wheel' 이벤트를 사용하여 스크롤 감지 후 방지
   $body.addEventListener("wheel", preventScroll, { passive: false });
   modalBtn.addEventListener("click", (e) => {
@@ -227,10 +244,14 @@ const illegalModal = () => {
 };
 
 const welcomeModal = () => {
+  const existModal = document.querySelector(".modal");
+  if (existModal) {
+    return;
+  }
   const template = `
       <div class="modal welcome visible">
         <p>어서오세요 고객님! 첫 방문이시군요!
-        <br>환영의 의미로 티켓을 두 장 드릴게요!</p>
+        <br>환영의 의미로 동전을 드릴게요!</p>
         <div class="closeBtnBox">
           <button class="closeModal">받기</button>
           <div class="btnBg"></div>
@@ -260,6 +281,10 @@ const welcomeModal = () => {
 };
 
 const cardModal = (ticketGrade, seatInfo) => {
+  const existModal = document.querySelector(".modal");
+  if (existModal) {
+    return;
+  }
   const template = `
       <div class="modal forbidden visible">
         <p>축하드려요 고객님!<br>
@@ -294,6 +319,10 @@ const cardModal = (ticketGrade, seatInfo) => {
 };
 
 const choiceModal = () => {
+  const existModal = document.querySelector(".modal");
+  if (existModal) {
+    return;
+  }
   const template = `
       <div class="modal choice visible">
         <p>이미 티켓이 있으시군요!<br>
@@ -342,6 +371,10 @@ const choiceModal = () => {
 };
 
 const confirmModal = () => {
+  const existModal = document.querySelector(".modal");
+  if (existModal) {
+    return;
+  }
   const template = `
       <div class="modal choice visible">
         <p>아직 티켓이 없으시군요!<br>
@@ -381,7 +414,8 @@ const confirmModal = () => {
   });
   printBtn.addEventListener("click", () => {
     printTicket();
-    modalBack.remove();$body.removeEventListener("wheel", preventScroll, {
+    modalBack.remove();
+    $body.removeEventListener("wheel", preventScroll, {
       passive: false,
     });
   });
@@ -389,13 +423,135 @@ const confirmModal = () => {
 
 updateTicketCount();
 
-
 const restTickets = localStorage.getItem("restTickets");
 console.log(restTickets);
 if (restTickets === null) {
-  localStorage.setItem("restTickets", 2);
+  localStorage.setItem("restTickets", 1);
   welcomeModal();
 }
 
 const myRestTickets = document.querySelector(".my-rest-tickets");
-myRestTickets.innerText = `남은 티켓: ${localStorage.getItem("restTickets")}`;
+myRestTickets.innerText = `남은 동전: ${localStorage.getItem("restTickets")}`;
+
+const moveElement = (event) => {
+  const element = event.target;
+  const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = element;
+  const left = event.pageX - offsetLeft;
+  const top = event.pageY - offsetTop;
+  const centerX = left - offsetWidth / 2;
+  const centerY = top - offsetHeight / 2;
+
+  gsap.to(element, 0.01, {
+    x: centerX,
+    y: centerY,
+    ease: Elastic.easeOut,
+  });
+  if (700 < centerX) {
+    element.src = "./img/coins/gold01.svg";
+  } else if (600 < centerX) {
+    element.src = "./img/coins/gold07.svg";
+  } else if (500 < centerX) {
+    element.src = "./img/coins/gold06.svg";
+  } else if (400 < centerX) {
+    element.src = "./img/coins/gold05.svg";
+  } else if (300 < centerX) {
+    element.src = "./img/coins/gold04.svg";
+  } else if (200 < centerX) {
+    element.src = "./img/coins/gold03.svg";
+  } else if (100 < centerX) {
+    element.src = "./img/coins/gold02.svg";
+  } else {
+    element.src = "./img/coins/gold01.svg";
+  }
+};
+
+const checkPos = (centerX, centerY) => {
+  return centerX > 270 && centerX < 400 && centerY > 30 && centerY < 160;
+};
+
+const coinInsertPlay = () => {
+  const coinElement = document.querySelector(".coin");
+  coinElement.classList.add("hidden");
+  coinElement.classList.add("blocked");
+  const coin = document.querySelector(".animation-coin");
+  coin.classList.remove("hidden");
+  coin.style.top = "10px";
+  coin.style.zIndex = "4";
+
+  setTimeout(() => {
+    coin.style.top = "-30px";
+    setTimeout(() => {
+      coin.style.zIndex = "2";
+      setTimeout(() => {
+        coin.style.top = "100px";
+      }, 300);
+    }, 1000);
+  }, 600);
+};
+
+const moveStart = (event) => {
+  const insertGuide = document.querySelector(".guide-line");
+  insertGuide.classList.remove("hidden");
+  const element = event.target;
+  event.preventDefault();
+  element.addEventListener("mousemove", moveElement);
+};
+
+const moveStop = (event) => {
+  const insertGuide = document.querySelector(".guide-line");
+  insertGuide.classList.add("hidden");
+  const element = event.target;
+  const { offsetLeft, offsetTop, offsetWidth, offsetHeight } = element;
+  const left = event.pageX - offsetLeft;
+  const top = event.pageY - offsetTop;
+  const centerX = left - offsetWidth / 2;
+  const centerY = top - offsetHeight / 2;
+
+  element.src = "./img/coins/gold01.svg";
+  element.removeEventListener("mousemove", moveElement);
+
+  if (checkPos(centerX, centerY)) {
+    checkCondition();
+  }
+
+  gsap.to(element, 0.5, {
+    x: 0,
+    y: 0,
+    ease: Elastic.easeOut.config(1.5, 0.2),
+  });
+};
+
+const magneticElement = (element) => {
+  element.addEventListener("mousedown", moveStart);
+  element.addEventListener("mouseup", moveStop);
+  element.addEventListener("mouseout", moveStop);
+};
+
+const coinElement = document.querySelector(".coin");
+magneticElement(coinElement);
+
+const getCoin = () => {
+  coinElement.classList.add("hidden");
+  gsap.to(coinElement, {
+    duration: 0.1,
+    y: -174,
+  });
+  setTimeout(() => {
+    coinElement.classList.remove("hidden");
+    coinElement.classList.remove("blocked");
+    gsap.to(coinElement, {
+      duration: 0.8,
+      ease: "bounce.out",
+      y: 0,
+    });
+  }, 200);
+}
+
+const getCoinBtn = document.querySelector(".get-coin-btn");
+getCoinBtn.addEventListener("click", (e) => {
+  getCoinBtn.classList.add("working");
+  getCoin();
+  setTimeout(()=>{
+    getCoinBtn.classList.remove("working");
+  },1000)
+});

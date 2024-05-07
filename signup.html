@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="./css/signup.css" />
+  </head>
+  <body>
+    <form class="sign-up-form">
+      <div class="input-box">
+        <label for="name">이름</label>
+        <input id="name" type="text" />
+      </div>
+      <select name="class" id="team-type">
+        <option disabled selected>조</option>
+        <option value="1">1조</option>
+        <option value="2">2조</option>
+        <option value="3">3조</option>
+        <option value="4">4조</option>
+        <option value="5">5조</option>
+        <option value="6">6조</option>
+        <option value="7">7조</option>
+        <option value="8">8조</option>
+        <option value="9">9조</option>
+        <option value="10">10조</option>
+        <option value="11">11조</option>
+        <option value="12">12조</option>
+        <option value="13">13조</option>
+        <option value="14">14조</option>
+      </select>
+      <select name="class" id="class-type">
+        <option disabled selected>반</option>
+        <option value="A">A</option>
+        <option value="A">B</option>
+      </select>
+      <div class="input-box">
+        <label for="account">아이디</label>
+        <input id="account" type="text" />
+      </div>
+      <button class="identify-btn">인증하기</button>
+      <div class="input-box">
+        <label for="account">아이디</label>
+        <input id="account" type="text" />
+      </div>
+      <div class="input-box">
+        <label for="password">비밀번호</label>
+        <input id="password" type="text" />
+      </div>
+      <button class="signup-btn">가입하기</button>
+    </form>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+  <script src="./javascript/firebase.js"></script>
+  <script src="./javascript/auth.js"></script>
+</html>
