@@ -8,9 +8,11 @@
     <link href="./css/detailReview.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body> <!--classList-->
+  <body>
     <div class="detailContainer">
-      <header>헤더</header>
+      <header id="eventGuide-nav">
+        <!--nav바 불러오는 곳-->
+      </header>
       <h1 id="firstTitle">영화 정보</h1>
       <section id="detail">
         <!--영화 정보 불러오는 곳-->
@@ -25,9 +27,12 @@
       </div>
       <section id="reviewContainer">
         <ul id="review">
+          <div id="carousel" class="carousel">
+
+          </div>
         </ul>
         <div class="arrow">
-            <div class="arrow1">
+            <div id="arrowLeft">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="67" viewBox="0 0 48 67" fill="none">
                 <g filter="url(#filter0_d_43_747)">
                 <path d="M41.8071 60.042L25.269 33.2686L41.8071 6.50966L6.23643 33.2686L41.8071 60.042Z" fill="white"/>
@@ -43,8 +48,9 @@
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_43_747" result="shape"/>
                 </filter>
                 </defs>
+                </svg>
             </div>
-            <div class="arrow2">
+            <div id="arrowRight">
                 <svg xmlns="http://www.w3.org/2000/svg" width="62" height="81" viewBox="0 0 62 81" fill="none">
                 <g filter="url(#filter0_d_43_744)">
                 <path d="M13.1929 13.958L29.731 40.7314L13.1929 67.4903L48.7636 40.7314L13.1929 13.958Z" fill="white"/>
@@ -59,7 +65,8 @@
                 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_43_744"/>
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_43_744" result="shape"/>
                 </filter>
-                </defs>     
+                </defs>
+                </svg>     
             </div>
         </div>
 

@@ -27,7 +27,6 @@ header {
   width: 1440px;
   height: 200px;
   display: flex;
-  background-color: pink;
   font-size: 40px;
   align-items: center;
   text-indent: 20px;
@@ -35,7 +34,7 @@ header {
 
 #firstTitle {
   font-size: 40px;
-  background-color: bisque;
+  /*background-color: bisque;*/
   height: 130px;
   display: flex;
   align-items: center;
@@ -44,7 +43,6 @@ header {
 
 #secondTitle {
   font-size: 40px;
-  background-color: bisque;
   height: 130px;
   display: flex;
   align-items: center;
@@ -54,7 +52,7 @@ header {
 #detail {
   width: 1440px;
   height: 745px;
-  background-color: rgb(233, 101, 123);
+  /*background-color: rgb(233, 101, 123);*/
 
   .movie_card {
     display: flex;
@@ -63,6 +61,7 @@ header {
 
   #poster {
     margin-left: 100px;
+    border-radius: 10px;
     width: 400px;
     height: 600px;
   }
@@ -106,7 +105,7 @@ header {
   justify-content: space-between;
 
   #secondTitle {
-    background-color: bisque;
+    /*background-color: bisque;*/
     height: 130px;
     font-size: 40px;
     display: flex;
@@ -131,6 +130,7 @@ header {
     font-size: 18px;
     font-weight: bold;
     z-index: 1;
+    cursor: pointer;
   }
 
   #writeRvBack {
@@ -150,15 +150,21 @@ header {
 #reviewContainer {
   width: 1440px;
   height: 690px;
-  background-color: rgb(116, 84, 133);
+  /*background-color: rgb(116, 84, 133);*/
 
   #review {
     width: 1400px;
     height: 240px;
     margin: 0 20px 0 20px;
-    background-color: rgb(151, 93, 119);
+    /*background-color: rgb(151, 93, 119);*/
     display: flex;
-    justify-content: space-between;
+    overflow: hidden;
+
+    .carousel{
+      display: flex;
+      transition: all 0.5s;
+    }
+    
 
     #revBox {
       width: 320px;
@@ -166,6 +172,7 @@ header {
       border-radius: 10px;
       background-color: #f2f2f2;
       color: black;
+      margin-right: 40px;
 
       .revTop {
         display: flex;
@@ -234,6 +241,7 @@ header {
             font-size: 12px;
             background-color: #787878;
             color: white;
+            cursor: pointer;
           }
           #delBtn {
             width: 50px;
@@ -242,6 +250,7 @@ header {
             font-size: 12px;
             background-color: #f16168;
             color: white;
+            cursor: pointer;
           }
         }
       }
@@ -254,8 +263,12 @@ header {
     padding-left: 50px;
     justify-content: space-between;
 
-    .arrow2 {
+    #arrowLeft {
+      cursor: pointer;
+    }
+    #arrowRight {
       padding-right: 50px;
+      cursor: pointer;
     }
   }
 
@@ -277,6 +290,10 @@ header {
       justify-content: space-between;
       padding: 25px 20px 25px 25px;
       position: relative;
+
+      #writeRev-backspace {
+        cursor: pointer;
+      }
 
       #back {
         font-size: 12px;
@@ -307,6 +324,7 @@ header {
         top: 25px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
       }
       #revRegistBack {
         position: absolute;
@@ -405,6 +423,10 @@ header {
       padding: 20px;
       position: relative;
 
+      #modiRevPrev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
@@ -434,6 +456,7 @@ header {
         top: 20px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
       }
 
       #revConfirmBack {
@@ -497,6 +520,10 @@ header {
       padding: 25px 20px 25px 25px;
       position: relative;
 
+      #modiRev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
@@ -526,6 +553,7 @@ header {
         top: 25px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
       }
       #modiRev-modiBtnBack {
         position: absolute;
@@ -557,7 +585,7 @@ header {
         height: 40px;
         border-radius: 10px;
         border: 1px solid #000;
-        background-color: #fff;
+        background-color: #d4d4d4;
         text-indent: 20px;
       }
       #passWord {
@@ -565,7 +593,7 @@ header {
         height: 40px;
         border-radius: 10px;
         border: 1px solid #000;
-        background-color: #fff;
+        background-color: #d4d4d4;
         text-indent: 20px;
       }
     }
@@ -625,6 +653,10 @@ header {
       padding: 20px;
       position: relative;
 
+      #delRev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
@@ -654,6 +686,7 @@ header {
         top: 20px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
       }
 
       #delConfirmBack {

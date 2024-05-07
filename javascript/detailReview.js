@@ -5,7 +5,7 @@ const getMoviesData = () => {
   });
 };
 
-const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효성 검사
+const clickWriteRvButton = () => {  
   const writeRv = document.getElementById("writeRv");
   if(!writeRv){
     return;
@@ -28,7 +28,6 @@ const clickBackSpace = () => {
   });
 };
 
-
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
   if(!revRegist){
@@ -40,14 +39,11 @@ const clickRevRegist = () => {
   });
 };
 
-
-
 const clickEvents = () => {
   clickWriteRvButton();
   clickBackSpace();
   clickRevRegist();
 };
-
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
@@ -74,6 +70,15 @@ const loadThisMovie = (movies) => {
   });
 };
 
+// const getNav = () => {
+//   fetch("../nav.html") // 질문하기!!
+//     .then((response) => response.text())
+//     .then((data) => {
+//       document.getElementById("eventGuide-nav").innerHTML = data;
+//     })
+//     .catch((error) => console.error("Error:", error));
+// };
 
 clickEvents();
+//getNav();
 getMoviesData();
