@@ -1,0 +1,64 @@
+@import "./reset.css";
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up-form {
+  width: 100%;
+  max-width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.sign-up-form .input-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.sign-up-form label {
+  width: 72px;
+  font-size: 14px;
+}
+
+.sign-up-form input {
+  box-sizing: border-box;
+  background-color: white;
+  margin:0;
+  padding: 0;
+  border: 1px solid #2d2d2d;
+  width: 300px;
+  height: 50px;
+  padding: 10px;
+}
+
+.sign-up-form select {
+  width: 300px;
+  height: 50px;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.sign-up-form select option {
+  background-color: white;
+}
+
+.sign-up-form button {
+  background-color: #2d2d2d;
+  color: white;
+  margin:0;
+  padding: 0;
+  border: none;
+  width: 300px;
+  height: 50px;
+  margin-right: 10px;
+  margin-top: 20px;
+}

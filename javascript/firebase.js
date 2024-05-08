@@ -12,32 +12,30 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Firebase POST data
-// const postData = async () => {
-//   const docRef = await db.collection("event").doc("tickets");
-//   docRef.get().then((doc) => {
-//     console.log(doc.data());
-//   });
-//   db.collection("event")
-//   .get()
-//   .then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//       console.log(doc.id, " => ", doc.data());
-//       currTime = doc.data()["units"];
-//       console.log(currTime);
-//       db.collection("cat")
-//         .doc("wakeUpTime")
-//         .update({ time: Number(currTime) + 1 });
-//     });
-//   });
-// };
-const getData = async () => {
+const postData = async (dbCollection, dataName, data, key) => {
+  const docRef = await db
+    .collection(dbCollection)
+    .doc(dataName)
+    .set({
+      [key]: data,
+      date: new Date(),
+    });
+
+  return docRef;
+};
+
+const getData = async (dbcollection, docName, dataName) => {
   let result;
   await db
-    .collection("event")
-    .doc("tickets")
+    .collection(dbcollection)
+    .doc(docName)
     .get()
     .then((doc) => {
-      result = doc.data()["units"];
+      if(!doc.data()) {
+        return null;
+      } else {
+        result = doc.data()[dataName];
+      }
     });
   // docRef.get().then((doc) => {
   //   data = doc.data()["units"];
@@ -47,23 +45,34 @@ const getData = async () => {
   return result;
 };
 
-const readData = async () => {
-  const data = await getData();
-  console.log(data);
-  return data;
-};
-
-const updateData = async () => {
-  const data = await getData();
-
-  db.collection("event")
-    .doc("tickets")
-    .update({ units: Number(data) - Number(1) });
-
-  const currData = await getData();
-  console.log(currData);
-};
-
 // console.log(getData());
 
-readData();
+// readData();
+
+// db.collection(컬렉션이름).onSnapshot((snapshot) => {
+
+//     snapshot.docChanges().forEach((change) => {
+//     if (change.type === "added") {
+
+//       const post = change.doc.data();
+//       const id = change.doc.id;
+//       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+//     } else if (change.type === "modified") {
+
+//     } else if (change.type === "removed") {
+//       // 삭제된 데이터 처리
+//       const postId = change.doc.id;
+//       const postElement = document.getElementById(postId);
+//       if (postElement) {
+//         postElement.remove();
+//       }
+//     }
+//   });
+// });
+
+db.collection("event").doc("tickets").get().then(data => {
+  console.log(data.data());
+});
+
+//이벤트 자리에 무비 코멘트
+//티켓츠자리에 문서이름(댓글하나하나)

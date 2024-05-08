@@ -5,7 +5,7 @@ const createDiv = (id, text) => {
   div.innerText = text;
   return div;
 };
-
+let eventObj = {};
 const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
   const headerDiv = createDiv("event-join-header", "");
@@ -19,11 +19,9 @@ const askiiCodeGenerator = (askiiNum) => {
   const askiiString = String.fromCharCode(askiiNum);
   return askiiString;
 };
-
 const checkSeatGrade = (seatCode) => {
   if (seatCode === "A5" || seatCode === "A6") return "VIP";
-  console.log("seatCode[-1]", seatCode[1]);
-  if (seatCode[1] === "0") return "seat-en";
+  if (seatCode[1] === "0") return "seat-standard";
   if (seatCode.includes("A")) return "R";
   if (
     seatCode.includes("B") ||
@@ -44,31 +42,68 @@ const makeSeat = () => {
     for (let j = 0; j < seatRow; j++) {
       if (j === 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
-        seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${askiiChar}</div>`;
       }
       if (j !== 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
-        seatColumnHTML += `<div id="${askiiChar}${j}" class = "${seatGrade} , seat-element">${j}</div>`;
       }
+      const serialNumber = Math.floor(new Date().getTime() * Math.random());
+      eventObj = {
+        ...eventObj,
+        [askiiChar + String(j).padStart(2, 0)]: {
+          seatId: askiiChar + String(j).padStart(2, 0),
+          ticketGrade: seatGrade,
+          isSold: false,
+          //시리얼 넘버 생성
+          serialNumber: serialNumber,
+        },
+      };
     }
-    seat.innerHTML += `<div id="${askiiChar}-container" class = "seat-container">${seatColumnHTML}</div>`;
   }
-  console.log("seat.innerHTMl", seat.innerHTML);
-  return seat.innerHTML;
+  getData("event", "tickets", "seats").then((data) =>
+    data
+      ? console.log("티켓 데이터가 존재합니다.")
+      : (postData("event", "tickets", eventObj, "seats"),
+        makeSeat(),
+        console.log("재귀"))
+  );
 };
 
-const renderJoinPage = () => {
+const getSeat = async () => {
+  const seatDiv = createDiv("seat", "");
+  const seatData = await getData("event", "tickets", "seats");
+  const seatKeys = Object.keys(seatData).sort((a, b) => a.localeCompare(b));
+  seatKeys.forEach((seat) => {
+    const { seatId, ticketGrade, isSold } = seatData[seat];
+    let seatColumnHTML = "";
+
+    const seatRow = seat[0];
+    const seatCol = [...seat].slice(1).join("");
+
+    if (isSold === true) {
+      seatColumnHTML += `<div id="${seatId}" class = "${ticketGrade} seat-element sold">${seatCol}</div>`;
+    } else if (seatCol === "00") {
+      seatColumnHTML += `<div id="${seatId}" class = "seat-standard seat-element">${seatRow}</div>`;
+    } else {
+      seatColumnHTML += `<div id="${seatId}" class = "${ticketGrade} seat-element">${seatCol}</div>`;
+    }
+    seatDiv.innerHTML += seatColumnHTML;
+  });
+  return seatDiv.innerHTML;
+};
+
+const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
-  console.log(divObj);
-  divObj.containerDiv.innerHTML = `
+  await getSeat().then((data) => {
+    divObj.containerDiv.innerHTML = `
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
-  <div id = "main-seat">${makeSeat()}</div>
+  <div id = "main-seat">${data}</div>
   `)}
   `;
-
-  const eventArea = document.querySelector(".event-area");
-  document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
-  // document.body.appendChild(divObj.containerDiv);
+    const eventArea = document.querySelector(".event-area");
+    document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
+  });
 };
+
 // renderJoinPage();
+// makeSeat();

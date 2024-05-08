@@ -1,5 +1,12 @@
 @import "./reset.css";
 @font-face {
+  font-family: "TTHakgyoansimMulgyeolB";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMulgyeolB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
   font-family: "DS-Digit";
   font-weight: 700;
   src: url("../fonts/DS-DIGIT.TTF") format("woff2");
@@ -20,22 +27,173 @@ body {
   align-items: center;
 }
 
+.my-ticket {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  min-width: 1000px;
+  height: 600px;
+  background-color: #423781;
+  .ticket {
+    z-index: 10;
+  }
+  > p {
+    font-family: "TTHakgyoansimMulgyeolB";
+    position: relative;
+    color: white;
+    right: 200px;
+    font-size: 60px;
+  }
+}
+
+.curr-ticket {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 280px;
+  height: 520px;
+  background-repeat: no-repeat;
+  filter: drop-shadow(20px 20px 10px rgba(0, 0, 0, 0.5));
+
+  z-index: 1;
+  p {
+    font-family: "TTHakgyoansimMulgyeolB";
+    z-index: 10;
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+}
+
+.ticket {
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 280px;
+  height: 520px;
+  position: relative;
+  z-index: 1;
+  top: -400px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  /* animation-name: printingTicket; */
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+
+  p {
+    font-family: "TTHakgyoansimMulgyeolB";
+    z-index: 10;
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+}
+
+.curr-ticket.grade-none {
+  background-image: url("../img/ticket/random-ticket.svg");
+}
+
+.curr-ticket.grade-VIP,
+.ticket.grade-VIP {
+  background-image: url("../img/ticket/vip-ticket.svg");
+  p {
+    background: linear-gradient(
+      168deg,
+      #83bcfd 36.44%,
+      #a36af4 58.73%,
+      #bf5cf4 82%,
+      #e1a2ea 98.48%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+}
+.curr-ticket.grade-R,
+.ticket.grade-R {
+  background-image: url("../img/ticket/r-ticket.svg");
+  p {
+    background: linear-gradient(
+      -67deg,
+      #ffd02a 0%,
+      #7f7100 34%,
+      #ffe35e 74%,
+      #2a2900 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+}
+.curr-ticket.grade-S,
+.ticket.grade-S {
+  background-image: url("../img/ticket/s-ticket.svg");
+  p {
+    background: linear-gradient(
+      -67deg,
+      #e64f71 0%,
+      #511d1d 35%,
+      #ea4d75 71%,
+      #391d1d 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+}
+.curr-ticket.grade-A,
+.ticket.grade-A {
+  background-image: url("../img/ticket/a-ticket.svg");
+  p {
+    background: linear-gradient(
+      -67deg,
+      #e64f71 0%,
+      #511d1d 35%,
+      #ea4d75 71%,
+      #391d1d 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+}
+
 .event-area {
-  overflow: hidden;
   margin-top: 100px;
   display: flex;
   align-items: flex-start;
   height: 1000px;
   width: 100%;
   max-width: 1440px;
+  min-width: 1000px;
   justify-content: center;
-  
 
-  .print-btn {
-    margin-top: 300px;
+  .info-area {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    height: 500px;
+  }
+
+  .my-rest-tickets {
+    z-index: 13;
+    font-family: "TTHakgyoansimMulgyeolB";
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background-color: #2d2d2d;
+  }
+
+  .get-coin-btn {
     cursor: pointer;
     position: relative;
-    margin-right: 100px;
 
     .topside {
       width: 300px;
@@ -61,13 +219,13 @@ body {
     }
   }
 
-  .print-btn:hover {
+  .get-coin-btn:hover {
     .frontside {
       top: 30px;
     }
   }
 
-  .print-btn.working {
+  .get-coin-btn.working {
     pointer-events: none;
     .frontside {
       top: 10px;
@@ -78,9 +236,12 @@ body {
     position: relative;
     width: 400px;
     height: 500px;
+    margin-left: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation-duration: 2s;
+    animation-iteration-count: 2;
     .ticket-printer {
       position: absolute;
       width: 100%;
@@ -89,6 +250,9 @@ body {
     .ticket-printer.front {
       background-image: url("../img/printer-front.svg");
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .ticket-counter {
         display: flex;
@@ -108,6 +272,7 @@ body {
             width: 240px;
             height: 100%;
             background-color: #2d2d2d;
+            padding-left: 20px;
           }
           .bottomside {
             width: 240px;
@@ -117,6 +282,7 @@ body {
           }
         }
         .unit {
+          margin-left: 20px;
           font-family: "JalnanGothic";
           font-size: 80px;
           font-weight: 500;
@@ -126,15 +292,184 @@ body {
     .ticket-printer.back {
       background-image: url("../img/printer-back.svg");
     }
-    .ticket {
-      width: 280px;
-      position: relative;
-      z-index: 1;
-      top: -400px;
-      /* animation-name: printingTicket; */
-      animation-duration: 4s;
-      animation-fill-mode: forwards;
-    }
+  }
+}
+
+.loading-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin-top: 24px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    #6958cc 0%,
+    #6958cc 50.5%,
+    #5c4db2 50.51%,
+    #362d69 100%
+  );
+}
+
+.loading-bar {
+  height: 16px;
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.loading-bar.front {
+  width: 0;
+  animation-timing-function: cubic-bezier(0.16, 0.66, 0.78, 0.59);
+  animation-duration: 5.5s;
+  animation-fill-mode: forwards;
+  z-index: 2;
+  box-shadow: inset 0 6px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
+}
+.loading-bar.back {
+  width: 276px;
+  background-color: #2d2d2d;
+}
+
+.modal-background {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  background-color: #ffed4b;
+  border-radius: 40px;
+  filter: drop-shadow(0 10px #e0d041);
+}
+
+.modal p {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+.btns-box {
+  width: 240px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+.closeBtnBox {
+  opacity: 1;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.btnBg {
+  position: absolute;
+  bottom: -18px;
+
+  width: 100px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #423781;
+}
+
+.closeModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+  bottom: 0;
+  color: white;
+  background-color: #6958cc;
+  border: none;
+  font-weight: 900;
+  font-size: 24px;
+  border-radius: 20px;
+  width: 100px;
+  height: 60px;
+  padding: 0;
+  margin: 0;
+}
+
+.closeModal:hover {
+  bottom: -8px;
+}
+
+.closeModal.print {
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
+}
+.btnBg.print {
+  background: linear-gradient(
+    168deg,
+    #e1a2ea 1.54%,
+    #bf5cf4 18.99%,
+    #a36af4 36.44%,
+    #83bcfd 58.73%,
+    #bafaa6 82%,
+    #e5fe67 98.48%
+  );
+  filter: brightness(50%);
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  display: flex;
+}
+
+.invisible {
+  display: none;
+}
+
+@keyframes loading {
+  0% {
+    width: 0px;
+  }
+  95%,
+  100% {
+    width: 276px;
   }
 }
 
@@ -159,5 +494,126 @@ body {
   }
   100% {
     top: 360px;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  5% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}
+
+.coin {
+  z-index: 12;
+  transform: translate3d(0px, 0px, 0);
+  width: 120px;
+  height: 120px;
+}
+
+.coin-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}
+
+.blocked {
+  pointer-events: none;
+}
+
+.coinbox {
+  position: absolute;
+  left: -40px;
+  bottom: 0;
+  width: 40px;
+  height: 200px;
+}
+
+.coinbox-topside {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 200px;
+  background-image: url("../img/coinbox-topside.svg");
+}
+
+.coinbox-frontside {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 130px;
+  background-image: url("../img/coinbox-frontside.svg");
+}
+
+.guide-line {
+  position: absolute;
+  top: -10px;
+  left: -50px;
+  z-index: 11;
+  width: 140px;
+  height: 140px;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='70' ry='70' stroke='white' stroke-width='10' stroke-dasharray='7%2c 14' stroke-dashoffset='0' stroke-linecap='butt'/%3e%3c/svg%3e");
+  border-radius: 70px;
+  animation-name: insertGuideRotate;
+  animation-duration: 5s;
+  animation-iteration-count : infinite;
+  animation-timing-function : linear;
+}
+
+.animation-coin {
+  transition: top 1s;
+  z-index: 4;
+  width: 40px;
+  height: 100px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  object-fit: cover;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes insertCoin {
+  0% {
+    top: -70px;
+  }
+  100% {
+    top: 100px;
+  }
+}
+
+@keyframes insertGuideRotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
   }
 }

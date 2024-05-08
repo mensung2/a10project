@@ -1,3 +1,4 @@
+// import postData from "./firebase";
 class Movies {
   #movies;
   #context;
@@ -24,16 +25,12 @@ class Movies {
       },
     ];
   }
-
   async initialize() {
     await this.#fetchMovieInfo();
-    this.#renderMovieCards(this.#movies);
   }
-
   getMoviesInfo() {
     return this.#movies;
   }
-
   async #fetchMovieInfo() {
     let pageNum = 1;
     const options = {
@@ -62,11 +59,32 @@ class Movies {
       }
 
       this.#parseMovieData(datas);
+
+      getData("event", "moviesDoc", "movies").then((data) =>
+        data
+          ? console.log("data가 있습니다.")
+          : (postData("event", "moviesDoc", this.#movies, "movies"),
+            this.#fetchMovieInfo(),
+            console.log("재귀"))
+      );
     } catch (error) {
       console.error("Error fetching movies:", error.message);
     }
   }
 
+  #parseMovieData(data) {
+    // 아래는 기준 별 정렬
+    // results.sort((a, b) => b.popularity - a.popularity); 유명도
+    // results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)); 날짜
+    // vote average는 같은 값이 너무 많음.
+    data.forEach((item) => {
+      if (item.overview !== "" && item.poster_path !== null) {
+        this.#movies.set(item.poster_path, item);
+      }
+    });
+    this.#findMovieContext();
+    this.#makeContext();
+  }
   #findMovieContext() {
     this.#movies.forEach((movieItem) => {
       const context = this.#context.filter((item) => {
@@ -74,22 +92,6 @@ class Movies {
       });
       if (context) movieItem.context = context[0];
     });
-  }
-
-  #parseMovieData(results) {
-    console.log(results);
-    // 아래는 기준 별 정렬
-    // results.sort((a, b) => b.popularity - a.popularity); 유명도
-    // results.sort((a, b) => new Date(b.release_date) - new Date(a.release_date)); 날짜
-    // vote average는 같은 값이 너무 많음.
-
-    results.forEach((item) => {
-      if (item.overview !== "" && item.poster_path !== null) {
-        this.#movies.set(item.poster_path, item);
-      }
-    });
-    this.#findMovieContext();
-    this.#makeContext();
   }
 
   // 영화 리뷰를 생성 시 미리 생성된 영화 배열의 인덱스 값에 해당 context를 덮어씌어준다.
@@ -102,70 +104,9 @@ class Movies {
     this.#movies.entries().forEach(([key, value], idx) => {
       if (value.title === "쿵푸팬더 4") return (value.context = "음냐링");
     });
-
-    console.log(this.#movies);
-  }
-
-  #renderMovieCards(movies) {
-    const container = document.getElementById("movie-list");
-    container.innerHTML = "";
-    movies.forEach((value) => {
-      const card = document.createElement("div");
-      card.classList.add("movie-card");
-
-      const posterImg = document.createElement("img");
-      posterImg.src = `https://image.tmdb.org/t/p/w500${value.poster_path}`;
-      posterImg.alt = value.title;
-      posterImg.classList.add("movie-poster");
-
-      const title = document.createElement("h2");
-      title.textContent = value.title;
-      title.classList.add("movie-title");
-
-      const overview = document.createElement("p");
-      overview.textContent = value.overview;
-      overview.classList.add("movie-overview");
-
-      card.appendChild(posterImg);
-      card.appendChild(title);
-      card.appendChild(overview);
-
-      container.appendChild(card);
-    });
-  }
-
-  searchMovies(keyword) {
-    const filteredMovies = new Map();
-    let isShowing = false;
-    this.#movies.forEach((movie, poster_path) => {
-      if (movie.title.toLowerCase().includes(keyword.trim().toLowerCase())) {
-        //같은 이름의 다른 영화가 있더라도 데이터가 덮어 씌어진다.
-        console.log(movie);
-        filteredMovies.set(poster_path, movie);
-        isShowing = true;
-      }
-    });
-    if (isShowing === false) alert("해당 영화는 현재 상영중이지 않습니다.");
-    if (filteredMovies.size === 0) return this.#renderMovieCards(this.#movies);
-
-    return this.#renderMovieCards(filteredMovies);
   }
 }
 
-// const movies = new Movies();
-// movies.initialize();
-
-// const searchInput = document.getElementById("search-input");
-// const searchButton = document.getElementById("search-button");
-// searchInput.addEventListener("keyup", (e) => {
-//   const keyword = e.target.value;
-//   if (e.keyCode === 13) {
-//     movies.searchMovies(keyword);
-//   }
-// });
-
-// searchButton.addEventListener("click", (e) => {
-//   const keyword = searchInput.value;
-
-//   movies.searchMovies(keyword);
-// });
+const movies = new Movies();
+movies.initialize();
+// const data = movies.getMoviesInfo();

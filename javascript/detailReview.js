@@ -1,45 +1,66 @@
-const apiUrl =
-  "https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZWJhNTBjM2QzYmNkM2MwYTFlNTY5ODQ3MjVjOGI5YiIsInN1YiI6IjY2Mjc5YzdmNjNkOTM3MDE2NDczNjE0YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cFMshiEk0fPnYsxW-pIEyfKvjmANU7gtPKy8-zEO-OE",
-  },
+const getMoviesData = () => {
+  const firebaseData = getData("event", "moviesDoc", "movies");
+  firebaseData.then((data) => {
+    loadThisMovie(data);
+  });
 };
 
-const fetchThisMovie = async () => {
-  fetch(apiUrl, options)
-    .then((response) => response.json())
-    .then((response) => {
-      const movies = response.results;
-      // id와 동일한 데이터만 화면에 로드
-      loadThisMovie(movies);
-
-    })
-    .catch((err) => console.error(err));
+const clickWriteRvButton = () => {  
+  const writeRv = document.getElementById("writeRv");
+  if(!writeRv){
+    return;
+  }
+  const writeRev = document.getElementsByClassName("writeRev")[0];
+  writeRv.addEventListener("click", (e) => {
+    e.preventDefault();
+    writeRev.classList.remove("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.remove("hidden");
+  });
 };
 
-fetchThisMovie();
+const clickBackSpace = () => {
+  const backSpace = document.getElementById("writeRev-backspace");
+  if(!backSpace){
+    return;
+  }
+  backSpace.addEventListener("click", (e) => {
+    e.preventDefault();
+    writeRev.classList.add("hidden");
+    writeRev.parentElement.classList.add("hidden");
+  });
+};
 
-const prevId = window.location.search;
-const thisPageId = prevId.substr(3);
-console.log(prevId);
-console.log(thisPageId);
+const clickRevRegist = () => {
+  const revRegist = document.getElementById("revRegist");
+  if(!revRegist){
+    return;
+  }
+  revRegist.addEventListener("click", (e) => {
+    e.preventDefault();
+    writeRev.classList.add("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.add("hidden");
+  });
+};
+
+const clickEvents = () => {
+  clickWriteRvButton();
+  clickBackSpace();
+  clickRevRegist();
+};
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
   const card = document.createElement("div");
   card.classList.add("movie_card");
-  console.log(movies);
-
+  const prevId = window.location.search;
+  const thisPageId = prevId.substr(3);
   // movie.id는 넘버타입이고, thisPageId는 스트링이라 오류가 발생해 형변환을 해주었다.
-  movies.forEach((movie) => {
+  movies.forEach((movie, id) => {
     const selectedMovie = movie.id === Number(thisPageId);
 
-    if(selectedMovie) {
+    if (selectedMovie) {
       card.innerHTML = `  
             <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" id="poster" alt="${movie.title}" /></a>           
           <div class="infoBox">
@@ -49,12 +70,20 @@ const loadThisMovie = (movies) => {
             <p id="releaseDate">개봉일: ${movie.release_date}</p>
             <p id="content">${movie.overview}</p>          
           </div>`;
-      container.appendChild(card);      
+      container.appendChild(card);
     }
   });
 };
 
-//container.innerHTML = "";  //
-//const selectedMovie = movies.find(movie => movie.id === thisPageId);
-//movies는 배열인데, 배열 속 요소 하나하나가 객체라서 배열 메서드인 find가 먹히지 않음.
-//console.log(selectedMovie);
+const getNav = () => {
+  fetch("../nav.html") // 질문하기!!
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
+
+clickEvents();
+getNav();
+getMoviesData();
