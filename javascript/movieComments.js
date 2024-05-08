@@ -40,7 +40,6 @@ db.collection("movie-comments").onSnapshot((snapshot) => {
     if (change.type === "added") {
       const post = change.doc.data();
       const id = change.doc.id; //파이어베이스 문서 각각의 아이디
-      //console.log(post, id);
       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
       if (thisPageId !== post.movieId) {
         return; // 간단하게 !
