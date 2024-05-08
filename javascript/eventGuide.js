@@ -96,12 +96,6 @@ const renderGuidPage = async () => {
 };
 
 renderGuidPage();
-searchInput.addEventListener("change", (e) => {
-  search();
-});
-searchButton[0].addEventListener("click", (e) => {
-  button();
-});
 
 const goEventBtn = document.querySelector(".process-section-button");
 goEventBtn.addEventListener("click", () => {

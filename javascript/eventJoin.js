@@ -120,9 +120,3 @@ const renderJoinPage = async () => {
 
 renderJoinPage();
 makeSeat();
-searchInput.addEventListener("change", (e) => {
-  search();
-});
-searchButton[0].addEventListener("click", (e) => {
-  button();
-});
