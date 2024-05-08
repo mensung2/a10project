@@ -75,15 +75,15 @@ const loadThisMovie = (movies) => {
   });
 };
 
-// const getNav = () => {
-//   fetch("../nav.html") // 질문하기!!
-//     .then((response) => response.text())
-//     .then((data) => {
-//       document.getElementById("eventGuide-nav").innerHTML = data;
-//     })
-//     .catch((error) => console.error("Error:", error));
-// };
+const getNav = () => {
+  fetch("../nav.html") // 질문하기!!
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
 
 clickEvents();
-//getNav();
+getNav();
 getMoviesData();
