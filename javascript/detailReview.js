@@ -5,9 +5,9 @@ const getMoviesData = () => {
   });
 };
 
-const clickWriteRvButton = () => {  
+const clickWriteRvButton = () => {
   const writeRv = document.getElementById("writeRv");
-  if(!writeRv){
+  if (!writeRv) {
     return;
   }
   const writeRev = document.getElementsByClassName("writeRev")[0];
@@ -21,7 +21,7 @@ const clickWriteRvButton = () => {
 
 const clickBackSpace = () => {
   const backSpace = document.getElementById("writeRev-backspace");
-  if(!backSpace){
+  if (!backSpace) {
     return;
   }
   backSpace.addEventListener("click", (e) => {
@@ -33,7 +33,7 @@ const clickBackSpace = () => {
 
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
-  if(!revRegist){
+  if (!revRegist) {
     return;
   }
   revRegist.addEventListener("click", (e) => {

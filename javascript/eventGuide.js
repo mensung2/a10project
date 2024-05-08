@@ -1,3 +1,11 @@
+// html에 div태그를 만들어주는 함수
+const createDiv = (id, text) => {
+  const div = document.createElement("div");
+  div.id = id;
+  div.innerText = text;
+  return div;
+};
+
 const makeGuideDivObj = () => {
   const containerDiv = createDiv("event-guide-container", "");
   const headerDiv = createDiv("event-guide-header", "");
