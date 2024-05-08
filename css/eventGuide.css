@@ -31,25 +31,6 @@ body {
     width: 100%;
     height: 750px;
     background-size: 100% 800px;
-
-    #section-container-button {
-      position: absolute;
-      display: flex;
-      color: white;
-      background-color: black;
-      border: none;
-      top: 140px;
-
-      img {
-        color: white;
-        width: 20px;
-        height: 20px;
-      }
-
-      :hover {
-        cursor: pointer;
-      }
-    }
   }
 
   #event-container {

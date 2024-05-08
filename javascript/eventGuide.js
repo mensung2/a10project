@@ -29,10 +29,7 @@ const renderGuidPage = async () => {
   ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
   <div id = 'section-container'>
-    <button id = 'section-container-button'>
-      <img src = "./img/event-page/arrow-back.png"/>
-      <div>뒤로가기</div>
-    </button>
+  
   </div>
   `)}
   ${(divObj.eventDiv.innerHTML = `
