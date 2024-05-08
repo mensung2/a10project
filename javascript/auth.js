@@ -61,7 +61,7 @@ const checkIsWrong = (el, warning, pattern, boolean = true) => {
   const warningLine =
     el.parentElement.parentElement.querySelector(".warning-line");
   if (!isWrong === boolean || el.value === "") {
-    el.style.border = "2px solid red";
+    el.style.border = "2px solid #ffed4b";
     warningLine.innerText = warning;
   } else {
     el.style.border = "1px solid #2d2d2d";
@@ -92,6 +92,7 @@ const checkAccount = async () => {
   if (!account.value) {
     return;
   }
+  let existAccount = null;
   await db
     .collection("accounts")
     .doc(account.value)
@@ -102,11 +103,13 @@ const checkAccount = async () => {
         const warningLine =
           account.parentElement.parentElement.querySelector(".warning-line");
         warningLine.innerText = "아이디가 중복되었습니다!";
-        account.style.border = "2px solid red";
-        return true;
+        account.style.border = "2px solid #ffed4b";
+        existAccount = true;
       }
     });
-
+  if(existAccount) {
+    return true;
+  }
   return result;
 };
 
@@ -122,6 +125,7 @@ const checkEmail = async () => {
   const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   const warningText = "이메일 주소가 올바르지 않습니다!";
   const result = checkIsWrong(email, warningText, regex);
+  let existingEmail = null;
   await db
     .collection("accounts")
     .get()
@@ -131,11 +135,14 @@ const checkEmail = async () => {
           const warningLine =
             email.parentElement.parentElement.querySelector(".warning-line");
           warningLine.innerText = "이메일이 중복되었습니다!";
-          email.style.border = "2px solid red";
-          return true;
+          email.style.border = "2px solid #ffed4b";
+          existingEmail = true;
         }
       });
     });
+  if (existingEmail) {
+    return true;
+  }
   return result;
 };
 
@@ -149,7 +156,7 @@ const checkConfirmPassword = () => {
     confirmPassword.parentElement.parentElement.querySelector(".warning-line");
   if (isWrong) {
     warningLine.innerText = warning;
-    confirmPassword.style.border = "2px solid red";
+    confirmPassword.style.border = "2px solid #ffed4b";
   } else {
     warningLine.innerText = "";
     confirmPassword.style.border = "1px solid #2d2d2d";
@@ -166,41 +173,48 @@ const addInputValidationListener = () => {
   confirmPassword.addEventListener("blur", checkConfirmPassword);
   email.addEventListener("blur", checkEmail);
 };
+const inputBlink = el => {
+  el.style.backgroundColor="#ffed4b";
+  setTimeout(() => {
+    el.style.backgroundColor="white";
+  },600)
+}
 
 const checkIsInvalid = async () => {
-  const _checkAccount = await checkAccount();
-  console.log(_checkAccount);
-  if (_checkAccount) {
-    console.log("아이디 오류");
-    return true;
-  }
-
+  
   if (checkUsername()) {
-    console.log("이름 오류");
+    alert("이름을 다시 입력해주세요!");
+    inputBlink(username);
     return true;
   }
   if (checkNickname()) {
-    console.log("별명 오류");
+    alert("별명을 다시 입력해주세요!");
+    inputBlink(nickname);
+    return true;
+  }
+  const _checkAccount = await checkAccount();
+  if (_checkAccount) {
+    alert("아이디를 다시 입력해주세요!");
+    inputBlink(account);
     return true;
   }
 
   if (checkPassword()) {
-    console.log("비번 오류");
+    alert("비밀번호를 다시 입력해주세요!");
+    inputBlink(password);
     return true;
   }
 
   if (checkConfirmPassword()) {
-    console.log("비번 확인 오류");
+    alert("비밀번호가 다릅니다!");
+    inputBlink(confirmPassword);
     return true;
   }
 
-  let _checkEmail = null;
-  checkEmail().then((data) => {
-    _checkEmail = data;
-  });
-
+  const _checkEmail = await checkEmail();
   if (_checkEmail) {
-    console.log("이메일 오류");
+    alert("이메일이 올바르지 않습니다!");
+    inputBlink(email);
     return true;
   }
   return false;
@@ -228,7 +242,6 @@ const sendAuthMail = async (username, userEmail, serialNumber) => {
 const confirmInputValues = async () => {
   const isInvalid = await checkIsInvalid();
   if (isInvalid) {
-    alert("올바르지 않은 값이 있습니다!");
     return;
   }
 
@@ -245,10 +258,14 @@ const confirmInputValues = async () => {
   };
   sessionStorage.setItem("authMailState", JSON.stringify(authMailState));
 
-  sendAuthMail(username.value, email.value, serialNumber);
+  // sendAuthMail(username.value, email.value, serialNumber);
   alert("성공적으로 메일을 보냈습니다!");
   sendAuthMailBtn.innerText = "인증메일 발송완료";
   sendAuthMailBtn.classList.add("complete");
+  const authInput = document.querySelector(".auth-input");
+  const authBtn = document.querySelector(".check-auth-num-btn");
+  authInput.classList.remove("hidden");
+  authBtn.classList.remove("hidden");
 };
 
 const checkSerialNumber = async () => {
@@ -338,7 +355,7 @@ signupBtn.addEventListener("click", async () => {
         .then(() => {
           sessionStorage.removeItem("authMailState");
           sessionStorage.removeItem("mailCertificationState");
-          alert("회원가입에 성공했습니다!");
+          alert("회원가입에 성공했습니다! 로그인 페이지로 이동합니다!");
           location.reload(true);
         });
     });
@@ -348,7 +365,7 @@ signupBtn.addEventListener("click", async () => {
 removeExpiredCertifications();
 // input 태
 addInputValidationListener();
-checkSerialNumber();
+// checkSerialNumber();
 
 const sendAuthMailBtn = document.querySelector(".send-auth-num-btn");
 sendAuthMailBtn.addEventListener("click", () => {

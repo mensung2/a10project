@@ -102,3 +102,8 @@ searchInput.addEventListener("change", (e) => {
 searchButton[0].addEventListener("click", (e) => {
   button();
 });
+
+const goEventBtn = document.querySelector(".process-section-button");
+goEventBtn.addEventListener("click", () => {
+  goEventBtn.children[1].classList.add("press");
+});

@@ -10,13 +10,15 @@ body {
 #section-container-button {
   position: absolute;
   display: flex;
-  color: white;
-  background-color: black;
+  color: #d8d8d8;
+  font-weight: 700;
+  background-color: #2d2d2d;
   border: none;
   top: 140px;
 
   img {
     color: white;
+    filter: brightness(85%);
     width: 20px;
     height: 20px;
   }
@@ -106,7 +108,7 @@ nav {
       position: absolute;
       top: 0;
       right: 0;
-      width: 50px;
+      width: 50px; 
       height: 100%;
       border: none;
       background-color: #2d2d2d;
@@ -119,5 +121,21 @@ nav {
         font-size: 24px;
       }
     }
+  }
+}
+
+#section-container-button {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+  div {
+    position: relative;
+    top:2px;
+    font-size: 24px;
+    line-height: 24px;
   }
 }
