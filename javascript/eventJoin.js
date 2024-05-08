@@ -105,5 +105,5 @@ const renderJoinPage = async () => {
   });
 };
 
-// renderJoinPage();
-// makeSeat();
+renderJoinPage();
+makeSeat();
