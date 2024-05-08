@@ -82,15 +82,29 @@ const renderGuidPage = async () => {
 
   document.body.appendChild(divObj.containerDiv);
 
+  const locationList = JSON.stringify([
+    "../event.html",
+    "../genre.html",
+    "../fotter.html",
+  ]);
+  localStorage.setItem("location", locationList);
+
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
-    window.location.href = "../event.html";
+    // window.location.href = "../event.html";
+    console.log("window.location.search", ticketButton.search);
     console.log("yes");
   });
 
   const backgSpaceButton = document.getElementById("section-container-button");
   backgSpaceButton.addEventListener("click", (e) => {
-    window.location.href = "../event.html";
+    const locations = JSON.parse(localStorage.getItem("location"));
+    console.log("locations", locations);
+    // window.location.href = locations[0];
+    locations.shift();
+    localStorage.setItem("location", JSON.stringify(locations));
+
+    console.log("locations", locations);
   });
 };
 
