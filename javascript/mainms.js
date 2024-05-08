@@ -1,118 +1,79 @@
-function nextevent() {
-    const element = document.getElementById('review1');
-    element.style.cssText= `display: none;`
-    const element2 = document.getElementById('review2');
-    element2.style.cssText= `display: flex;
-    flex-grow: 1;
-    justify-content: space-around;
-    position: relative;`
-    const element3 = document.getElementById('next');
-    element3.style.cssText= `background-color: white;`
-}
+//네비바
+const getNav = () => {
+  fetch("../nav.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
 
-function prevevent() {
-  const element = document.getElementById('review1');
-  element.style.cssText= `display: none;`
-  const element2 = document.getElementById('review2');
-  element2.style.cssText= `display: flex;
-  flex-grow: 1;
-  justify-content: space-around;
-  position: relative;`
-  const element3 = document.getElementById('next');
-  element3.style.cssText= `background-color: white;`
-}
+getNav();
 
-// const options = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YzRiYTFiZTljMWM0YzdhZGI2N2ZhMjEzY2YyN2MzMCIsInN1YiI6IjY2MmEwM2Y4OGZkZGE5MDExY2RjZDM1MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.aFwI9AajUE9ZVmUbTs1RLCc3dlm_Vypd49LqOMLyXqA",
-//   },
-// };
-// fetch(
-//   "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
-//   options
-// )
-//   .then((response) => response.json())
-//   .then((response) => {
-//     const data = response.results;
-//     const length = data.length;
-//     const top5movie = document.querySelector(".top-5-container-list");
-//     for (let i = 0; i < 5; i = i + 1) {
-//       data[i];
-//       const movie = data[i];
-//       console.log(movie);
-//       const movieid = movie.id;
-//       const movieposter = movie.poster_path;
-//       console.log(movieid);
-//       console.log(movieposter);
-//       const temp_movie = `<div id=${movieid} class="list-item">
-//               <img src="img/rank-${i + 1}.svg" class="rank"></img>
-//               <div class="rank-img-container" onclick="location.href='detailReview.html';">
-//                 <img class="rank-img" src="https://image.tmdb.org/t/p/w300${movieposter}" alt />
-//               </div>
-//             </div>`;
-//       top5movie.innerHTML += temp_movie;
-//     }
-//   })
-//   .catch((err) => console.error(err));
-
+// 박스오피스 5위 출력
 async function getmovielist() {
   await db
     .collection("event")
     .doc("moviesDoc")
     .get()
     .then((doc) => {
-      const data = doc.data().movies
+      const data = doc.data().movies;
       const top5movie = document.querySelector(".top-5-container-list");
       for (let i = 0; i < 5; i = i + 1) {
-              data[i];
-              const movie = data[i];
-              console.log(movie);
-              const movieid = movie.id;
-              const movieposter = movie.poster_path;
-              console.log(movieid);
-              console.log(movieposter);
-              const temp_movie = `<div id=${movieid} class="list-item">
+        data[i];
+        const movie = data[i];
+        console.log(movie);
+        const movieid = movie.id;
+        const movieposter = movie.poster_path;
+        console.log(movieid);
+        console.log(movieposter);
+        const temp_movie = `<a id = 'clickevent 'href = 'detailReview.html?id${movieid}'> 
+        <div id=${movieid} class="list-item">
                       <img src="img/rank-${i + 1}.svg" class="rank"></img>
-                      <div class="rank-img-container" onclick="location.href='detailReview.html';">
+                      <div class="rank-img-container">
                         <img class="rank-img" src="https://image.tmdb.org/t/p/w300${movieposter}" alt />
                       </div>
-                    </div>`;
-              top5movie.innerHTML += temp_movie;
-}});
+                    </div>
+                    </a>`;
+        top5movie.innerHTML += temp_movie;
+      }
+    });
 }
+getmovielist();
 
-getmovielist()
+//리뷰 목록
+db.collection("movie-comments").onSnapshot((snapshot) => {
+  let count = 0;
+  snapshot.docChanges().forEach((change) => {
+    if (count > 3) { return }
+    //담겨있는 문서들. change는 문서 하나하나
+    if (change.type === "added") {
+      const post = change.doc.data();
+      const id = change.doc.id; //파이어베이스 문서 각각의 아이디
+      console.log(post, id);
+      //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
+      
+      const li = document.createElement("li"); // createElement 메서드를 사용하여 새로운 <li> 요소를 생성
+      li.dataset.id = id; // 생성된 <li> 요소에 dataset을 사용하여 데이터 속성을 추가,  id는 파이어베이스 문서에서 가져온 값으로, 이것을 데이터 속성으로 할당하여 나중에 JavaScript에서 사용할 수 있도록 함
+      li.classList.add("revBox");
+      li.id = "revBox"; // <li> 요소에 id 속성을 추가
 
+      const rvTemplate = `
+          <div class="revTop">  
+          <h3 id="starPoint">★ ${post.score}</h3>               
+      </div>               
+      <div class="revMid">
+          <p id="revtext">${post.text}</p>
+      </div>
+      <div class="revBase">
+          <p id="revnick">${post.nickname}</p>
+      </div>`;
 
+      const reviewContainer = document.getElementById("carousel"); // 원래 review (html:27)
+      li.innerHTML = rvTemplate;
+      reviewContainer.appendChild(li);
 
-const updateMovieList = (movies) => {
-  const container = document.getElementById("movie-cards");
-  container.innerHTML = "";
-
-  movies.forEach((movie) => {
-    const title = movie.title;
-    const voteAverage = movie.vote_average;
-    const overview = movie.overview;
-    const posterPath = movie.poster_path;
-    const id = movie.id;
-
-    const card = document.createElement("div");
-    card.classList.add("movie_card");
-    card.id = id;
-
-    // 이미지 클릭하면 해당 영화의 id값을 가진 페이지로 이동하도록 <a> 태그 추가
-    card.innerHTML = `
-     <div>  
-        <a id = 'clickevent 'href = 'detailReview.html?id=${id}'> 
-        <img src="https://image.tmdb.org/t/p/w200${posterPath}" id="poster" alt="${title}" /></a>
-        <h3>${title}</h3>
-        <p id="score">★ ${voteAverage}</p>
-        <p id="content">${overview}</p>               
-     </div>
-    `;
-    container.appendChild(card);
+      count=count+1
+    }
   });
-};
+});
