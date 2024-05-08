@@ -11,16 +11,6 @@ const {
   email,
   authNumber,
 } = signupForm;
-console.log(
-  signupForm,
-  username.value,
-  nickname,
-  account,
-  password,
-  confirmPassword,
-  email,
-  authNumber
-);
 
 const checkAuthNumBtn = document.querySelector(".check-auth-num-btn");
 
@@ -48,7 +38,6 @@ const expireSession = () => {
 
 const restTimer =
   authNumber.parentElement.parentElement.querySelector(".warning-line");
-console.log(restTimer);
 const renderTimer = () => {
   const authMailState = sessionStorage.getItem("authMailState");
   if (
@@ -66,32 +55,26 @@ const renderTimer = () => {
 };
 const timerStopper = setInterval(renderTimer, 1000);
 
-const getPersonalInfo = async () => {
-  const data = await getData("auth", "peopleInfo", "personalInfo");
-  const { students, tutors } = data;
-  console.log(students, tutors);
-};
-
 // /[^가-힣]/;
-const checkIsWrong = (el, warning, pattern) => {
+const checkIsWrong = (el, warning, pattern, boolean = true) => {
   const _pattern = pattern;
   const isWrong = _pattern.test(el.value);
   const warningLine =
     el.parentElement.parentElement.querySelector(".warning-line");
-  if (!isWrong) {
+  if (!isWrong === boolean || el.value === "") {
     el.style.border = "2px solid red";
     warningLine.innerText = warning;
   } else {
-    el.style.border = "2px solid #d6d6d6";
+    el.style.border = "1px solid #2d2d2d";
     warningLine.innerText = "";
   }
-  return !isWrong;
+  return !isWrong === boolean;
 };
 
 const checkUsername = () => {
-  const regex = /[가-힣]/;
+  const regex = /[^가-힣]/;
   const warningText = "올바른 이름을 입력해주세요.";
-  const result = checkIsWrong(username, warningText, regex);
+  const result = checkIsWrong(username, warningText, regex, false);
   return result;
 };
 
@@ -99,7 +82,6 @@ const checkNickname = () => {
   const regex = /[가-힣]/;
   const warningText = "별명은 한글로만 지어주세요!";
   const result = checkIsWrong(nickname, warningText, regex);
-  console.log(result);
   return result;
 };
 
@@ -121,10 +103,11 @@ const checkAccount = async () => {
         const warningLine =
           account.parentElement.parentElement.querySelector(".warning-line");
         warningLine.innerText = "아이디가 중복되었습니다!";
+        account.style.border = "2px solid red";
+        return true;
       }
     });
 
-  console.log(result);
   return result;
 };
 
@@ -133,15 +116,27 @@ const checkPassword = () => {
     /^[a-z0-9#?!@$%^&*-](?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-])[a-z0-9#?!@$%^&*-].{8,16}$/;
   const warningText = "영문자 + 숫자 + 특수문자 포함 8~16자리여야만 합니다!";
   const result = checkIsWrong(password, warningText, regex);
-  console.log(result);
   return result;
 };
 
-const checkEmail = () => {
+const checkEmail = async () => {
   const regex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   const warningText = "이메일 주소가 올바르지 않습니다!";
   const result = checkIsWrong(email, warningText, regex);
-  console.log(result);
+  await db
+    .collection("accounts")
+    .get()
+    .then((docs) => {
+      docs.forEach((doc) => {
+        if (doc.data().email === email.value) {
+          const warningLine =
+            email.parentElement.parentElement.querySelector(".warning-line");
+          warningLine.innerText = "이메일이 중복되었습니다!";
+          email.style.border = "2px solid red";
+          return true;
+        }
+      });
+    });
   return result;
 };
 
@@ -155,29 +150,35 @@ const checkConfirmPassword = () => {
     confirmPassword.parentElement.parentElement.querySelector(".warning-line");
   if (isWrong) {
     warningLine.innerText = warning;
+    confirmPassword.style.border = "2px solid red";
   } else {
     warningLine.innerText = "";
+    confirmPassword.style.border = "1px solid #2d2d2d";
   }
   const result = isWrong;
-  console.log(result);
   return result;
 };
 
-username.addEventListener("blur", checkUsername);
+const addInputValidationListener = () => {
+  username.addEventListener("blur", checkUsername);
+  nickname.addEventListener("blur", checkNickname);
+  account.addEventListener("blur", checkAccount);
+  password.addEventListener("blur", checkPassword);
+  confirmPassword.addEventListener("blur", checkConfirmPassword);
+  email.addEventListener("blur", checkEmail);
+};
 
-nickname.addEventListener("blur", checkNickname);
+const isInvalid = () => {
+  let _checkAccount = null;
+  checkAccount().then((data) => {
+    _checkAccount = data;
+  });
+  console.log(_checkAccount);
+  if (_checkAccount) {
+    console.log("아이디 오류");
+    return true;
+  }
 
-account.addEventListener("blur", checkAccount);
-
-password.addEventListener("blur", checkPassword);
-
-confirmPassword.addEventListener("blur", () => {
-  console.log(checkConfirmPassword());
-});
-
-email.addEventListener("blur", checkEmail);
-
-const isInvalidValue = () => {
   if (checkUsername()) {
     console.log("이름 오류");
     return true;
@@ -186,14 +187,7 @@ const isInvalidValue = () => {
     console.log("별명 오류");
     return true;
   }
-  let _checkAccount = null;
-  checkAccount().then((data)=>{
-    _checkAccount = data;
-  })
-  if (_checkAccount) {
-    console.log("아이디 오류");
-    return true;
-  }
+
   if (checkPassword()) {
     console.log("비번 오류");
     return true;
@@ -202,7 +196,11 @@ const isInvalidValue = () => {
     console.log("비번 확인 오류");
     return true;
   }
-  if (checkEmail()) {
+  let _checkEmail = null;
+  checkEmail().then((data) => {
+    _checkEmail = data;
+  });
+  if (_checkEmail) {
     console.log("이메일 오류");
     return true;
   }
@@ -210,7 +208,6 @@ const isInvalidValue = () => {
 };
 
 const sendAuthMail = async (username, userEmail, serialNumber) => {
-
   const templateParams = {
     to_name: username,
     user_email: userEmail,
@@ -230,7 +227,7 @@ const sendAuthMail = async (username, userEmail, serialNumber) => {
 };
 
 const confirmInputValues = async () => {
-  if (isInvalidValue()) {
+  if (isInvalid()) {
     alert("올바르지 않은 값이 있습니다!");
     return;
   }
@@ -347,12 +344,10 @@ signupBtn.addEventListener("click", async () => {
     });
 });
 
-// sendAuthMail();
-
-// {{reply_to}}, {{to_name}}, auth_serial_number
-
+// Firebase에서 expireDate가 지난 인증 데이터들을 제거.
 removeExpiredCertifications();
-
+// input 태
+addInputValidationListener();
 checkSerialNumber();
 
 const sendAuthMailBtn = document.querySelector(".send-auth-num-btn");
