@@ -61,7 +61,7 @@ const checkIsWrong = (el, warning, pattern, boolean = true) => {
   const warningLine =
     el.parentElement.parentElement.querySelector(".warning-line");
   if (!isWrong === boolean || el.value === "") {
-    el.style.border = "2px solid red";
+    el.style.border = "2px solid #ffed4b";
     warningLine.innerText = warning;
   } else {
     el.style.border = "1px solid #2d2d2d";
@@ -103,7 +103,7 @@ const checkAccount = async () => {
         const warningLine =
           account.parentElement.parentElement.querySelector(".warning-line");
         warningLine.innerText = "아이디가 중복되었습니다!";
-        account.style.border = "2px solid red";
+        account.style.border = "2px solid #ffed4b";
         existAccount = true;
       }
     });
@@ -135,7 +135,7 @@ const checkEmail = async () => {
           const warningLine =
             email.parentElement.parentElement.querySelector(".warning-line");
           warningLine.innerText = "이메일이 중복되었습니다!";
-          email.style.border = "2px solid red";
+          email.style.border = "2px solid #ffed4b";
           existingEmail = true;
         }
       });
@@ -156,7 +156,7 @@ const checkConfirmPassword = () => {
     confirmPassword.parentElement.parentElement.querySelector(".warning-line");
   if (isWrong) {
     warningLine.innerText = warning;
-    confirmPassword.style.border = "2px solid red";
+    confirmPassword.style.border = "2px solid #ffed4b";
   } else {
     warningLine.innerText = "";
     confirmPassword.style.border = "1px solid #2d2d2d";
@@ -173,35 +173,47 @@ const addInputValidationListener = () => {
   confirmPassword.addEventListener("blur", checkConfirmPassword);
   email.addEventListener("blur", checkEmail);
 };
+const inputBlink = el => {
+  el.style.backgroundColor="#ffed4b";
+  setTimeout(() => {
+    el.style.backgroundColor="white";
+  },1000)
+}
 
 const checkIsInvalid = async () => {
-  const _checkAccount = await checkAccount();
-  if (_checkAccount) {
-    alert("아이디를 다시 입력해주세요!");
-    return true;
-  }
-
+  
   if (checkUsername()) {
     alert("이름을 다시 입력해주세요!");
+    inputBlink(username);
     return true;
   }
   if (checkNickname()) {
     alert("별명을 다시 입력해주세요!");
+    inputBlink(nickname);
+    return true;
+  }
+  const _checkAccount = await checkAccount();
+  if (_checkAccount) {
+    alert("아이디를 다시 입력해주세요!");
+    inputBlink(account);
     return true;
   }
 
   if (checkPassword()) {
+    inputBlink(password);
     alert("비밀번호를 다시 입력해주세요!");
     return true;
   }
 
   if (checkConfirmPassword()) {
+    inputBlink(confirmPassword);
     alert("비밀번호가 다릅니다!");
     return true;
   }
 
   const _checkEmail = await checkEmail();
   if (_checkEmail) {
+    inputBlink(email);
     alert("이메일이 올바르지 않습니다!");
     return true;
   }

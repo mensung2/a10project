@@ -8,65 +8,68 @@
     <link rel="icon" href="./img/favicon.png" />
   </head>
   <body>
-    <h1>회원가입</h1>
-    <form class="sign-up-form">
-      <div class="input-box">
-        <div class="input-line">
-          <label for="username">이름</label>
-          <input id="username" type="text" />
+    <div class="form-background">
+      <h1>회원가입</h1>
+      <form class="sign-up-form">
+        
+        <div class="input-box">
+          <div class="input-line">
+            <label for="username">이름</label>
+            <input id="username" type="text" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
 
-      <div class="input-box">
-        <div class="input-line">
-          <label for="nickname">별명</label>
-          <input id="nickname" type="text" />
+        <div class="input-box">
+          <div class="input-line">
+            <label for="nickname">별명</label>
+            <input id="nickname" type="text" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
 
-      <div class="input-box">
-        <div class="input-line">
-          <label for="account">아이디</label>
-          <input id="account" type="text" />
+        <div class="input-box">
+          <div class="input-line">
+            <label for="account">아이디</label>
+            <input id="account" type="text" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
-      <div class="input-box">
-        <div class="input-line">
-          <label for="password">비밀번호</label>
-          <input id="password" type="password" />
+        <div class="input-box">
+          <div class="input-line">
+            <label for="password">비밀번호</label>
+            <input id="password" type="password" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
-      <div class="input-box">
-        <div class="input-line">
-          <label for="confirmPassword">비밀번호<br>확인</label>
-          <input id="confirmPassword" type="password" />
+        <div class="input-box">
+          <div class="input-line">
+            <label for="confirmPassword">비밀번호<br />확인</label>
+            <input id="confirmPassword" type="password" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
-      <div class="input-box">
-        <div class="input-line">
-          <label for="email">이메일</label>
-          <input id="email" type="email" />
+        <div class="input-box">
+          <div class="input-line">
+            <label for="email">이메일</label>
+            <input id="email" type="email" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
-      <button class="send-auth-num-btn">인증메일 보내기</button>
-      <div class="input-box auth-input hidden">
-        <div class="input-line">
-          <label for="authNumber">인증번호</label>
-          <input id="authNumber" type="text" />
+        <button class="send-auth-num-btn">인증메일 보내기</button>
+        <div class="input-box auth-input hidden">
+          <div class="input-line">
+            <label for="authNumber">인증번호</label>
+            <input id="authNumber" type="text" />
+          </div>
+          <p class="warning-line"></p>
         </div>
-        <p class="warning-line"></p>
-      </div>
 
-      <button class="check-auth-num-btn hidden">인증하기</button>
+        <button class="check-auth-num-btn hidden">인증하기</button>
 
-      <button type="submit" class="signup-btn">가입하기</button>
-    </form>
+        <button type="submit" class="signup-btn">가입하기</button>
+      </form>
+    </div>
   </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>

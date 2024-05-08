@@ -5,25 +5,43 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  background-image: url("../img/popcorn-1330014.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  backdrop-filter: blur(10px) brightness(50%);
 }
 
 h1 {
+  color: white;
   font-size: 60px;
   font-weight: 900;
   padding: 40px 0;
 }
 
-.sign-up-form {
-  font-weight: 700;
+.form-background {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  height: 100vh;
+  min-width: 840px;
+  background-color: #2d2d2d;
+}
+
+.sign-up-form {
+  height: 100%;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: flex-end;
 }
 
-.input-line .input-box {
+.input-box {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -35,27 +53,27 @@ h1 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100%;
 }
 
 .sign-up-form label {
+  color: white;
   width: 72px;
-  height: 100%;
   font-size: 14px;
   line-height: 1.4;
 }
 
 .sign-up-form input {
-  opacity: 1;
   transition: all 1s;
+  opacity: 1;
   box-sizing: border-box;
-  background-color: white;
-  margin:0;
+  margin: 0;
   padding: 0;
   border: 1px solid #2d2d2d;
   width: 300px;
   height: 50px;
   padding: 10px;
+  animation-duration: 1s;
+  animation-name: none;
 }
 
 .sign-up-form select {
@@ -73,17 +91,24 @@ h1 {
   opacity: 1;
   transition: all 1s;
   cursor: pointer;
-  margin: 10px 0 60px 0;
   background-color: #2d2d2d;
   color: white;
+  border: 2px solid white;
+  border-radius: 20px;
   padding: 0;
-  border: none;
+
   width: 300px;
   height: 50px;
+  transition: all 0.3s;
+}
+
+.sign-up-form button:hover {
+  background-color: white;
+  color: black;
+  font-weight: 700;
 }
 
 .sign-up-form .input-box,
-
 .sign-up-form select {
   margin: 6px 0px;
 }
@@ -103,10 +128,27 @@ h1 {
   width: 300px;
   height: 32px;
   margin-left: 72px;
-  color: red;
+  color: #ffed4b;
 }
 
 .hidden {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+.playMotion {
+  animation-name: inputBlink;
+}
+
+@keyframes inputBlink {
+  0% {
+    background-color: white;
+  }
+  50% {
+    background-color: #de7575;
+  }
+  100% {
+    background-color: white;
+  }
+}
+
