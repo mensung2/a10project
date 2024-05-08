@@ -9,7 +9,7 @@ body {
   background-color: #2d2d2d;
   font-family: "Noto Sans KR", sans-serif;
   color: white;
-  width: 1440px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -27,7 +27,6 @@ header {
   width: 1440px;
   height: 200px;
   display: flex;
-  background-color: pink;
   font-size: 40px;
   align-items: center;
   text-indent: 20px;
@@ -35,26 +34,28 @@ header {
 
 #firstTitle {
   font-size: 40px;
-  background-color: bisque;
+  /*background-color: bisque;*/
   height: 130px;
   display: flex;
   align-items: center;
   text-indent: 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 #secondTitle {
   font-size: 40px;
-  background-color: bisque;
   height: 130px;
   display: flex;
   align-items: center;
   text-indent: 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 #detail {
   width: 1440px;
   height: 745px;
-  background-color: rgb(233, 101, 123);
+  /*background-color: rgb(233, 101, 123);*/
+  font-family: "Noto Sans KR", sans-serif;
 
   .movie_card {
     display: flex;
@@ -63,6 +64,7 @@ header {
 
   #poster {
     margin-left: 100px;
+    border-radius: 10px;
     width: 400px;
     height: 600px;
   }
@@ -106,7 +108,7 @@ header {
   justify-content: space-between;
 
   #secondTitle {
-    background-color: bisque;
+    /*background-color: bisque;*/
     height: 130px;
     font-size: 40px;
     display: flex;
@@ -131,6 +133,8 @@ header {
     font-size: 18px;
     font-weight: bold;
     z-index: 1;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
   }
 
   #writeRvBack {
@@ -150,15 +154,21 @@ header {
 #reviewContainer {
   width: 1440px;
   height: 690px;
-  background-color: rgb(116, 84, 133);
+  /*background-color: rgb(116, 84, 133);*/
 
   #review {
     width: 1400px;
     height: 240px;
     margin: 0 20px 0 20px;
-    background-color: rgb(151, 93, 119);
+    /*background-color: rgb(151, 93, 119);*/
     display: flex;
-    justify-content: space-between;
+    overflow: hidden;
+
+    .carousel{
+      display: flex;
+      transition: all 0.5s;
+    }
+    
 
     #revBox {
       width: 320px;
@@ -166,6 +176,8 @@ header {
       border-radius: 10px;
       background-color: #f2f2f2;
       color: black;
+      margin-right: 40px;
+      font-family: "Noto Sans KR", sans-serif;
 
       .revTop {
         display: flex;
@@ -197,8 +209,9 @@ header {
         display: flex;
         width: 280px;
         height: 120px;
-        font-size: 12px;
-        text-indent: 10px;
+        font-size: 13px;
+        text-indent: 5px;
+        line-height: 150%;
         margin: 0 20px 0 20px;
         padding-top: 10px;
         border-bottom: 1px solid #787878;
@@ -234,6 +247,7 @@ header {
             font-size: 12px;
             background-color: #787878;
             color: white;
+            cursor: pointer;
           }
           #delBtn {
             width: 50px;
@@ -242,6 +256,7 @@ header {
             font-size: 12px;
             background-color: #f16168;
             color: white;
+            cursor: pointer;
           }
         }
       }
@@ -254,8 +269,12 @@ header {
     padding-left: 50px;
     justify-content: space-between;
 
-    .arrow2 {
+    #arrowLeft {
+      cursor: pointer;
+    }
+    #arrowRight {
       padding-right: 50px;
+      cursor: pointer;
     }
   }
 
@@ -278,9 +297,14 @@ header {
       padding: 25px 20px 25px 25px;
       position: relative;
 
+      #writeRev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #WRtitle {
@@ -292,6 +316,7 @@ header {
         font-weight: 700;
         line-height: normal;
         padding-right: 245px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #revRegist {
@@ -307,6 +332,8 @@ header {
         top: 25px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
+        font-family: "Noto Sans KR", sans-serif;
       }
       #revRegistBack {
         position: absolute;
@@ -330,6 +357,7 @@ header {
       font-size: 12px;
       padding-left: 22px;
       padding-right: 20px;
+      font-family: "Noto Sans KR", sans-serif;
 
       #nickName {
         width: 240px;
@@ -338,6 +366,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
       #passWord {
         width: 240px;
@@ -346,6 +375,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
 
@@ -356,6 +386,7 @@ header {
       padding-top: 22px;
       padding-bottom: 22px;
       padding-left: 25px;
+      font-family: "Noto Sans KR", sans-serif;
 
       #revPoint {
         width: 240px;
@@ -365,6 +396,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
 
@@ -373,6 +405,7 @@ header {
       font-size: 12px;
       padding-left: 24px;
       padding-right: 20px;
+      font-family: "Noto Sans KR", sans-serif;
 
       #revContent {
         width: 580px;
@@ -380,8 +413,9 @@ header {
         border-radius: 10px;
         border: 1px solid #000;
         background-color: #fff;
-        margin-left: 32px;
+        margin-left: 30px;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
   }
@@ -405,9 +439,14 @@ header {
       padding: 20px;
       position: relative;
 
+      #modiRevPrev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #MRtitle {
@@ -419,6 +458,7 @@ header {
         font-weight: 700;
         line-height: normal;
         padding-right: 245px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #revConfirm {
@@ -434,6 +474,8 @@ header {
         top: 20px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #revConfirmBack {
@@ -458,6 +500,7 @@ header {
       font-size: 12px;
       padding-left: 22px;
       padding-right: 20px;
+      font-family: "Noto Sans KR", sans-serif;
 
       #nickName {
         width: 240px;
@@ -466,6 +509,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
       #passWord {
         width: 240px;
@@ -474,6 +518,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
   }
@@ -489,6 +534,7 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: "Noto Sans KR", sans-serif;
     
     .modiRevTop {
       display: flex;
@@ -497,9 +543,14 @@ header {
       padding: 25px 20px 25px 25px;
       position: relative;
 
+      #modiRev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #modiRev-title {
@@ -511,6 +562,7 @@ header {
         font-weight: 700;
         line-height: normal;
         padding-right: 245px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #modiRev-modiBtn {
@@ -526,6 +578,8 @@ header {
         top: 25px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
+        font-family: "Noto Sans KR", sans-serif;
       }
       #modiRev-modiBtnBack {
         position: absolute;
@@ -557,16 +611,18 @@ header {
         height: 40px;
         border-radius: 10px;
         border: 1px solid #000;
-        background-color: #fff;
+        background-color: #d4d4d4;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
       #passWord {
         width: 240px;
         height: 40px;
         border-radius: 10px;
         border: 1px solid #000;
-        background-color: #fff;
+        background-color: #d4d4d4;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
 
@@ -586,6 +642,7 @@ header {
         border: 1px solid #000;
         background-color: #fff;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
     .modiRevContent{
@@ -602,6 +659,7 @@ header {
         background-color: #fff;
         margin-left: 32px;
         text-indent: 20px;
+        font-family: "Noto Sans KR", sans-serif;
       }
     }
   }
@@ -617,6 +675,7 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: "Noto Sans KR", sans-serif;
 
     .delRevTop {
       display: flex;
@@ -625,9 +684,14 @@ header {
       padding: 20px;
       position: relative;
 
+      #delRev-backspace {
+        cursor: pointer;
+      }
+
       #back {
         font-size: 12px;
         padding-right: 160px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #DRtitle {
@@ -639,6 +703,7 @@ header {
         font-weight: 700;
         line-height: normal;
         padding-right: 245px;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #delConfirm {
@@ -654,6 +719,8 @@ header {
         top: 20px;
         left: 520px;
         z-index: 1;
+        cursor: pointer;
+        font-family: "Noto Sans KR", sans-serif;
       }
 
       #delConfirmBack {
@@ -740,3 +807,15 @@ header {
         flex-direction: row;
     }
   } */
+.modal-background {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}

@@ -10,8 +10,7 @@ body {
     'screen1 screen2 screen3 screen3'
     'screen4 screen5 screen3 screen3'
     'screen6 screen6 screen7 screen8'
-    'screen6 screen6 screen9 screen10'
-    'footer footer footer footer';
+    'screen6 screen6 screen9 screen10';
 
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -135,11 +134,12 @@ nav {
     height: 100px;
     text-decoration: none;
     font-size: 20px;
+  }
 }
-}
+
 .list {
+  padding-left: 40px;
   height: 40px
-  
 }
 
 .screen1 {
@@ -224,7 +224,7 @@ nav {
   max-width: 1440px;
   height: 440px;
   background-color: #2d2d2d;
-  
+
 
   .logo {
     height: 50px;
@@ -302,11 +302,19 @@ nav {
   }
 }
 
-.screen1 img, .screen2 img, .screen3 img, .screen4 img, .screen5 img,
-.screen6 img, .screen7 img, .screen8 img, .screen9 img, .screen10 img {
-    /* 각각의 이미지를 부모 요소에 맞게 조정합니다. */
-    width: 100%; /* 부모 요소에 맞게 가로 너비를 조정합니다. */
-    height: 100%; /* 부모 요소에 맞게 세로 높이를 조정합니다. */
-    object-fit: fill; /* 이미지를 화면에 맞게 조절합니다. */
-    border-radius: 10px;
+.screen1 img,
+.screen2 img,
+.screen3 img,
+.screen4 img,
+.screen5 img,
+.screen6 img,
+.screen7 img,
+.screen8 img,
+.screen9 img,
+.screen10 img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 10px;
+  cursor: pointer;
 }

@@ -1,53 +1,213 @@
 @import "./reset.css";
-
 body {
-  background: url(../img/0501-1.png) lightgray 50% / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  background-color: black;
+}
+#event-guide-section {
+  width: 100%;
+}
+#eventGuide-nav {
+  width: 100%;
+  background-color: none;
 }
 #event-guide-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   width: 1440px;
+  height: 100%;
   margin: 0 auto;
-  height: 95vh;
   opacity: 1;
+  #eventGuide-nav {
+    position: absolute;
+  }
+
   #section-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
+    background: url(../img/0501-1.png) lightgray 50% / cover no-repeat;
     width: 100%;
-    height: 100%;
-    #section-container-button {
-      position: absolute;
-      top: 140px;
-      left: 50px;
+    height: 750px;
+    background-size: 100% 800px;
+  }
+
+  #event-container {
+    background: linear-gradient(180deg, rgba(45, 45, 45, 0) 0%, #2d2d2d 20%);
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #event-container-banner {
+      width: 450px;
+      height: 220px;
+      margin-top: -100px;
+      background: url(../img/event-page/event-page-banner.svg) no-repeat;
+      background-size: 100%;
     }
-    #section-container-ticket1 {
-      width: 150px;
-      height: 270px;
-      background: no-repeat url(../img/rainbow-ticket.svg);
-      filter: drop-shadow(16px 16px 40px white);
-      transform: rotate(-20deg);
+    #event-container-tickets {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 300px;
+      margin-top: 200px;
+
+      #tickets-header {
+        font-size: 48px;
+        font-weight: bold;
+        display: flex;
+        margin: 0 auto;
+        color: white;
+        margin-bottom: 100px;
+        justify-items: center;
+      }
+
+      #tickets-section {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+        width: 80%;
+
+        .tickets-box {
+          #tickets-name {
+            color: white;
+            font-size: 24px;
+          }
+
+          #tickets-section-vip {
+            width: 110px;
+            height: 270px;
+            background: no-repeat url(../img/ticket/vip-ticket.svg);
+            filter: drop-shadow(2px 2px 8px black);
+            transform: rotate(20deg);
+          }
+          #tickets-section-R {
+            width: 110px;
+            height: 270px;
+            background: no-repeat url(../img/ticket/r-ticket.svg);
+            filter: drop-shadow(2px 2px 8px black);
+            transform: rotate(20deg);
+          }
+          #tickets-section-S {
+            width: 110px;
+            height: 270px;
+            filter: none;
+            background: no-repeat url(../img/ticket/s-ticket.svg);
+            filter: drop-shadow(2px 2px 8px black);
+            transform: rotate(20deg);
+          }
+          #tickets-section-A {
+            width: 110px;
+            height: 270px;
+            filter: none;
+            background: no-repeat url(../img/ticket/a-ticket.svg);
+            filter: drop-shadow(2px 2px 8px black);
+            transform: rotate(20deg);
+          }
+        }
+      }
     }
-    #section-container-ticket2 {
-      width: 150px;
-      height: 270px;
-      background: no-repeat url(../img/golden-ticket.svg);
-      filter: drop-shadow(16px 16px 20px white);
-      transform: rotate(-20deg);
-    }
-    #section-container-ticket3 {
-      width: 150px;
-      height: 270px;
-      filter: none;
-      background: no-repeat url(../img/normal-ticket.svg);
-      filter: drop-shadow(16px 16px 20px white);
-      transform: rotate(-20deg);
-    }
-    #section-container-ticket4 {
-      width: 150px;
-      height: 270px;
-      filter: none;
-      background: no-repeat url(../img/normal-ticket-copy.svg);
-      filter: drop-shadow(16px 16px 20px white);
-      transform: rotate(-20deg);
+
+    #event-container-process {
+      background-color: #2d2d2d;
+      display: flex;
+      width: 1440px;
+      margin: 0 auto;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+
+      #process-header {
+        font-size: 48px;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 100px;
+      }
+      #process-section {
+        width: 100%;
+        display: flex;
+        margin-bottom: 300px;
+        flex-direction: column;
+        align-items: center;
+
+        > div {
+          margin: 50px 0px;
+        }
+
+        #process-section-header {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 32px;
+          font-weight: bold;
+          color: white;
+
+          div {
+            margin: 0px 100px;
+          }
+
+          div:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            div {
+              margin: 10px;
+            }
+          }
+
+          #process-section-coin-right {
+            width: 100px;
+            height: 100px;
+            background: url(../img/event-page/gold-coin02.gif) 50% / cover
+              no-repeat;
+          }
+          #process-section-coin-left {
+            width: 100px;
+            height: 100px;
+            background: url(../img/event-page/gold-coin.gif) 50% / cover
+              no-repeat;
+          }
+        }
+
+        #process-section-ticket-text {
+          font-size: 32px;
+          font-weight: bold;
+          color: white;
+        }
+        .process-section-button {
+          cursor: pointer;
+          font-weight: bold;
+
+          position: relative;
+          transform: rotate(180deg);
+
+          .topside {
+            width: 400px;
+            height: 80px;
+            border-radius: 30px;
+            background-color: #514499;
+          }
+          .frontside {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "JalnanGothic";
+            font-size: 32px;
+            position: absolute;
+            top: 25px;
+            width: 400px;
+            height: 80px;
+            background-color: #6958cc;
+            border-radius: 30px;
+            z-index: 10;
+            transition: all 0.3s;
+            transform: rotate(180deg);
+          }
+        }
+      }
     }
   }
 }
