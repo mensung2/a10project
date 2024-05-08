@@ -1,11 +1,3 @@
-// navi바 표시
-fetch("./nav.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.gitElementById("external-content").innerHTML = data;
-  })
-  .catch((error) => console.error("Error:", error));
-
 // 페이지 로드 후 실행되는 함수
 window.onload = async function () {
   getData("event", "moviesDoc", "movies").then((data) => {
@@ -70,3 +62,15 @@ function displayMovies(movies, containerId) {
     container.appendChild(card);
   });
 }
+
+// navi바 표시
+const getNav = () => {
+  fetch("../nav.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
+
+getNav();
