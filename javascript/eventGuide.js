@@ -7,7 +7,7 @@ const makeGuideDivObj = () => {
 };
 
 const getNav = () => {
-  fetch("../nav.html")
+  fetch("./nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("eventGuide-nav").innerHTML = data;
@@ -22,7 +22,7 @@ const renderGuidPage = async () => {
   ${(divObj.sectionDiv.innerHTML = `
   <div id = 'section-container'>
     <button id = 'section-container-button'>
-      <img src = "../img/event-page/arrow-back.png"/>
+      <img src = "./img/event-page/arrow-back.png"/>
       <div>뒤로가기</div>
     </button>
   </div>
