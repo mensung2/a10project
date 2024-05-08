@@ -10,7 +10,7 @@ body {
         overflow: hidden;
         position: absolute;
         background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(45, 45, 45, 1)), url('../img/mainpage.png');
-        background-size: 100vw ;
+        background-size: 100% 1150px;
         background-repeat: no-repeat;
 
         top: 0;
