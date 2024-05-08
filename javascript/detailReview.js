@@ -5,7 +5,7 @@ const getMoviesData = () => {
   });
 };
 
-const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효성 검사
+const clickWriteRvButton = () => {  
   const writeRv = document.getElementById("writeRv");
   if(!writeRv){
     return;
@@ -14,6 +14,8 @@ const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효�
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.remove("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.remove("hidden");
   });
 };
 
@@ -25,9 +27,9 @@ const clickBackSpace = () => {
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    writeRev.parentElement.classList.add("hidden");
   });
 };
-
 
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
@@ -37,29 +39,16 @@ const clickRevRegist = () => {
   revRegist.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.add("hidden");
   });
 };
-
-const clickConfirm = () => {
-  const confirmBtn = document.getElementById("revConfirm");
-  if(!confirmBtn){
-    return;
-  }
-  confirmBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    modiRevPrev.classList.add("hidden");
-    /* 리뷰 수정하기에서 확인버튼 누르면 내용 수정 모달창이 뜨게 modiRev클래스 hidden 없애주기*/
-    modiRev.classList.remove("hidden");
-  })
-}
 
 const clickEvents = () => {
   clickWriteRvButton();
   clickBackSpace();
   clickRevRegist();
-  clickConfirm();
 };
-
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
@@ -67,8 +56,6 @@ const loadThisMovie = (movies) => {
   card.classList.add("movie_card");
   const prevId = window.location.search;
   const thisPageId = prevId.substr(3);
-
-  console.log("thisPageId", thisPageId);
   // movie.id는 넘버타입이고, thisPageId는 스트링이라 오류가 발생해 형변환을 해주었다.
   movies.forEach((movie, id) => {
     const selectedMovie = movie.id === Number(thisPageId);
@@ -88,6 +75,15 @@ const loadThisMovie = (movies) => {
   });
 };
 
+const getNav = () => {
+  fetch("../nav.html") // 질문하기!!
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
 
 clickEvents();
+getNav();
 getMoviesData();

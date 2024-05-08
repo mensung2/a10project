@@ -45,3 +45,15 @@ document.querySelector('.search-btn').addEventListener('click', async function (
     event.preventDefault();
     updateScreens();
 });
+
+// 각 screen 요소를 가져옵니다.
+document.addEventListener("DOMContentLoaded", function() {
+    let screen = document.querySelectorAll('.container > div[class^="screen"]');
+// 각 screen 요소에 클릭 이벤트를 줍니다.
+    screen.forEach(function(screen, index) {
+        screen.addEventListener('click', function() {
+            // 페이지를 변경합니다
+            window.location.href = "detailReview.html"
+        });
+    });
+});
