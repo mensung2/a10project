@@ -11,6 +11,16 @@ const {
   email,
   authNumber,
 } = signupForm;
+console.log(
+  signupForm,
+  username.value,
+  nickname,
+  account,
+  password,
+  confirmPassword,
+  email,
+  authNumber
+);
 
 const checkAuthNumBtn = document.querySelector(".check-auth-num-btn");
 
@@ -98,15 +108,21 @@ const checkAccount = async () => {
   const warningText = "영어와 숫자로 5~16글자여야만 합니다!";
   const result = checkIsWrong(account, warningText, regex);
   let isExistingUser = null;
-  await db.collection("accounts").doc(account.value).get().then((doc)=>{
-    console.log(doc.data());
-    if(!doc.data()) {
-     return;
-    }
-    const warningLine =
-    account.parentElement.parentElement.querySelector(".warning-line");
-    warningLine.innerText = "아이디가 중복되었습니다!";
-  }) 
+  if (!account.value) {
+    return;
+  }
+  await db
+    .collection("accounts")
+    .doc(account.value)
+    .get()
+    .then((doc) => {
+      console.log(doc.data());
+      if (doc.data()) {
+        const warningLine =
+          account.parentElement.parentElement.querySelector(".warning-line");
+        warningLine.innerText = "아이디가 중복되었습니다!";
+      }
+    });
 
   console.log(result);
   return result;
@@ -162,13 +178,54 @@ confirmPassword.addEventListener("blur", () => {
 email.addEventListener("blur", checkEmail);
 
 const isInvalidValue = () => {
-  return (
-    checkUsername() ||
-    checkNickname() ||
-    checkAccount() ||
-    checkPassword() ||
-    checkConfirmPassword() ||
-    checkEmail()
+  if (checkUsername()) {
+    console.log("이름 오류");
+    return true;
+  }
+  if (checkNickname()) {
+    console.log("별명 오류");
+    return true;
+  }
+  let _checkAccount = null;
+  checkAccount().then((data)=>{
+    _checkAccount = data;
+  })
+  if (_checkAccount) {
+    console.log("아이디 오류");
+    return true;
+  }
+  if (checkPassword()) {
+    console.log("비번 오류");
+    return true;
+  }
+  if (checkConfirmPassword()) {
+    console.log("비번 확인 오류");
+    return true;
+  }
+  if (checkEmail()) {
+    console.log("이메일 오류");
+    return true;
+  }
+  return false;
+};
+
+const sendAuthMail = async (username, userEmail, serialNumber) => {
+
+  const templateParams = {
+    to_name: username,
+    user_email: userEmail,
+    auth_serial_number: serialNumber,
+  };
+
+  console.log(templateParams);
+
+  emailjs.send("service_4j5tuue", "template_llt4nim", templateParams).then(
+    (response) => {
+      console.log("SUCCESS!", response.status, response.text);
+    },
+    (error) => {
+      console.log("FAILED...", error);
+    }
   );
 };
 
@@ -190,6 +247,7 @@ const confirmInputValues = async () => {
     expireDate: expireDate,
   };
   sessionStorage.setItem("authMailState", JSON.stringify(authMailState));
+
   sendAuthMail(username.value, email.value, serialNumber);
   alert("성공적으로 메일을 보냈습니다!");
   sendAuthMailBtn.innerText = "인증메일 발송완료";
@@ -217,7 +275,7 @@ const checkSerialNumber = async () => {
       serialNumber = doc.data().serialNumber;
     });
   if (String(authNumber.value) !== serialNumber) {
-    console.log("인증번호가 일치하지 않습니다!");
+    alert("인증번호가 일치하지 않습니다!");
     return;
   }
 
@@ -246,7 +304,9 @@ checkAuthNumBtn.addEventListener("click", () => {
 
 const signupBtn = document.querySelector(".signup-btn");
 signupBtn.addEventListener("click", async () => {
-  const mailCertificationState = sessionStorage.getItem("mailCertificationState");
+  const mailCertificationState = sessionStorage.getItem(
+    "mailCertificationState"
+  );
   if (!mailCertificationState) {
     alert("이전 단계를 모두 완료해주세요!");
     return;
@@ -287,22 +347,6 @@ signupBtn.addEventListener("click", async () => {
     });
 });
 
-const sendAuthMail = (username, userEmail, serialNumber) => {
-  var templateParams = {
-    to_name: username,
-    user_email: userEmail,
-    auth_serial_number: serialNumber,
-  };
-
-  emailjs.send('service_4j5tuue', 'template_llt4nim', templateParams).then(
-    (response) => {
-      console.log('SUCCESS!', response.status, response.text);
-    },
-    (error) => {
-      console.log('FAILED...', error);
-    },
-  );
-}
 // sendAuthMail();
 
 // {{reply_to}}, {{to_name}}, auth_serial_number
@@ -313,5 +357,5 @@ checkSerialNumber();
 
 const sendAuthMailBtn = document.querySelector(".send-auth-num-btn");
 sendAuthMailBtn.addEventListener("click", () => {
-  sendAuthMail();
+  confirmInputValues();
 });
