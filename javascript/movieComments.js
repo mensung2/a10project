@@ -362,7 +362,7 @@ const setCarouselRight = () => {
     console.log("right else!");
     current++;
     // 여기가 아마 carousel.style.transform = `translateX(${(current + 1) * -360}px)`;
-    // 로 되어 있어서 계속 첫 번째 칸에 걸려서 시작했던 것 같아요.
+    // 로 되어 있어서 계속 첫 번째 칸에 걸려서 시작했던 것 같아요!
     carousel.style.transform = `translateX(${current * -360}px)`;
   }
 };
