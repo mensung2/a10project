@@ -7,7 +7,7 @@ const makeGuideDivObj = () => {
 };
 
 const getNav = () => {
-  fetch("../nav.html")
+  fetch("./nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("eventGuide-nav").innerHTML = data;
@@ -21,6 +21,10 @@ const renderGuidPage = async () => {
   ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
   <div id = 'section-container'>
+    <button id = 'section-container-button'>
+      <img src = "./img/event-page/arrow-back.png"/>
+      <div>뒤로가기</div>
+    </button>
   </div>
   `)}
   ${(divObj.eventDiv.innerHTML = `
@@ -33,19 +37,19 @@ const renderGuidPage = async () => {
       <div id = 'tickets-section'>
         <div class='tickets-box'>
           <div id = 'tickets-section-vip'></div>
-          <div id ='tickets-name'>VIP석 티켓</div>  
+          <div id ='tickets-name'>VIP석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-R'></div>
-          <div id ='tickets-name'>R석 티켓</div>  
+          <div id ='tickets-name'>R석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-S'></div>
-          <div id ='tickets-name'>S석 티켓</div>  
+          <div id ='tickets-name'>S석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-A'></div>
-          <div id ='tickets-name'>A석 티켓</div>  
+          <div id ='tickets-name'>A석 티켓</div>
         </div>
     </div>
     
@@ -62,10 +66,6 @@ const renderGuidPage = async () => {
           </div>
           <div id='process-section-coin-right'></div>
         </div>
-        <div class="process-section-button">
-          <div class="topside"></div>
-          <div class="frontside">퀴즈 풀러 가기</div>
-          </div>
         <div id = 'process-section-ticket-text'>티켓부스 페이지에서 티켓 발권하기!</div>
         <div class="process-section-button">
         <div class="topside"></div>
@@ -75,10 +75,24 @@ const renderGuidPage = async () => {
     </div>
   </div>
 
-}
+  }
 
-  `)}
+    `)}
   `;
+
   document.body.appendChild(divObj.containerDiv);
+
+  const ticketButton = document.querySelector(".process-section-button");
+  ticketButton.addEventListener("click", (e) => {
+    // window.location.href = "../event.html";
+    console.log("window.location.search", ticketButton.search);
+    console.log("yes");
+  });
+
+  const backgSpaceButton = document.getElementById("section-container-button");
+  backgSpaceButton.addEventListener("click", (e) => {
+    history.go(-1);
+  });
 };
+
 renderGuidPage();
