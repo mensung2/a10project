@@ -15,7 +15,7 @@ const makeGuideDivObj = () => {
 };
 
 const getNav = () => {
-  fetch("./nav.html")
+  fetch("../nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("eventGuide-nav").innerHTML = data;
@@ -43,6 +43,7 @@ const renderGuidPage = async () => {
         <div class='tickets-box'>
           <div id = 'tickets-section-vip'></div>
           <div id ='tickets-name'>VIP석 티켓</div>
+          <div id ='vip-coke'></div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-R'></div>
@@ -86,18 +87,23 @@ const renderGuidPage = async () => {
   `;
 
   document.body.appendChild(divObj.containerDiv);
+  console.log("first", document.getElementsByClassName("search-txt"));
 
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
-    // window.location.href = "../event.html";
-    console.log("window.location.search", ticketButton.search);
-    console.log("yes");
-  });
-
-  const backgSpaceButton = document.getElementById("section-container-button");
-  backgSpaceButton.addEventListener("click", (e) => {
-    history.go(-1);
+    window.location.href = "../event.html";
   });
 };
 
 renderGuidPage();
+searchInput.addEventListener("change", (e) => {
+  search();
+});
+searchButton[0].addEventListener("click", (e) => {
+  button();
+});
+
+const goEventBtn = document.querySelector(".process-section-button");
+goEventBtn.addEventListener("click", () => {
+  goEventBtn.children[1].classList.add("press");
+});
