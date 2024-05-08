@@ -32,11 +32,24 @@ body {
     height: 750px;
     background-size: 100% 800px;
 
-    /* #section-container-button {
+    #section-container-button {
       position: absolute;
+      display: flex;
+      color: white;
+      background-color: black;
+      border: none;
       top: 140px;
-      left: 50px;
-    } */
+
+      img {
+        color: white;
+        width: 20px;
+        height: 20px;
+      }
+
+      :hover {
+        cursor: pointer;
+      }
+    }
   }
 
   #event-container {

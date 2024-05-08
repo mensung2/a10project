@@ -21,6 +21,10 @@ const renderGuidPage = async () => {
   ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
   <div id = 'section-container'>
+    <button id = 'section-container-button'>
+      <img src = "../img/event-page/arrow-back.png"/>
+      <div>뒤로가기</div>
+    </button>
   </div>
   `)}
   ${(divObj.eventDiv.innerHTML = `
@@ -78,12 +82,15 @@ const renderGuidPage = async () => {
 
   document.body.appendChild(divObj.containerDiv);
 
-  const button = document.querySelectorAll(".process-section-button");
-  button.forEach((item) => {
-    item.addEventListener("click", (e) => {
-      window.location.href = "../event.html";
-      console.log("yes");
-    });
+  const ticketButton = document.querySelector(".process-section-button");
+  ticketButton.addEventListener("click", (e) => {
+    window.location.href = "../event.html";
+    console.log("yes");
+  });
+
+  const backgSpaceButton = document.getElementById("section-container-button");
+  backgSpaceButton.addEventListener("click", (e) => {
+    window.location.href = "../event.html";
   });
 };
 
