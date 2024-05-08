@@ -82,13 +82,6 @@ const renderGuidPage = async () => {
 
   document.body.appendChild(divObj.containerDiv);
 
-  const locationList = JSON.stringify([
-    "../event.html",
-    "../genre.html",
-    "../fotter.html",
-  ]);
-  localStorage.setItem("location", locationList);
-
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
     // window.location.href = "../event.html";
@@ -98,13 +91,7 @@ const renderGuidPage = async () => {
 
   const backgSpaceButton = document.getElementById("section-container-button");
   backgSpaceButton.addEventListener("click", (e) => {
-    const locations = JSON.parse(localStorage.getItem("location"));
-    console.log("locations", locations);
-    // window.location.href = locations[0];
-    locations.shift();
-    localStorage.setItem("location", JSON.stringify(locations));
-
-    console.log("locations", locations);
+    history.go(-1);
   });
 };
 
