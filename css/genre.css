@@ -1,22 +1,20 @@
 @import "./reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #2d2d2d;
+  font-family: "Noto Sans KR", sans-serif;
   color: white;
-}
-
-/* 상단 비어놓는 영역(임의 색상 지정) */
-nav {
-  width: 1440px;
-  height: 200px;
-  background-color: white;
+  width: 100%;
+  /* height: 100%; */
+  margin: 0 auto;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 
 /* 영화 장르 */
-h2 {
+.genre-section h2 {
   margin-top: 100px;
   line-height: 100px;
   font-size: 40px;
@@ -30,6 +28,7 @@ h2 {
   align-items: center;
   width: 1440px;
   height: 600px;
+  cursor: pointer;
 }
 
 .card {
