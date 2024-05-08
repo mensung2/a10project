@@ -3,7 +3,7 @@ const searchInput = document.getElementsByClassName("search-txt");
 let searchCount = 0;
 let movieName = "";
 const search = () =>
-  searchInput[0].addEventListener("change", (e) => {
+  searchInput[0].addEventListener("blur", (e) => {
     movieName = e.target.value;
     localStorage.setItem("movieName", JSON.stringify(e.target.value));
   });

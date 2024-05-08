@@ -39,12 +39,12 @@
       </ul>
       <form class="search-bar">
         <input
-          onchange="search()"
+          oninput="search()"
           class="search-txt"
-          type="textarea"
+          type="text"
           placeholder="영화 제목을 입력해주세요."
         />
-        <button onClick="button()" class="search-btn">
+        <button type="button" onClick="button()" class="search-btn">
           <i onClick="button()" class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>

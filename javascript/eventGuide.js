@@ -91,19 +91,15 @@ const renderGuidPage = async () => {
 
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
+    e.preventDefault();
     window.location.href = "../event.html";
   });
 };
 
 renderGuidPage();
-searchInput.addEventListener("change", (e) => {
-  search();
-});
-searchButton[0].addEventListener("click", (e) => {
-  button();
-});
 
 const goEventBtn = document.querySelector(".process-section-button");
-goEventBtn.addEventListener("click", () => {
+goEventBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   goEventBtn.children[1].classList.add("press");
 });
