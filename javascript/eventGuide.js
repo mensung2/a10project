@@ -17,7 +17,6 @@ const getNav = () => {
 
 const renderGuidPage = async () => {
   const divObj = makeGuideDivObj();
-
   divObj.containerDiv.innerHTML = `
   ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
@@ -34,19 +33,19 @@ const renderGuidPage = async () => {
       <div id = 'tickets-section'>
         <div class='tickets-box'>
           <div id = 'tickets-section-vip'></div>
-          <div id ='tickets-name'>VIP석 티켓</div>  
+          <div id ='tickets-name'>VIP석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-R'></div>
-          <div id ='tickets-name'>R석 티켓</div>  
+          <div id ='tickets-name'>R석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-S'></div>
-          <div id ='tickets-name'>S석 티켓</div>  
+          <div id ='tickets-name'>S석 티켓</div>
         </div>
         <div class='tickets-box'>
           <div id = 'tickets-section-A'></div>
-          <div id ='tickets-name'>A석 티켓</div>  
+          <div id ='tickets-name'>A석 티켓</div>
         </div>
     </div>
     
@@ -63,10 +62,6 @@ const renderGuidPage = async () => {
           </div>
           <div id='process-section-coin-right'></div>
         </div>
-        <div class="process-section-button">
-          <div class="topside"></div>
-          <div class="frontside">퀴즈 풀러 가기</div>
-          </div>
         <div id = 'process-section-ticket-text'>티켓부스 페이지에서 티켓 발권하기!</div>
         <div class="process-section-button">
         <div class="topside"></div>
@@ -76,9 +71,9 @@ const renderGuidPage = async () => {
     </div>
   </div>
 
-}
+  }
 
-  `)}
+    `)}
   `;
 
   document.body.appendChild(divObj.containerDiv);
@@ -86,10 +81,10 @@ const renderGuidPage = async () => {
   const button = document.querySelectorAll(".process-section-button");
   button.forEach((item) => {
     item.addEventListener("click", (e) => {
+      window.location.href = "../event.html";
       console.log("yes");
     });
   });
-  console.log("button", button);
 };
 
 renderGuidPage();
