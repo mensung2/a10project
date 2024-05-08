@@ -76,8 +76,7 @@ function displayMovies(movies, containerId) {
   });
 }
 
-// 쿼리스트링으로 데이터 받아오기
-// 카드 poster 클릭시 상세페이지 이동(지원님께 받은 코드)
+// 카드 poster 클릭시 상세페이지 이동
 const updateMovieList = (movies) => {
   const container = document.getElementById("movie-cards");
   container.innerHTML = "";
@@ -93,7 +92,6 @@ const updateMovieList = (movies) => {
     card.classList.add("movie_card");
     card.id = id;
 
-    // 이미지 클릭하면 해당 영화의 id값을 가진 페이지로 이동하도록 <a> 태그 추가 (지원님께 받은 코드)
     card.innerHTML = `
        <div>
           <a id = 'clickevent 'href = 'detailReview.html?id${id}'>
