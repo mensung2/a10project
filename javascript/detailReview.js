@@ -66,7 +66,10 @@ const loadThisMovie = (movies) => {
     },
   };
 
-  fetch(`https://api.themoviedb.org/3/movie/${thisPageId}?language=ko-KR`, options)
+  fetch(
+    `https://api.themoviedb.org/3/movie/${thisPageId}?language=ko-KR`,
+    options
+  )
     .then((movie) => movie.json())
     .then((movie) => {
       const genre = movie.genres;
@@ -108,3 +111,9 @@ const getNav = () => {
 clickEvents();
 getNav();
 getMoviesData();
+searchInput.addEventListener("change", (e) => {
+  search();
+});
+searchButton[0].addEventListener("click", (e) => {
+  button();
+});

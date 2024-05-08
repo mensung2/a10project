@@ -76,3 +76,9 @@ db.collection("movie-comments").onSnapshot((snapshot) => {
     }
   });
 });
+searchInput.addEventListener("change", (e) => {
+  search();
+});
+searchButton[0].addEventListener("click", (e) => {
+  button();
+});

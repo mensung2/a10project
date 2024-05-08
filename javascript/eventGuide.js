@@ -15,7 +15,7 @@ const makeGuideDivObj = () => {
 };
 
 const getNav = () => {
-  fetch("./nav.html")
+  fetch("../nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("eventGuide-nav").innerHTML = data;
@@ -87,6 +87,7 @@ const renderGuidPage = async () => {
   `;
 
   document.body.appendChild(divObj.containerDiv);
+  console.log("first", document.getElementsByClassName("search-txt"));
 
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
@@ -95,3 +96,9 @@ const renderGuidPage = async () => {
 };
 
 renderGuidPage();
+searchInput.addEventListener("change", (e) => {
+  search();
+});
+searchButton[0].addEventListener("click", (e) => {
+  button();
+});
