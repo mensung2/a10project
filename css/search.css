@@ -10,8 +10,7 @@ body {
     'screen1 screen2 screen3 screen3'
     'screen4 screen5 screen3 screen3'
     'screen6 screen6 screen7 screen8'
-    'screen6 screen6 screen9 screen10'
-    'footer footer footer footer';
+    'screen6 screen6 screen9 screen10';
 
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -139,6 +138,7 @@ nav {
 }
 
 .list {
+  padding-left: 40px;
   height: 40px
 }
 

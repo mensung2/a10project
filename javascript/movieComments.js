@@ -40,7 +40,6 @@ db.collection("movie-comments").onSnapshot((snapshot) => {
     if (change.type === "added") {
       const post = change.doc.data();
       const id = change.doc.id; //파이어베이스 문서 각각의 아이디
-      console.log(post, id);
       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
       if (thisPageId !== post.movieId) {
         return; // 간단하게 !
@@ -293,7 +292,7 @@ const clickDelConfirm = () => {
       const commentId = parentNoderev.dataset.commentId; // html에서 -소문자, 자바스크립트에서는 대문자
       let compareNickname = null;
       let comparePassword = null;
-      console.log(commentId);
+      //console.log(commentId);
 
       await db
         .collection("movie-comments")
@@ -301,10 +300,8 @@ const clickDelConfirm = () => {
         .get()
         .then((data) => {
           const userData = data.data();
-          console.log(userData);
           compareNickname = userData["nickname"];
           comparePassword = userData["password"];
-          console.log(compareNickname, comparePassword);
         });
 
       if (inputNickname !== compareNickname) {
@@ -330,15 +327,15 @@ const setCarouselLeft = () => {
   const carousel_Length = document.querySelectorAll(".revBox").length-4;
   //리뷰 한줄평의 개수가 4개 이하라면 버튼이 작동하지 않도록 설정.
   if(carousel_Length<1) {
-    console.log("캐러셀 카드 개수가 4개 이하임!")
+    //console.log("캐러셀 카드 개수가 4개 이하임!")
     return;
   } 
   if (current <= 0) {
-    console.log("left if!");
+    //console.log("left if!");
     current = carousel_Length;
     carousel.style.transform = `translateX(${carousel_Length * -360}px)`;
   } else {
-    console.log("left else!");
+    //console.log("left else!");
     // currnt 숫자를 먼저 계산하고 그에 맞춰서 움직여줌.
     current--;
     carousel.style.transform = `translateX(${current * -360}px)`;
@@ -349,17 +346,17 @@ const setCarouselLeft = () => {
 const setCarouselRight = () => {
   const carousel_Length = document.querySelectorAll(".revBox").length-4;
   if(carousel_Length<1) {
-    console.log("캐러셀 카드 개수가 4개 이하임!")
+    //console.log("캐러셀 카드 개수가 4개 이하임!")
     return;
   } 
-  console.log('current', current);
-  console.log('carousel_Length', carousel_Length);
+  //console.log('current', current);
+  //console.log('carousel_Length', carousel_Length);
   if (current >= carousel_Length) {
-    console.log("right if!");
+    //console.log("right if!");
     current = 0;
     carousel.style.transform = `translateX(0px)`;
   } else {
-    console.log("right else!");
+    //console.log("right else!");
     current++;
     // 여기가 아마 carousel.style.transform = `translateX(${(current + 1) * -360}px)`;
     // 로 되어 있어서 계속 첫 번째 칸에 걸려서 시작했던 것 같아요!
