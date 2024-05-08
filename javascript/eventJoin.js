@@ -46,7 +46,7 @@ const makeSeat = () => {
       if (j !== 0) {
         seatGrade = checkSeatGrade(askiiChar + j);
       }
-      const serialNumber = Math.floor(new Date().getTime()*Math.random());
+      const serialNumber = Math.floor(new Date().getTime() * Math.random());
       eventObj = {
         ...eventObj,
         [askiiChar + String(j).padStart(2, 0)]: {
@@ -105,5 +105,5 @@ const renderJoinPage = async () => {
   });
 };
 
-renderJoinPage();
-makeSeat();
+// renderJoinPage();
+// makeSeat();

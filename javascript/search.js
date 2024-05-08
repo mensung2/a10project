@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     screen.forEach(function(screen, index) {
         screen.addEventListener('click', function() {
             // 페이지를 변경합니다
-            window.location.href = "detailReview.html"
+            window.location.href = 'detailReview.html?id${id}'
         });
     });
 });
