@@ -101,3 +101,8 @@ const renderGuidPage = async () => {
 };
 
 renderGuidPage();
+
+const goEventBtn = document.querySelector(".process-section-button");
+goEventBtn.addEventListener("click", ()=>{
+  goEventBtn.children[1].classList.add('press');
+})
