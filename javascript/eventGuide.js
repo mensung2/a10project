@@ -17,6 +17,7 @@ const getNav = () => {
 
 const renderGuidPage = async () => {
   const divObj = makeGuideDivObj();
+
   divObj.containerDiv.innerHTML = `
   ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
@@ -79,6 +80,16 @@ const renderGuidPage = async () => {
 
   `)}
   `;
+
   document.body.appendChild(divObj.containerDiv);
+
+  const button = document.querySelectorAll(".process-section-button");
+  button.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      console.log("yes");
+    });
+  });
+  console.log("button", button);
 };
+
 renderGuidPage();
