@@ -34,6 +34,7 @@ async function updateScreens() {
         if (movieData[i]) {
             const img = document.createElement("img");
             img.src = `https://image.tmdb.org/t/p/w300/${movieData[i].poster_path}`;
+            screen.id = movieData[i].id
             screen.innerHTML = ''; // 이전 내용을 지웁니다.
             screen.appendChild(img); // screen에 포스터를 추가합니다.
         }
@@ -46,14 +47,25 @@ document.querySelector('.search-btn').addEventListener('click', async function (
     updateScreens();
 });
 
+
 // 각 screen 요소를 가져옵니다.
 document.addEventListener("DOMContentLoaded", function() {
     let screen = document.querySelectorAll('.container > div[class^="screen"]');
-// 각 screen 요소에 클릭 이벤트를 줍니다.
-    screen.forEach(function(screen, index) {
-        screen.addEventListener('click', function() {
-            // 페이지를 변경합니다
-            window.location.href = 'detailReview.html?id${id}'
+    // 각 screen 요소에 클릭 이벤트를 줍니다.
+    screen.forEach(function(screen) {
+        screen.addEventListener('click', async function() {
+            let id = screen.id;
+            console.log(id)
+            console.log(screen)
+            try {
+                // const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=01cc7b9c736a3d881c0752e5a7255a9b&language=ko-KR`);
+                // const movieData = await response.json();
+
+                // 페이지를 변경합니다
+                window.location.href = `detailReview.html?id${id}`;
+            } catch (error) {
+                console.error('Error fetching movie data:', error);
+            }
         });
     });
 });
