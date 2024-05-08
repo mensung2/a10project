@@ -5,6 +5,15 @@ const createDiv = (id, text) => {
   div.innerText = text;
   return div;
 };
+
+const getNav = () => {
+  fetch("./nav.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("eventJoin-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
 let eventObj = {};
 const makeJoinDivObj = () => {
   const containerDiv = createDiv("event-join-container", "");
@@ -95,6 +104,10 @@ const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
   await getSeat().then((data) => {
     divObj.containerDiv.innerHTML = `
+    ${(divObj.headerDiv = `
+    <div id='eventJoin-nav'>${getNav()}</div>
+    `)}
+
   ${(divObj.mainDiv.innerHTML = `
   <div id = "main-screen">무대</div>
   <div id = "main-seat">${data}</div>
@@ -107,3 +120,9 @@ const renderJoinPage = async () => {
 
 renderJoinPage();
 makeSeat();
+searchInput.addEventListener("change", (e) => {
+  search();
+});
+searchButton[0].addEventListener("click", (e) => {
+  button();
+});
