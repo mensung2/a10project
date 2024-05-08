@@ -55,7 +55,6 @@ const renderTimer = () => {
 };
 const timerStopper = setInterval(renderTimer, 1000);
 
-// /[^가-힣]/;
 const checkIsWrong = (el, warning, pattern, boolean = true) => {
   const _pattern = pattern;
   const isWrong = _pattern.test(el.value);
@@ -168,11 +167,8 @@ const addInputValidationListener = () => {
   email.addEventListener("blur", checkEmail);
 };
 
-const isInvalid = () => {
-  let _checkAccount = null;
-  checkAccount().then((data) => {
-    _checkAccount = data;
-  });
+const checkIsInvalid = async () => {
+  const _checkAccount = await checkAccount();
   console.log(_checkAccount);
   if (_checkAccount) {
     console.log("아이디 오류");
@@ -192,14 +188,17 @@ const isInvalid = () => {
     console.log("비번 오류");
     return true;
   }
+
   if (checkConfirmPassword()) {
     console.log("비번 확인 오류");
     return true;
   }
+
   let _checkEmail = null;
   checkEmail().then((data) => {
     _checkEmail = data;
   });
+
   if (_checkEmail) {
     console.log("이메일 오류");
     return true;
@@ -227,7 +226,8 @@ const sendAuthMail = async (username, userEmail, serialNumber) => {
 };
 
 const confirmInputValues = async () => {
-  if (isInvalid()) {
+  const isInvalid = await checkIsInvalid();
+  if (isInvalid) {
     alert("올바르지 않은 값이 있습니다!");
     return;
   }
