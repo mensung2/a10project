@@ -92,6 +92,7 @@ const checkAccount = async () => {
   if (!account.value) {
     return;
   }
+  let existAccount = null;
   await db
     .collection("accounts")
     .doc(account.value)
@@ -103,10 +104,12 @@ const checkAccount = async () => {
           account.parentElement.parentElement.querySelector(".warning-line");
         warningLine.innerText = "아이디가 중복되었습니다!";
         account.style.border = "2px solid red";
-        return true;
+        existAccount = true;
       }
     });
-
+  if(existAccount) {
+    return true;
+  }
   return result;
 };
 
@@ -247,6 +250,10 @@ const confirmInputValues = async () => {
   alert("성공적으로 메일을 보냈습니다!");
   sendAuthMailBtn.innerText = "인증메일 발송완료";
   sendAuthMailBtn.classList.add("complete");
+  const authInput = document.querySelector(".auth-input");
+  const authBtn = document.querySelector(".check-auth-num-btn");
+  authInput.classList.remove("hidden");
+  authBtn.classList.remove("hidden");
 };
 
 const checkSerialNumber = async () => {
@@ -336,7 +343,7 @@ signupBtn.addEventListener("click", async () => {
         .then(() => {
           sessionStorage.removeItem("authMailState");
           sessionStorage.removeItem("mailCertificationState");
-          alert("회원가입에 성공했습니다!");
+          alert("회원가입에 성공했습니다! 로그인 페이지로 이동합니다!");
           location.reload(true);
         });
     });

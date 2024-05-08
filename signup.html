@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
+    <title>DUCKFLIX</title>
     <link rel="stylesheet" href="./css/signup.css" />
+    <link rel="icon" href="./img/favicon.png" />
   </head>
   <body>
     <h1>회원가입</h1>
@@ -54,7 +55,7 @@
         <p class="warning-line"></p>
       </div>
       <button class="send-auth-num-btn">인증메일 보내기</button>
-      <div class="input-box">
+      <div class="input-box auth-input hidden">
         <div class="input-line">
           <label for="authNumber">인증번호</label>
           <input id="authNumber" type="text" />
@@ -62,7 +63,7 @@
         <p class="warning-line"></p>
       </div>
 
-      <button class="check-auth-num-btn">인증하기</button>
+      <button class="check-auth-num-btn hidden">인증하기</button>
 
       <button type="submit" class="signup-btn">가입하기</button>
     </form>

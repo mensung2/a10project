@@ -46,6 +46,8 @@ h1 {
 }
 
 .sign-up-form input {
+  opacity: 1;
+  transition: all 1s;
   box-sizing: border-box;
   background-color: white;
   margin:0;
@@ -68,6 +70,8 @@ h1 {
 }
 
 .sign-up-form button {
+  opacity: 1;
+  transition: all 1s;
   cursor: pointer;
   margin: 10px 0 60px 0;
   background-color: #2d2d2d;
@@ -100,4 +104,9 @@ h1 {
   height: 32px;
   margin-left: 72px;
   color: red;
+}
+
+.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
