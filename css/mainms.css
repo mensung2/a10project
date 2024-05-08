@@ -97,7 +97,7 @@ body {
                         background-color: rgb(69, 126, 126);
                         margin-left: 10px;
                         margin-right: 10px;
-
+                        overflow: hidden;
                     }
 
                     .rank {
@@ -109,6 +109,10 @@ body {
                         left: 0px;
                     }
 
+                    .rank-img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
                 }
 
 
