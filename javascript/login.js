@@ -1,19 +1,3 @@
-const makeCertification = () => {
-  const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  const charactersLength = characters.length;
-  for (let i = 0; i < 20; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
-const saveCertification = () => {
-  db.collection()  
-}
-
-console.log(makeCertification());
-
 const userLogin = async () => {
   const inputData = document.querySelector("form");
   const inputId = inputData.userAccount.value;
@@ -29,6 +13,7 @@ const userLogin = async () => {
     renderSingleBtnModal(message);
     return;
   }
+  saveCertification(inputId);
   location.href = "./mainms.html";
 }
 
@@ -125,3 +110,4 @@ loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
   userLogin();
 });
+

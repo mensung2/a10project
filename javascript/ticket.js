@@ -1,3 +1,6 @@
+
+
+
 const renderMyTicket = async () => {
   const localTicketGrade = localStorage.getItem("ticketGrade");
   const localSeatInfo = localStorage.getItem("seatInfo");
