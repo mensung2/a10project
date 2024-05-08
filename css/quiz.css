@@ -1,0 +1,151 @@
+@import "./reset.css";
+
+body {
+    background-color: #2D2D2D;
+    position: relative;
+
+    main {
+        width: 1440px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        nav {
+            width: 100%;
+            height: auto;
+        }
+
+        .quiztop {
+            width: 100%;
+            height: 500px;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+
+
+            .quizscreen {
+                width: 1100px;
+                height: 400px;
+                background-color: white;
+                box-shadow: 0 0 25px 5px #FFFFFF, inset 0 0 150px 50px #DADADA;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                h2 {
+                    color: #BC1919;
+                    font-size: 55px;
+                    font-weight: bold;
+                    margin-bottom: 40px;
+                }
+
+                h3 {
+                    color: black;
+                    font-size: 45px;
+                    font-weight: bold;
+                    word-break: keep-all;
+                    text-align: center;
+                    line-height: 125%;
+                    width: 700px;
+                }
+            }
+        }
+
+        .quizmiddle {
+            width: 100%;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            #answerkeybox {
+                width: 1100px;
+                height: 85%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                #answer {
+                    width: 950px;
+                    height: 55px;
+                    color: #2D2D2D;
+                    background-color: #E8E8E8;
+                    font-size: 25px;
+                    font-weight: bold;
+                    text-indent: 35px;
+                    margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    border-radius: 15px;
+                    border: 3px solid;
+                }
+
+                /* 일단 클릭 말고 마우스 오버시 색상 바뀌도록 했음 */
+                #answer:hover {
+                    color: #AE1B1B;
+                    border: 3px solid #AE1B1B;
+                }
+            }
+        }
+
+        .quizbottom {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .submitbutton {
+                width: 400px;
+                height: 100px;
+                position: relative;
+
+
+                .buttontop {
+                    width: 100%;
+                    height: 80px;
+                    border-radius: 40px;
+                    background-color: #BC1919;
+                    position: absolute;
+                    margin-bottom: auto;
+                    z-index: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    top: 0;
+                    transition: all 0.2s;
+                    p {
+                        font-size: 25px;
+                        font-weight: bold;
+                        color: #FFFFFF;
+                    }
+                }
+
+                .buttontop:hover {
+                    top: 5px;
+                    transition: all 0.2s;
+                    p {
+                        color: #f7ba13;
+                    }
+                    
+                }
+
+                .buttonbottom {
+                    width: 100%;
+                    height: 90px;
+                    border-radius: 40px;
+                    background-color: #A32626;
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+}
