@@ -5,7 +5,7 @@ const getMoviesData = () => {
   });
 };
 
-const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효성 검사
+const clickWriteRvButton = () => {  
   const writeRv = document.getElementById("writeRv");
   if(!writeRv){
     return;
@@ -14,6 +14,8 @@ const clickWriteRvButton = () => {  // 옮겨보기  if문 추가해서 유효�
   writeRv.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.remove("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.remove("hidden");
   });
 };
 
@@ -25,9 +27,9 @@ const clickBackSpace = () => {
   backSpace.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    writeRev.parentElement.classList.add("hidden");
   });
 };
-
 
 const clickRevRegist = () => {
   const revRegist = document.getElementById("revRegist");
@@ -37,17 +39,16 @@ const clickRevRegist = () => {
   revRegist.addEventListener("click", (e) => {
     e.preventDefault();
     writeRev.classList.add("hidden");
+    const modalBg = writeRev.parentElement;
+    modalBg.classList.add("hidden");
   });
 };
-
-
 
 const clickEvents = () => {
   clickWriteRvButton();
   clickBackSpace();
   clickRevRegist();
 };
-
 
 const loadThisMovie = (movies) => {
   const container = document.getElementById("detail");
@@ -74,6 +75,15 @@ const loadThisMovie = (movies) => {
   });
 };
 
+const getNav = () => {
+  fetch("../nav.html") // 질문하기!!
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("header-nav").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
 
 clickEvents();
+getNav();
 getMoviesData();
