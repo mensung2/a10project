@@ -76,3 +76,38 @@ db.collection("event").doc("tickets").get().then(data => {
 
 //이벤트 자리에 무비 코멘트
 //티켓츠자리에 문서이름(댓글하나하나)
+
+const newExpireDate = (minutes) => {
+  return new Date().getTime() + (1000 * minutes);
+}
+/**
+ * 
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const removeCertification = (certification) => {
+  db.collection("sessions").doc(certification).delete();
+}
+/**
+ * 
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const getCertification = async (certification) => {
+  const doc = await db.collection("sessions").doc(certification).get()
+  const data = doc.data();
+  return data;
+}
+/**
+ * 
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const saveCertification = async (certification) => {
+  const authData = {isAuthenticated: true, expireDate: newExpireDate(10)};
+  const result = await db.collection("sessions").doc(certification).set(authData);
+  localStorage.setItem("sessions", certification);
+}
+
+const renewalCertification = async (certification) => {
+  const userSession = sessionStorage.getItem("sessions");
+}
+
+saveCertification("123434234");
