@@ -14,24 +14,12 @@
     </div>
     <div class="mainview">
       <section class="billboard-container">
-        <nav>
-          <img class="logo" src="./img/logo_white.svg" alt="duckflix">
-          <ul class="category">
-            <li><a href="#a">영화검색</a><div class="underscore"></div></li>
-            <li><a href="#a">영화리뷰</a><div class="underscore"></div></li>
-            <li><a href="#a">이벤트</a><div class="underscore"></div></li>
-            <li><a href="#a">영화예매</a><div class="underscore"></div></li>
-          </ul>
-          <form class="search-bar">
-            <input type="textarea" placeholder="영화 제목을 입력해주세요.">
-            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
+        <nav id="header-nav">
         </nav>
         <div class="prevBtn"></div>
         <section class="mainmovie-container">
           <div class="rogobox">
-            logo
-            <img src="" alt>
+            <img src="img\mainlogo.png" class="mainlogo">
           </div>  
           <a href="링크주소"><button type="button"><i class="fa-solid fa-info"></i>상세 정보</button></a>
         </section>
@@ -44,106 +32,9 @@
       <section id="reviewContainer">
         <div class="rivewheader">
         <h2>최신 리뷰 한줄평</h2>
-        <div class="rivewslider">
-          <button type="button" id="prev" onclick="prevevent()">
-          <button type="button" id="next" onclick="nextevent()">
-        </div>
       </div>
-    <div class="slide">
-      <ul id="review1">
-          <li id="revBox">
-              <div class="revTop">
-                  <h3 id="revName">고질라x킹콩</h3>                 
-              </div>               
-              <div class="revMid">
-                  <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-              </div>
-              <div class="revBase">
-                  <p id="revnick">Nickname</p>
-              </div>
-          </li>
-          <li id="revBox">
-            <div class="revTop">
-                <h3 id="revName">고질라x킹콩</h3>                 
-            </div>               
-            <div class="revMid">
-                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-            </div>
-            <div class="revBase">
-                <p id="revnick">Nickname</p>
-            </div>
-        </li>
-        <li id="revBox">
-          <div class="revTop">
-              <h3 id="revName">고질라x킹콩</h3>                 
-          </div>               
-          <div class="revMid">
-              <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-          </div>
-          <div class="revBase">
-              <p id="revnick">Nickname</p>
-          </div>
-      </li>
-      <li id="revBox">
-              <div class="revTop">
-                  <h3 id="revName">고질라x킹콩</h3>                 
-              </div>               
-              <div class="revMid">
-                  <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-              </div>
-              <div class="revBase">
-                  <p id="revnick">Nickname</p>
-              </div>
-          </li>
-          
-      </ul>
-      <ul id="review2">
-        <li id="revBox">
-            <div class="revTop">
-                <h3 id="revName">쿵푸팬더 4</h3>                 
-            </div>               
-            <div class="revMid">
-                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-            </div>
-            <div class="revBase">
-                <p id="revnick">Nickname</p>
-            </div>
-        </li>
-        <li id="revBox">
-          <div class="revTop">
-              <h3 id="revName">쿵푸팬더 4</h3>                 
-          </div>               
-          <div class="revMid">
-              <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-          </div>
-          <div class="revBase">
-              <p id="revnick">Nickname</p>
-          </div>
-      </li>
-      <li id="revBox">
-        <div class="revTop">
-            <h3 id="revName">쿵푸팬더 4</h3>                 
-        </div>               
-        <div class="revMid">
-            <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-        </div>
-        <div class="revBase">
-            <p id="revnick">Nickname</p>
-        </div>
-    </li>
-    <li id="revBox">
-            <div class="revTop">
-                <h3 id="revName">쿵푸팬더 4</h3>                 
-            </div>               
-            <div class="revMid">
-                <p id="revtext">대통령은 취임에 즈음하여 다음의 선서를 한다. 정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에... </p>
-            </div>
-            <div class="revBase">
-                <p id="revnick">Nickname</p>
-            </div>
-        </li>
-        
-    </ul>
+      <div class="slide">
+      <div id="carousel" class="carousel"></div>
     </div>
     </section>
     <section id="eventcontainer">
