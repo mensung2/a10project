@@ -177,7 +177,7 @@ const inputBlink = el => {
   el.style.backgroundColor="#ffed4b";
   setTimeout(() => {
     el.style.backgroundColor="white";
-  },1000)
+  },600)
 }
 
 const checkIsInvalid = async () => {
@@ -200,21 +200,21 @@ const checkIsInvalid = async () => {
   }
 
   if (checkPassword()) {
-    inputBlink(password);
     alert("비밀번호를 다시 입력해주세요!");
+    inputBlink(password);
     return true;
   }
 
   if (checkConfirmPassword()) {
-    inputBlink(confirmPassword);
     alert("비밀번호가 다릅니다!");
+    inputBlink(confirmPassword);
     return true;
   }
 
   const _checkEmail = await checkEmail();
   if (_checkEmail) {
-    inputBlink(email);
     alert("이메일이 올바르지 않습니다!");
+    inputBlink(email);
     return true;
   }
   return false;
