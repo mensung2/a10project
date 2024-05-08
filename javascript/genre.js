@@ -1,7 +1,18 @@
+// 네비바
+const getNavs = () => {
+  fetch("../nav.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("external-content").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
+};
+
+getNavs();
+
 // 페이지 로드 후 실행되는 함수
 window.onload = async function () {
   getData("event", "moviesDoc", "movies").then((data) => {
-    console.log(data);
     moviesGenre(data);
   });
 };
@@ -44,6 +55,7 @@ function displayMovies(movies, containerId) {
     card.classList.add("card");
 
     const link = document.createElement("a");
+    link.setAttribute("href", `detailReview.html?id${movie.id}`);
 
     const image = document.createElement("img");
     image.setAttribute(
@@ -52,7 +64,8 @@ function displayMovies(movies, containerId) {
     );
     image.setAttribute("alt", movie.title);
     image.classList.add("cardImg");
-    card.appendChild(image);
+    link.appendChild(image);
+    card.appendChild(link);
 
     const title = document.createElement("p");
     title.textContent = movie.title;
@@ -63,6 +76,8 @@ function displayMovies(movies, containerId) {
   });
 }
 
+// 쿼리스트링으로 데이터 받아오기
+// 카드 poster 클릭시 상세페이지 이동(지원님께 받은 코드)
 const updateMovieList = (movies) => {
   const container = document.getElementById("movie-cards");
   container.innerHTML = "";
@@ -78,28 +93,16 @@ const updateMovieList = (movies) => {
     card.classList.add("movie_card");
     card.id = id;
 
-    // 이미지 클릭하면 해당 영화의 id값을 가진 페이지로 이동하도록 <a> 태그 추가
+    // 이미지 클릭하면 해당 영화의 id값을 가진 페이지로 이동하도록 <a> 태그 추가 (지원님께 받은 코드)
     card.innerHTML = `
-     <div>  
-        <a id = 'clickevent 'href = 'detailReview.html?id=${id}'> 
-        <img src="https://image.tmdb.org/t/p/w200${posterPath}" id="poster" alt="${title}" /></a>
-        <h3>${title}</h3>
-        <p id="score">★ ${voteAverage}</p>
-        <p id="content">${overview}</p>               
-     </div>
-    `;
+       <div>
+          <a id = 'clickevent 'href = 'detailReview.html?id${id}'>
+          <img src="https://image.tmdb.org/t/p/w200${posterPath}" id="poster" alt="${title}" /></a>
+          <h3>${title}</h3>
+          <p id="score">★ ${voteAverage}</p>
+          <p id="content">${overview}</p>
+       </div>
+      `;
     container.appendChild(card);
   });
 };
-
-// navi바 표시
-const getNav = () => {
-  fetch("./nav.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("nav").innerHTML = data;
-    })
-    .catch((error) => console.error("Error:", error));
-};
-
-getNav();
