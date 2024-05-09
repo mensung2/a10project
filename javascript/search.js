@@ -83,3 +83,4 @@ window.addEventListener("load", (event) => {
   updateScreens(movieName);
 });
 // 각 screen 요소를 가져옵니다.
+

@@ -1,3 +1,11 @@
+const getUserData = async (userId) => {
+  const existUser = await db.collection("accounts").doc(userId).get();
+  if(!existUser) {
+    return null
+  }
+  return existUser.data();
+}
+
 const userLogin = async () => {
   const inputData = document.querySelector("form");
   const inputId = inputData.userAccount.value;
@@ -13,8 +21,8 @@ const userLogin = async () => {
     renderSingleBtnModal(message);
     return;
   }
-  saveCertification(inputId);
-  location.href = "./mainms.html";
+  await saveCertification(inputId);
+  location.href = "./main.html";
 }
 
 const template = {
