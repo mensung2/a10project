@@ -1,86 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DUCKFLIX</title>
-    <link rel="stylesheet" href="./css/intro.css">
+    <link rel="stylesheet" href="./css/intro.css" />
     <link rel="icon" href="./img/favicon.png" />
-</head>
-<body>
+  </head>
+  <body>
     <div class="background-img"></div>
     <main>
-    <nav id="header-nav"></nav>
-    <section class="introtop">
+      <nav id="header-nav"></nav>
+      <section class="introtop">
         <h2>Company Introduction</h2>
-        <h3>우리는 뛰어난 웹퍼블리싱과 자바스크립트 마스터로 구성된 팀입니다. 
-            혁신적인 기술과 창의적인 아이디어를 결합하여 넷플릭스와 같은 멋진 영화 페이지를 만들었습니다.</h3>
-    </section>
-    <section class="intro3in1">
+        <h3>
+          우리는 뛰어난 웹퍼블리싱과 자바스크립트 마스터로 구성된 팀입니다.
+          혁신적인 기술과 창의적인 아이디어를 결합하여 넷플릭스와 같은 멋진 영화
+          페이지를 만들었습니다.
+        </h3>
+      </section>
+      <section class="intro3in1">
         <h3 class="title">DUCKFLIX 3 in 1</h3>
         <div class="items">
-            <div class="item reserv">
-                <img src="./img/icon-ticket.png">
-                <h3>티켓 예매</h3>
-            </div>
-            <div class="item watch">
-                <img src="./img/icon-cinema.png">
-                <h3>영화 시청</h3>
-            </div>
-            <div class="item review"> 
-                <img src="./img/icon-review.png">
-                <h3>리뷰 공유</h3>
-            </div>
+          <div class="item reserv">
+            <img src="./img/icon-ticket.png" />
+            <h3>티켓 예매</h3>
+          </div>
+          <div class="item watch">
+            <img src="./img/icon-cinema.png" />
+            <h3>영화 시청</h3>
+          </div>
+          <div class="item review">
+            <img src="./img/icon-review.png" />
+            <h3>리뷰 공유</h3>
+          </div>
         </div>
-    </section>
-    <h2 class="section-title">MEMBERS</h2>
-    <section class="introteam">
-      <div class="member">
-        <img src="./img/members/minseo.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-      <div class="member">
-        <img src="./img/members/jaehun.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-      <div class="member">
-        <img src="./img/members/jiwon.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-      <div class="member">
-        <img src="./img/members/joseph.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-      <div class="member">
-        <img src="./img/members/seulki.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-      <div class="member">
-        <img src="./img/members/taegun.png" alt="">
-        <p class="job"></p>
-        <p class="name"></p>
-      </div>
-    </section>
-    <section class="introbottom">
+      </section>
+      <h2 class="section-title">MEMBERS</h2>
+      <section class="introteam">
+        <div class="member">
+          <img src="./img/members/minseo.png" alt="" />
+          <p class="job">Project Leader</p>
+          <p class="name">Minseo Park</p>
+        </div>
+        <div class="member">
+          <img src="./img/members/jaehun.png" alt="" />
+          <p class="job">Project Manager</p>
+          <p class="name">Jaehoon Kwak</p>
+        </div>
+        <div class="member">
+          <img src="./img/members/jiwon.png" alt="" />
+          <p class="job">Development Leader</p>
+          <p class="name">Jiwon Seon</p>
+        </div>
+        <div class="member">
+          <img src="./img/members/joseph.png" alt="" />
+          <p class="job">Technical Leader</p>
+          <p class="name">Joseph Park</p>
+        </div>
+        <div class="member">
+          <img src="./img/members/seulki.png" alt="" />
+          <p class="job">Web Designer</p>
+          <p class="name">Seulki Choi</p>
+        </div>
+        <div class="member">
+          <img src="./img/members/taegun.png" alt="" />
+          <p class="job">Frontend Engineer</p>
+          <p class="name">Taegun Kim</p>
+        </div>
+      </section>
+      <section class="introbottom">
         <h3>Credits</h3>
-        <img src="">
-    </section>
-</main>
-</body>
-<script>
-  const getNav = () => {
-  fetch("../nav.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById("header-nav").innerHTML = data;
-    })
-    .catch((error) => console.error("Error:", error));
-};
-getNav();
-</script>
-</html> 
+        <img src="" />
+      </section>
+    </main>
+  </body>
+  <script>
+    const getNav = () => {
+      fetch("../nav.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-nav").innerHTML = data;
+        })
+        .catch((error) => console.error("Error:", error));
+    };
+    getNav();
+  </script>
+</html>
