@@ -108,5 +108,7 @@ class Movies {
 }
 
 const movies = new Movies();
-movies.initialize();
-// const data = movies.getMoviesInfo();
+// movies.initialize();
+const data = movies.getMoviesInfo();
+
+console.log(data);
