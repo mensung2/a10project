@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyA0bvK3aqUn-tmgdMS-2ItBGk8aDdOALwQ",
-  authDomain: "ch2-a10-project.firebaseapp.com",
-  projectId: "ch2-a10-project",
-  storageBucket: "ch2-a10-project.appspot.com",
-  messagingSenderId: "236736436837",
-  appId: "1:236736436837:web:26943cd8b7f658105dc48c",
-  measurementId: "G-YJHEL1VHLE",
+  apiKey: "AIzaSyBY4779L-U1ejV32W4jl5zDYihXurQ1x78",
+  authDomain: "a10movieproject.firebaseapp.com",
+  projectId: "a10movieproject",
+  storageBucket: "a10movieproject.appspot.com",
+  messagingSenderId: "829014611906",
+  appId: "1:829014611906:web:d110bade07e1b30e22685b",
+  measurementId: "G-TK6D87ZPEQ"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -76,3 +76,7 @@ db.collection("event").doc("tickets").get().then(data => {
 
 //이벤트 자리에 무비 코멘트
 //티켓츠자리에 문서이름(댓글하나하나)
+
+db.collection("event").doc("hello").set({
+  a: 10,
+})
