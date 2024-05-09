@@ -172,12 +172,12 @@ const enableAuthListener = () => {
 
 // const makeCoins =
 
-const currLoc = location.href;
-const currPage = currLoc.split("/").pop();
-console.log('currPage:', currPage);
-if(currPage !== "signup.html" && currPage !== "index.html") {
-  enableAuthListener();
-}
+// const currLoc = location.href;
+// const currPage = currLoc.split("/").pop();
+// console.log('currPage:', currPage);
+// if(currPage !== "signup.html" && currPage !== "index.html") {
+//   enableAuthListener();
+// }
 
 
 

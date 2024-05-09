@@ -244,7 +244,7 @@ const clickReviewModi = () => {
       const Pointmodi = document.querySelector(".revPoint");
       const Contentmodi = document.querySelector(".revContent");
 
-      if (Pointmodi < 0 || Pointmodi > 5) {
+      if (Pointmodi.value < 0 || Pointmodi.value > 5) {
         alert("별점은 0부터 5까지 가능합니다!");
         return;
       }
