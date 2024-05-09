@@ -4,6 +4,7 @@ let searchCount = 0;
 let movieName = "";
 const search = () => {
   searchInput[0].addEventListener("blur", (e) => {
+    e.preventDefault();
     movieName = e.target.value;
     localStorage.setItem("movieName", JSON.stringify(e.target.value));
   });
