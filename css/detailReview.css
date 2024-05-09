@@ -222,8 +222,7 @@ header {
         margin: 0 20px 0 20px;
         padding-top: 10px;
         border-bottom: 1px solid #787878;
-        overflow: hidden scroll;
-        
+        overflow: hidden;       
       }
 
       .revBase {
