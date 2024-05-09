@@ -7,10 +7,12 @@ body {
   align-items: center;
   /* background-color: black; */
 }
+
 #section-container-button {
   position: absolute;
   display: flex;
   color: #d8d8d8;
+  font-size: 30px;
   font-weight: 700;
   background-color: transparent;
   border: none;
@@ -20,8 +22,8 @@ body {
   img {
     color: white;
     filter: brightness(85%);
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 
   :hover {
