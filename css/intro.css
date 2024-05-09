@@ -26,24 +26,27 @@ main {
 
 .introtop {
   padding: 0 128px;
+  width: 1440px;
   height: 800px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center; 
+
 }
 
 .introtop h2 {
-  margin: 120px 0 160px 0;
-  font-size: 80px;
+  margin: 80px 0 80px 120px;
+  font-size: 100px;
   font-weight: 900;
   color: orange;
 }
 
 .introtop h3 {
   line-height: 1.4;
-  font-size: 32px;
-  color: white;
+  font-size: 25px;
+  color: orange;
+  margin: 0 0 0 150px;
+  
 }
 
 .intro3in1 {
@@ -60,7 +63,7 @@ main {
   font-size: 60px;
   font-weight: 700;
   color: white;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .items {
@@ -72,14 +75,17 @@ main {
 
 .item {
   width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .item img {
-  width: 100%;
+  width: 80%;
 }
 
 .item h3 {
-  margin-top: 30px;
+  margin-top: 60px;
   text-align: center;
   font-size: 40px;
   color: white;
@@ -108,6 +114,9 @@ main {
 .member {
   width: 300px;
   height :400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .member img {
@@ -115,9 +124,33 @@ main {
 }
 
 .member .job {
-
+  color: yellow;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .member .name {
-  
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.introbottom {
+  height: 550px;
+  margin-top: 100px;
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.introbottom h3 {
+  font-size: 60px;
+  margin-top: 200px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 60px;
 }
