@@ -5,7 +5,7 @@ const firebaseConfig = {
   storageBucket: "a10movieproject.appspot.com",
   messagingSenderId: "829014611906",
   appId: "1:829014611906:web:d110bade07e1b30e22685b",
-  measurementId: "G-TK6D87ZPEQ",
+  measurementId: "G-TK6D87ZPEQ"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -151,9 +151,12 @@ const enableAuthListener = () => {
   setInterval(renewalCertification, 1000 * 60 * 5);
 };
 
-const currLoc = location.href;
-const currPage = currLoc.split("/").pop();
-console.log("currPage:", currPage);
-// if (currPage !== "signup.html" && currPage !== "index.html") {
+// const currLoc = location.href;
+// const currPage = currLoc.split("/").pop();
+// console.log('currPage:', currPage);
+// if(currPage !== "signup.html" && currPage !== "index.html") {
 //   enableAuthListener();
 // }
+
+
+
