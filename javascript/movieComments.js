@@ -23,6 +23,23 @@ reviewRegist.addEventListener("click", (e) => {
   const revpoint = document.getElementById("revPoint").value;
   const revcontent = document.getElementById("revContent").value;
 
+  if (!nickname) {
+    alert("닉네임을 입력해주세요.");
+    return;
+  }
+  if (!password) {
+    alert("비밀번호를 입력해주세요.");
+    return;
+  }
+  if (!revpoint) {
+    alert("별점을 입력해주세요.");
+    return;
+  }
+  if (!revcontent) {
+    alert("관람평을 입력해주세요.");
+    return;
+  }
+
   db.collection("movie-comments").add({
     // 파이어베이스 db에 인풋값 넣어주기
     movieId: thisPageId,
