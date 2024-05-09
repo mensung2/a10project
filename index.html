@@ -4,92 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DUCKFLIX</title>
+    <link rel="stylesheet" href="./css/login.css" />
     <link rel="icon" href="./img/favicon.png" />
-    <script
-      src="https://kit.fontawesome.com/7b1132fec1.js"
-      crossorigin="anonymous"
-    ></script>
-    <link href="./css/main.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/nav.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
   </head>
   <body>
-    <div class="mainmovie-background"></div>
-    <div class="mainview">
-      <section class="billboard-container">
-        <nav id="header-nav"></nav>
-        <div class="prevBtn"></div>
-        <section class="mainmovie-container">
-          <div class="rogobox">
-            <img src="img/mainlogo.png" class="mainlogo" />
-          </div>
-          <a href="링크주소"
-            ><button type="button">
-              <i class="fa-solid fa-info"></i>상세 정보
-            </button></a
-          >
-        </section>
-        <section class="top-5-container">
-          <h2>박스오피스</h2>
-          <div class="top-5-container-list"></div>
-        </section>
-      </section>
-      <section id="reviewContainer">
-        <div class="rivewheader">
-          <h2>최신 리뷰 한줄평</h2>
-        </div>
-        <div class="slide">
-          <div id="carousel" class="carousel"></div>
-        </div>
-      </section>
-      <section id="eventcontainer">
-        <h2>DUCKPLIX EVENT</h2>
-        <a id="clickevent" href="eventGuide.html">
-          <div class="eventbanner">
-            <img src="img/event.png" alt="" />
-          </div>
-        </a>
-      </section>
-      <footer>
-        <img class="logo" src="./img/logo_yellow.svg" alt="duckflix" />
-        <ul class="info">
-          <li>
-            <a href="#a"> 회사소개 </a>
-          </li>
-          |
-          <li>
-            <a href="#a"> 채용정보 </a>
-          </li>
-          |
-          <li>
-            <a href="#a"> 제휴/광고/부대사업 문의 </a>
-          </li>
-          |
-          <li>
-            <a href="#a"> 이용약관 </a>
-          </li>
-          |
-          <li>
-            <a href="#a"> 개인정보취급방침 </a>
-          </li>
-          |
-          <li>
-            <a href="#a"> 고객센터 </a>
-          </li>
-        </ul>
-        <a>Github : Https://github.com/mensung2/a10project</a>
-      </footer>
-    </div>
+    <img id="logo" src="./img/logo_white.svg" alt="" />
+    <form id="login">
+      <label for="userAccount">아이디</label>
+      <input id="userAccount" type="text" />
+      <label for="userPassword">비밀번호</label>
+      <input id="userPassword" type="password" />
+      <div class="btns">
+        <button id="loginBtn">로그인</button>
+        <button id="signupBtn">회원가입</button>
+      </div>
+    </form>
   </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
   <script src="./javascript/firebase.js"></script>
-  <script src="./javascript/nav.js"></script>
-  <script src="./javascript/mainms.js"></script>
+  <script src="./javascript/login.js"></script>
 </html>
