@@ -13,10 +13,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 #section-container-button {
+  max-width: 1440px;
   position: relative;
   top: 2px;
   display: flex;
