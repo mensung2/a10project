@@ -1,4 +1,4 @@
-@import "./reset.css";
+
 
 body {
   display: flex;
@@ -12,9 +12,10 @@ body {
   display: flex;
   color: #d8d8d8;
   font-weight: 700;
-  background-color: #2d2d2d;
+  background-color: transparent;
   border: none;
   top: 140px;
+  left: 40px;
 
   img {
     color: white;
@@ -124,18 +125,3 @@ nav {
   }
 }
 
-#section-container-button {
-  margin-left: 24px;
-  display: flex;
-  align-items: center;
-  img {
-    width: 24px;
-    height: 24px;
-  }
-  div {
-    position: relative;
-    top:2px;
-    font-size: 24px;
-    line-height: 24px;
-  }
-}

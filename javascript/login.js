@@ -17,6 +17,15 @@ const userLogin = async () => {
   location.href = "./mainms.html";
 }
 
+const template = {
+  signup: "회원가입 페이지로 이동하시겠습니까?",
+  loginFail: "입력한 정보가 올바르지 않습니다!",
+  singleBtn: `<button class="cancel">닫기</button>`,
+  multiBtn: `
+  <button class="cancel">취소</button>
+  <button class="confirm">확인</button>`,
+};
+
 const makeModal = (body, type) => {
   const template = `
   <div class="modal">
@@ -86,14 +95,7 @@ const renderMultiBtnModal = (body,callback) => {
   });
 };
 
-const template = {
-  signup: "회원가입 페이지로 이동하시겠습니까?",
-  loginFail: "입력한 정보가 올바르지 않습니다!",
-  singleBtn: `<button class="cancel">닫기</button>`,
-  multiBtn: `
-  <button class="cancel">취소</button>
-  <button class="confirm">확인</button>`,
-};
+
 
 const moveSignupPage = () => {
   location.href = "./signup.html";
