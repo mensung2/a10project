@@ -27,18 +27,29 @@ async function fetchMovieData(searchText) {
     console.error("Error fetching movie data:", error);
   }
 }
-
+const getNav = () => {
+  fetch("../nav.html")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("search-nav").innerHTML = data;
+      document
+        .querySelector(".search-btn")
+        .addEventListener("click", async function (event) {
+          event.preventDefault();
+          updateScreens();
+        });
+    })
+    .catch((error) => console.error("Error:", error));
+};
+getNav();
 // 화면을 업데이트하는 함수를 정의합니다.
 async function updateScreens(movieTitle = "") {
-  console.log("123", 123);
-  if (movieTitle.length === 0) console.log("12345", 12345);
   const searchText =
     movieTitle.length === 0
       ? document.querySelector(".search-txt").value.trim().toLowerCase()
       : movieTitle.trim().toLowerCase();
   const movieData = await fetchMovieData(searchText); // 영화 데이터를 가져옵니다.
   const container = document.querySelector(`.container`);
-  console.log("container", container);
   // 각 screen 요소에 영화 포스터를 추가합니다.
   for (let i = 0; i < 10; i++) {
     const screen = document.createElement("div");
@@ -70,12 +81,6 @@ async function updateScreens(movieTitle = "") {
 }
 
 // 검색 버튼 클릭 시 화면 업데이트 함수를 호출하여 검색 결과를 표시합니다.
-document
-  .querySelector(".search-btn")
-  .addEventListener("click", async function (event) {
-    event.preventDefault();
-    updateScreens();
-  });
 
 window.addEventListener("load", (event) => {
   console.log("event", event);
@@ -83,3 +88,4 @@ window.addEventListener("load", (event) => {
   updateScreens(movieName);
 });
 // 각 screen 요소를 가져옵니다.
+

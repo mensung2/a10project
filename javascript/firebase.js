@@ -135,25 +135,44 @@ const renewalCertification = async () => {
   const userSession = localStorage.getItem("sessions");
   if (!userSession) {
     alert("오류가 발생했습니다. 초기화면으로 이동합니다!");
-    location.href = "./login.html";
+    location.href = "./index.html";
   }
   const data = await getCertification(userSession);
   if (!data) {
     alert("오류가 발생했습니다. 초기화면으로 이동합니다!");
-    location.href = "./login.html";
+    location.href = "./index.html";
   }
   removeCertification(userSession);
   saveCertification(data.userId);
+  console.log("authenticated!");
+};
+
+const clearCertification = async () => {
+  const sessions = await db.collection("sessions").get();
+  const sessionDocs = await sessions.docs;
+  if (sessionDocs.length === 0) {
+    console.log("DB Sessions is empty!");
+    return;
+  }
+  sessionDocs.forEach((doc) => {
+    const data = doc.data();
+    const id = doc.id;
+    const { expireDate } = data;
+    if (expireDate < new Date().getTime()) {
+      removeCertification(id);
+    }
+  });
 };
 
 const enableAuthListener = () => {
+  clearCertification();
   renewalCertification();
-  setInterval(renewalCertification, 1000 * 60 * 5);
+  setInterval(renewalCertification, 1000 * 60 * 60);
 };
 
-// const currLoc = location.href;
-// const currPage = currLoc.split("/").pop();
-// console.log("currPage:", currPage);
+const currLoc = location.href;
+const currPage = currLoc.split("/").pop();
+console.log("currPage:", currPage);
 // if (currPage !== "signup.html" && currPage !== "index.html") {
 //   enableAuthListener();
 // }

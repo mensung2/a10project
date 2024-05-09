@@ -94,6 +94,7 @@ const updateTicketCount = () => {
     console.log("rest ticket:", availableSeats.length);
   });
 };
+
 const eventArea = document.querySelector(".event-area");
 const ticketBox = document.querySelector(".ticket-container");
 const ticket = document.querySelector(".ticket-container .ticket");
