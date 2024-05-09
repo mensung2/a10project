@@ -79,9 +79,6 @@ const renderGuidPage = async () => {
       </div>
     </div>
   </div>
-
-  }
-
     `)}
   `;
 
@@ -89,7 +86,8 @@ const renderGuidPage = async () => {
 
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
-    // window.location.href = "../event.html";
+    e.preventDefault();
+    window.location.href = "../event.html";
     console.log("window.location.search", ticketButton.search);
     console.log("yes");
   });
@@ -103,6 +101,7 @@ const renderGuidPage = async () => {
 renderGuidPage();
 
 const goEventBtn = document.querySelector(".process-section-button");
-goEventBtn.addEventListener("click", ()=>{
-  goEventBtn.children[1].classList.add('press');
+goEventBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  goEventBtn.children[1].classList.add("press");
 });

@@ -1,0 +1,217 @@
+@import "./reset.css";
+@import './prevBtn.css';
+
+body {
+  background-color: #2d2d2d;
+  position: relative;
+
+  main {
+    width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    nav {
+      width: 100%;
+      height: auto;
+    }
+
+    .quiztop {
+      width: 100%;
+      height: 500px;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .quizscreen {
+        width: 1100px;
+        height: 400px;
+        background-color: white;
+        box-shadow: 0 0 25px 5px #ffffff, inset 0 0 150px 50px #dadada;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+          color: #bc1919;
+          font-size: 55px;
+          font-weight: bold;
+          margin-bottom: 40px;
+        }
+
+        h3 {
+          color: black;
+          font-size: 45px;
+          font-weight: bold;
+          word-break: keep-all;
+          text-align: center;
+          line-height: 125%;
+          width: 700px;
+        }
+      }
+    }
+
+    .quizmiddle {
+      width: 100%;
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      #answerkeybox {
+        width: 1100px;
+        height: 85%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .choice {
+          position: relative;
+          top: 0;
+          left: 0;
+          width: 950px;
+          height: 55px;
+          color: #2d2d2d;
+          background-color: #e8e8e8;
+          font-size: 25px;
+          font-weight: bold;
+          text-indent: 35px;
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+          border-radius: 15px;
+          border: 3px solid;
+          transition: 0.3s;
+        }
+
+        .choice.selected {
+          background-color: #f7ba13 !important;
+        }
+        
+        .choice:hover {
+          top: -4px;
+          left:-4px;
+          color: #ae1b1b;
+          border: 3px solid #ae1b1b;
+        }
+        
+
+        /* 일단 클릭 말고 마우스 오버시 색상 바뀌도록 했음 */
+      }
+    }
+
+    .quizbottom {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .submitbutton {
+        width: 400px;
+        height: 100px;
+        position: relative;
+
+        .buttontop {
+          cursor: pointer;
+          width: 100%;
+          height: 80px;
+          border-radius: 40px;
+          background-color: #bc1919;
+          position: absolute;
+          margin-bottom: auto;
+          z-index: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          transition: all 0.2s;
+          p {
+            font-size: 25px;
+            font-weight: bold;
+            color: #ffffff;
+          }
+        }
+
+        .buttontop:hover {
+          top: 5px;
+          transition: all 0.2s;
+          /* p {
+            color: #f7ba13;
+          } */
+        }
+
+        .buttonbottom {
+          width: 100%;
+          height: 90px;
+          border-radius: 40px;
+          background-color: #a32626;
+          position: absolute;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+  background-color: #2d2d2d;
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 0;
+  width: 140px;
+  height: 50px;
+}
+
+.modal-background {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 400px;
+  padding: 20px;
+  background-color: whitesmoke;
+  border-radius: 40px;
+  filter: drop-shadow(0 10px #e4e4e4);
+}
+
+.modal p {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+
+.modal button:hover {
+  background-color: #ffed4b;
+  color: black;
+  font-weight: 700;
+}
+
+.visible {
+  display: flex !important;
+}

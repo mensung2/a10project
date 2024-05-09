@@ -1,9 +1,13 @@
 @import "./reset.css";
 
+
 body {
   display: flex;
   flex-direction: column;
   background-color: #2d2d2d;
+}
+#eventJoin-nav {
+  margin-bottom: 100px;
 }
 
 #event-join-container {
@@ -41,7 +45,7 @@ body {
   #main-seat {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(10, 1fr);;
+    grid-template-rows: repeat(10, 1fr);
     margin-top: 40px;
   }
 

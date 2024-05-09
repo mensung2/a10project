@@ -1,3 +1,6 @@
+
+
+
 const renderMyTicket = async () => {
   const localTicketGrade = localStorage.getItem("ticketGrade");
   const localSeatInfo = localStorage.getItem("seatInfo");
@@ -29,14 +32,6 @@ const renderMyTicket = async () => {
   myTicket.appendChild(pTag);
 };
 renderMyTicket();
-
-const decreaseTicketCount = async () => {
-  const data = await getData("event", "ticket-count", "units");
-
-  db.collection("event")
-    .doc("ticket-count")
-    .update({ units: Number(data) - Number(1) });
-};
 
 const ticketCounter = document.querySelector(".count");
 

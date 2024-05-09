@@ -1,0 +1,15 @@
+#section-container-button {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+  div {
+    position: relative;
+    top:2px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
