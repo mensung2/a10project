@@ -5,7 +5,7 @@ const firebaseConfig = {
   storageBucket: "a10movieproject.appspot.com",
   messagingSenderId: "829014611906",
   appId: "1:829014611906:web:d110bade07e1b30e22685b",
-  measurementId: "G-TK6D87ZPEQ"
+  measurementId: "G-TK6D87ZPEQ",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -150,19 +150,19 @@ const renewalCertification = async () => {
 const clearCertification = async () => {
   const sessions = await db.collection("sessions").get();
   const sessionDocs = await sessions.docs;
-  if(sessionDocs.length === 0) {
+  if (sessionDocs.length === 0) {
     console.log("DB Sessions is empty!");
     return;
   }
-  sessionDocs.forEach(doc => {
+  sessionDocs.forEach((doc) => {
     const data = doc.data();
     const id = doc.id;
-    const {expireDate} = data;
-    if(expireDate < new Date().getTime()) {
+    const { expireDate } = data;
+    if (expireDate < new Date().getTime()) {
       removeCertification(id);
     }
-  })
-}
+  });
+};
 
 const enableAuthListener = () => {
   clearCertification();
@@ -170,14 +170,9 @@ const enableAuthListener = () => {
   setInterval(renewalCertification, 1000 * 60 * 60);
 };
 
-// const makeCoins =
-
-// const currLoc = location.href;
-// const currPage = currLoc.split("/").pop();
-// console.log('currPage:', currPage);
-// if(currPage !== "signup.html" && currPage !== "index.html") {
+const currLoc = location.href;
+const currPage = currLoc.split("/").pop();
+console.log("currPage:", currPage);
+// if (currPage !== "signup.html" && currPage !== "index.html") {
 //   enableAuthListener();
 // }
-
-
-
