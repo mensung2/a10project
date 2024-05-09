@@ -111,9 +111,3 @@ const getNav = () => {
 clickEvents();
 getNav();
 getMoviesData();
-searchInput.addEventListener("change", (e) => {
-  search();
-});
-searchButton[0].addEventListener("click", (e) => {
-  button();
-});

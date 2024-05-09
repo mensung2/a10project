@@ -71,10 +71,14 @@ const renderGuidPage = async () => {
           </div>
           <div id='process-section-coin-right'></div>
         </div>
+        <div class="process-section-button-quiz">
+          <div class="topside"></div>
+          <div class="frontside">퀴즈 풀러 가기</div>
+        </div>
         <div id = 'process-section-ticket-text'>티켓부스 페이지에서 티켓 발권하기!</div>
         <div class="process-section-button">
-        <div class="topside"></div>
-        <div class="frontside">티켓 뽑으러 가기</div>
+          <div class="topside"></div>
+          <div class="frontside">티켓 뽑으러 가기</div>
         </div>
       </div>
     </div>
@@ -83,12 +87,16 @@ const renderGuidPage = async () => {
   `;
 
   document.body.appendChild(divObj.containerDiv);
+  const quizButtonn = document.querySelector(".process-section-button-quiz");
+  quizButtonn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.location.href = "../quiz.html";
+  });
 
   const ticketButton = document.querySelector(".process-section-button");
   ticketButton.addEventListener("click", (e) => {
+    e.preventDefault();
     window.location.href = "../event.html";
-    console.log("window.location.search", ticketButton.search);
-    console.log("yes");
   });
 
   const backgSpaceButton = document.getElementById("section-container-button");
@@ -100,6 +108,7 @@ const renderGuidPage = async () => {
 renderGuidPage();
 
 const goEventBtn = document.querySelector(".process-section-button");
-goEventBtn.addEventListener("click", () => {
+goEventBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   goEventBtn.children[1].classList.add("press");
 });
