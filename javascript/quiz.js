@@ -1,3 +1,11 @@
+const getRestCoin = async () => {
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const restCoin = await getData("accounts", userId, "coin");
+  return restCoin;
+}
+
 const getNav = () => {
   fetch("../nav.html")
     .then((response) => response.text())
@@ -12,11 +20,19 @@ const backToPage = () => {
   location.href = "./index.html";
 };
 
-const goToNextStage = () => {
+const goToNextStage = async () => {
   const currLevel = localStorage.getItem("currLevel");
   if (currLevel > 5) {
     const message =
       "축하합니다! 모든 문제를 푸셨습니다!<br>티켓을 뽑을 수 있는 동전을 하나 드릴게요!";
+    const userSession = localStorage.getItem("sessions");
+    const sessionData = await db.collection("sessions").doc(userSession).get();
+    const userId = sessionData.data().userId;
+    const userCoin = await getRestCoin();
+    await db
+      .collection("accounts")
+      .doc(userId)
+      .update({ coin: Number(userCoin) + 1 });
     localStorage.setItem("currLevel", 0);
     renderSingleBtnModal(message);
     return;

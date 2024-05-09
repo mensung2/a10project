@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyBY4779L-U1ejV32W4jl5zDYihXurQ1x78",
-  authDomain: "a10movieproject.firebaseapp.com",
-  projectId: "a10movieproject",
-  storageBucket: "a10movieproject.appspot.com",
-  messagingSenderId: "829014611906",
-  appId: "1:829014611906:web:d110bade07e1b30e22685b",
-  measurementId: "G-TK6D87ZPEQ",
+  apiKey: "AIzaSyA-dIbqhErI6652O8aK0p2CdGDu5DCKApA",
+  authDomain: "a10final.firebaseapp.com",
+  projectId: "a10final",
+  storageBucket: "a10final.appspot.com",
+  messagingSenderId: "282805405679",
+  appId: "1:282805405679:web:62a9adee548c70ee21181a",
+  measurementId: "G-7EKJ9P6WP2"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -173,6 +173,8 @@ const enableAuthListener = () => {
 const currLoc = location.href;
 const currPage = currLoc.split("/").pop();
 console.log("currPage:", currPage);
-// if (currPage !== "signup.html" && currPage !== "index.html") {
-//   enableAuthListener();
-// }
+
+if(currPage !== "signup.html" && currPage !== "index.html") {
+  enableAuthListener();
+}
+

@@ -18,7 +18,7 @@ const getNav = () => {
   fetch("./nav.html")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById("eventGuide-nav").innerHTML = data;
+      document.getElementById("header-nav").innerHTML = data;
     })
     .catch((error) => console.error("Error:", error));
 };
@@ -26,7 +26,7 @@ const getNav = () => {
 const renderGuidPage = async () => {
   const divObj = makeGuideDivObj();
   divObj.containerDiv.innerHTML = `
-  ${(divObj.headerDiv.innerHTML = `<div id='eventGuide-nav'>${getNav()}</div>`)}
+  ${(divObj.headerDiv.innerHTML = `${getNav()}</div>`)}
   ${(divObj.sectionDiv.innerHTML = `
   <div id = 'section-container'>
   
@@ -97,11 +97,6 @@ const renderGuidPage = async () => {
   ticketButton.addEventListener("click", (e) => {
     e.preventDefault();
     window.location.href = "../event.html";
-  });
-
-  const backgSpaceButton = document.getElementById("section-container-button");
-  backgSpaceButton.addEventListener("click", (e) => {
-    history.go(-1);
   });
 };
 

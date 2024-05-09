@@ -10,7 +10,7 @@ const getNav = () => {
   fetch("./nav.html")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById("eventJoin-nav").innerHTML = data;
+      document.getElementById("header-nav").innerHTML = data;
     })
     .catch((error) => console.error("Error:", error));
 };
@@ -104,8 +104,7 @@ const renderJoinPage = async () => {
   const divObj = makeJoinDivObj();
   await getSeat().then((data) => {
     divObj.containerDiv.innerHTML = `
-    ${(divObj.headerDiv = `
-    <div id='eventJoin-nav'>${getNav()}</div>
+    ${(divObj.headerDiv = `${getNav()}
     `)}
 
   ${(divObj.mainDiv.innerHTML = `
@@ -114,7 +113,8 @@ const renderJoinPage = async () => {
   `)}
   `;
     const eventArea = document.querySelector(".event-area");
-    document.body.insertBefore(divObj.containerDiv, document.body.firstChild);
+    const navObj = document.querySelector("#header-nav");
+    document.body.insertBefore(divObj.containerDiv, navObj.nextSibling);
   });
 };
 
