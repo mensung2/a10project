@@ -151,9 +151,9 @@ const enableAuthListener = () => {
   setInterval(renewalCertification, 1000 * 60 * 5);
 };
 
-const currLoc = location.href;
-const currPage = currLoc.split("/").pop();
-console.log("currPage:", currPage);
+// const currLoc = location.href;
+// const currPage = currLoc.split("/").pop();
+// console.log("currPage:", currPage);
 // if (currPage !== "signup.html" && currPage !== "index.html") {
 //   enableAuthListener();
 // }
