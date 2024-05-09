@@ -107,7 +107,7 @@ const checkAccount = async () => {
         existAccount = true;
       }
     });
-  if(existAccount) {
+  if (existAccount) {
     return true;
   }
   return result;
@@ -173,15 +173,14 @@ const addInputValidationListener = () => {
   confirmPassword.addEventListener("blur", checkConfirmPassword);
   email.addEventListener("blur", checkEmail);
 };
-const inputBlink = el => {
-  el.style.backgroundColor="#ffed4b";
+const inputBlink = (el) => {
+  el.style.backgroundColor = "#ffed4b";
   setTimeout(() => {
-    el.style.backgroundColor="white";
-  },600)
-}
+    el.style.backgroundColor = "white";
+  }, 600);
+};
 
 const checkIsInvalid = async () => {
-  
   if (checkUsername()) {
     alert("이름을 다시 입력해주세요!");
     inputBlink(username);
@@ -356,7 +355,7 @@ signupBtn.addEventListener("click", async () => {
           sessionStorage.removeItem("authMailState");
           sessionStorage.removeItem("mailCertificationState");
           alert("회원가입에 성공했습니다! 로그인 페이지로 이동합니다!");
-          location.reload(true);
+          location.href = "./index.html";
         });
     });
 });

@@ -33,7 +33,6 @@ reviewRegist.addEventListener("click", (e) => {
   });
 });
 
-
 db.collection("movie-comments").onSnapshot((snapshot) => {
   snapshot.docChanges().forEach((change) => {
     //담겨있는 문서들. change는 문서 하나하나
@@ -222,7 +221,7 @@ const clickModiRevBackSpace = () => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
       modiRev.classList.add("hidden");
-      modiRev.parentElement.classList.add("hidden"); 
+      modiRev.parentElement.classList.add("hidden");
     });
   });
 };
@@ -322,14 +321,14 @@ const clickDelConfirm = () => {
 
 let current = 0;
 
-const setCarouselLeft = () => {  
+const setCarouselLeft = () => {
   //carousel_Length에서 4를 빼서 슬라이드 길이를 딱 맞춤.
-  const carousel_Length = document.querySelectorAll(".revBox").length-4;
+  const carousel_Length = document.querySelectorAll(".revBox").length - 4;
   //리뷰 한줄평의 개수가 4개 이하라면 버튼이 작동하지 않도록 설정.
-  if(carousel_Length<1) {
+  if (carousel_Length < 1) {
     //console.log("캐러셀 카드 개수가 4개 이하임!")
     return;
-  } 
+  }
   if (current <= 0) {
     //console.log("left if!");
     current = carousel_Length;
@@ -339,16 +338,15 @@ const setCarouselLeft = () => {
     // currnt 숫자를 먼저 계산하고 그에 맞춰서 움직여줌.
     current--;
     carousel.style.transform = `translateX(${current * -360}px)`;
-    
   }
 };
 
 const setCarouselRight = () => {
-  const carousel_Length = document.querySelectorAll(".revBox").length-4;
-  if(carousel_Length<1) {
+  const carousel_Length = document.querySelectorAll(".revBox").length - 4;
+  if (carousel_Length < 1) {
     //console.log("캐러셀 카드 개수가 4개 이하임!")
     return;
-  } 
+  }
   //console.log('current', current);
   //console.log('carousel_Length', carousel_Length);
   if (current >= carousel_Length) {
@@ -363,7 +361,6 @@ const setCarouselRight = () => {
     carousel.style.transform = `translateX(${current * -360}px)`;
   }
 };
-
 
 const carousel = document.getElementById("carousel");
 const leftArrow = document.getElementById("arrowLeft");

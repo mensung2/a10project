@@ -1,9 +1,10 @@
 //네비바
 const getNav = () => {
-  fetch("../nav.html")
+  fetch("./nav.html")
     .then((response) => response.text())
     .then((data) => {
       document.getElementById("header-nav").innerHTML = data;
+      console.log("data", data);
     })
     .catch((error) => console.error("Error:", error));
 };
@@ -22,11 +23,8 @@ async function getmovielist() {
       for (let i = 0; i < 5; i = i + 1) {
         data[i];
         const movie = data[i];
-        console.log(movie);
         const movieid = movie.id;
         const movieposter = movie.poster_path;
-        console.log(movieid);
-        console.log(movieposter);
         const temp_movie = `<a id = 'clickevent 'href = 'detailReview.html?id${movieid}'> 
         <div id=${movieid} class="list-item">
                       <img src="img/rank-${i + 1}.svg" class="rank"></img>
@@ -45,14 +43,15 @@ getmovielist();
 db.collection("movie-comments").onSnapshot((snapshot) => {
   let count = 0;
   snapshot.docChanges().forEach((change) => {
-    if (count > 3) { return }
+    if (count > 3) {
+      return;
+    }
     //담겨있는 문서들. change는 문서 하나하나
     if (change.type === "added") {
       const post = change.doc.data();
       const id = change.doc.id; //파이어베이스 문서 각각의 아이디
-      console.log(post, id);
       //포스트 리스트에 데이터 추가된 데이터를 받아서 새로운 node로 추가.
-      
+
       const li = document.createElement("li"); // createElement 메서드를 사용하여 새로운 <li> 요소를 생성
       li.dataset.id = id; // 생성된 <li> 요소에 dataset을 사용하여 데이터 속성을 추가,  id는 파이어베이스 문서에서 가져온 값으로, 이것을 데이터 속성으로 할당하여 나중에 JavaScript에서 사용할 수 있도록 함
       li.classList.add("revBox");
@@ -73,7 +72,7 @@ db.collection("movie-comments").onSnapshot((snapshot) => {
       li.innerHTML = rvTemplate;
       reviewContainer.appendChild(li);
 
-      count=count+1
+      count = count + 1;
     }
   });
 });

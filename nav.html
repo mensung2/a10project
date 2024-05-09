@@ -15,38 +15,45 @@
     />
   </head>
   <body>
+    <button onClick="history.back();return false" id="section-container-button">
+      <img src="./img/event-page/arrow-back.png" />
+      <div>뒤로가기</div>
+    </button>
     <nav>
-      <a href="./event.html">
+      <a href="./index.html">
         <img class="logo" src="../img/logo_white.svg" alt="duckflix" />
       </a>
       <ul class="category">
         <li>
-          <a href="#a">영화검색</a>
+          <a href="#a">회사 소개</a>
           <div class="underscore"></div>
         </li>
         <li>
-          <a href="#a">영화리뷰</a>
+          <a href="./genre.html">장르별 영화</a>
           <div class="underscore"></div>
         </li>
         <li>
-          <a href="#a">이벤트</a>
+          <a href="./eventGuide.html">이벤트</a>
           <div class="underscore"></div>
         </li>
         <li>
-          <a href="#a">영화예매</a>
+          <a href="#a">내 정보</a>
           <div class="underscore"></div>
         </li>
       </ul>
       <form class="search-bar">
-        <input type="textarea" placeholder="영화 제목을 입력해주세요." />
-        <button type="submit">
-          <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          oninput="search()"
+          class="search-txt"
+          type="text"
+          placeholder="영화 제목을 입력해주세요."
+        />
+        <button type="button" onClick="button()" class="search-btn">
+          <i onClick="button()" class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
     </nav>
-    <button id="section-container-button">
-      <img src="./img/event-page/arrow-back.png" />
-      <div>뒤로가기</div>
-    </button>
   </body>
+  <script src="./javascript/search.js"></script>
+  <script src="./javascript/nav.js"></script>
 </html>

@@ -66,7 +66,10 @@ const loadThisMovie = (movies) => {
     },
   };
 
-  fetch(`https://api.themoviedb.org/3/movie/${thisPageId}?language=ko-KR`, options)
+  fetch(
+    `https://api.themoviedb.org/3/movie/${thisPageId}?language=ko-KR`,
+    options
+  )
     .then((movie) => movie.json())
     .then((movie) => {
       const genre = movie.genres;

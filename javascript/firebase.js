@@ -1,11 +1,11 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyA0bvK3aqUn-tmgdMS-2ItBGk8aDdOALwQ",
-  authDomain: "ch2-a10-project.firebaseapp.com",
-  projectId: "ch2-a10-project",
-  storageBucket: "ch2-a10-project.appspot.com",
-  messagingSenderId: "236736436837",
-  appId: "1:236736436837:web:26943cd8b7f658105dc48c",
-  measurementId: "G-YJHEL1VHLE",
+  apiKey: "AIzaSyBY4779L-U1ejV32W4jl5zDYihXurQ1x78",
+  authDomain: "a10movieproject.firebaseapp.com",
+  projectId: "a10movieproject",
+  storageBucket: "a10movieproject.appspot.com",
+  messagingSenderId: "829014611906",
+  appId: "1:829014611906:web:d110bade07e1b30e22685b",
+  measurementId: "G-TK6D87ZPEQ",
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -20,7 +20,7 @@ const postData = async (dbCollection, dataName, data, key) => {
       [key]: data,
       date: new Date(),
     });
-
+  console.log("docRef", docRef);
   return docRef;
 };
 
@@ -31,7 +31,7 @@ const getData = async (dbcollection, docName, dataName) => {
     .doc(docName)
     .get()
     .then((doc) => {
-      if(!doc.data()) {
+      if (!doc.data()) {
         return null;
       } else {
         result = doc.data()[dataName];
@@ -70,9 +70,90 @@ const getData = async (dbcollection, docName, dataName) => {
 //   });
 // });
 
-db.collection("event").doc("tickets").get().then(data => {
-  console.log(data.data());
-});
+db.collection("event")
+  .doc("tickets")
+  .get()
+  .then((data) => {
+    console.log(data.data());
+  });
 
 //이벤트 자리에 무비 코멘트
 //티켓츠자리에 문서이름(댓글하나하나)
+
+const newExpireDate = (minutes) => {
+  return new Date().getTime() + 1000 * minutes;
+};
+
+const makeCertification = () => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < 20; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+/**
+ *
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const removeCertification = (certification) => {
+  db.collection("sessions").doc(certification).delete();
+};
+/**
+ *
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const getCertification = async (certification) => {
+  const doc = await db.collection("sessions").doc(certification).get();
+  if (!doc) {
+    return false;
+  }
+  const data = await doc.data();
+  return data;
+};
+/**
+ *
+ * @param {string} certification sessions의 값이 들어갑니다
+ */
+const saveCertification = async (userId) => {
+  const newCertification = makeCertification();
+  const authData = {
+    isAuthenticated: true,
+    expireDate: newExpireDate(30),
+    userId: userId,
+  };
+  const result = await db
+    .collection("sessions")
+    .doc(newCertification)
+    .set(authData);
+  localStorage.setItem("sessions", newCertification);
+};
+
+const renewalCertification = async () => {
+  const userSession = localStorage.getItem("sessions");
+  if (!userSession) {
+    alert("오류가 발생했습니다. 초기화면으로 이동합니다!");
+    location.href = "./login.html";
+  }
+  const data = await getCertification(userSession);
+  if (!data) {
+    alert("오류가 발생했습니다. 초기화면으로 이동합니다!");
+    location.href = "./login.html";
+  }
+  removeCertification(userSession);
+  saveCertification(data.userId);
+};
+
+const enableAuthListener = () => {
+  renewalCertification();
+  setInterval(renewalCertification, 1000 * 60 * 5);
+};
+
+const currLoc = location.href;
+const currPage = currLoc.split("/").pop();
+console.log("currPage:", currPage);
+// if (currPage !== "signup.html" && currPage !== "index.html") {
+//   enableAuthListener();
+// }
