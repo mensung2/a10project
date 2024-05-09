@@ -22,6 +22,24 @@ reviewRegist.addEventListener("click", (e) => {
   const password = document.getElementById("passWord").value;
   const revpoint = document.getElementById("revPoint").value;
   const revcontent = document.getElementById("revContent").value;
+
+  if (!nickname) {
+    alert("닉네임을 입력해주세요.");
+    return;
+  }
+  if (!password) {
+    alert("비밀번호를 입력해주세요.");
+    return;
+  }
+  if (!revpoint) {
+    alert("별점을 입력해주세요.");
+    return;
+  }
+  if (!revcontent) {
+    alert("관람평을 입력해주세요.");
+    return;
+  }
+
   if (revpoint < 0 || revpoint > 5) { 
     alert("별점은 0부터 5까지 가능합니다!");
     return;

@@ -150,19 +150,19 @@ const renewalCertification = async () => {
 const clearCertification = async () => {
   const sessions = await db.collection("sessions").get();
   const sessionDocs = await sessions.docs;
-  if(sessionDocs.length === 0) {
+  if (sessionDocs.length === 0) {
     console.log("DB Sessions is empty!");
     return;
   }
-  sessionDocs.forEach(doc => {
+  sessionDocs.forEach((doc) => {
     const data = doc.data();
     const id = doc.id;
-    const {expireDate} = data;
-    if(expireDate < new Date().getTime()) {
+    const { expireDate } = data;
+    if (expireDate < new Date().getTime()) {
       removeCertification(id);
     }
-  })
-}
+  });
+};
 
 const enableAuthListener = () => {
   clearCertification();
