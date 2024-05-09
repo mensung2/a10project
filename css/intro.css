@@ -1,0 +1,123 @@
+@import './reset.css';
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #2d2d2d;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.background-img {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  height: 1000px;
+  width: 100%;
+  background-image: url("../img/intropic.png");
+  background-position: center center;
+  background-size: cover;
+}
+
+.introtop {
+  padding: 0 128px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; 
+}
+
+.introtop h2 {
+  margin: 120px 0 160px 0;
+  font-size: 80px;
+  font-weight: 900;
+  color: orange;
+}
+
+.introtop h3 {
+  line-height: 1.4;
+  font-size: 32px;
+  color: white;
+}
+
+.intro3in1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+  margin-top: 100px;
+  width: 100%;
+  max-width: 1440px;
+}
+
+.intro3in1 .title {
+  font-size: 60px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 60px;
+}
+
+.items {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  width: 320px;
+}
+
+.item img {
+  width: 100%;
+}
+
+.item h3 {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  font-weight: 700
+}
+
+.section-title {
+  font-size: 60px;
+  margin-top: 200px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 60px;
+}
+
+.introteam {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: center;
+  width: 100%;
+  max-width: 1440px;
+  height : 100%;
+}
+
+.member {
+  width: 300px;
+  height :400px;
+}
+
+.member img {
+  width: 100%;
+}
+
+.member .job {
+
+}
+
+.member .name {
+  
+}

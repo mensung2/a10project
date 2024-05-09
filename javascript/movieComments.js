@@ -22,7 +22,10 @@ reviewRegist.addEventListener("click", (e) => {
   const password = document.getElementById("passWord").value;
   const revpoint = document.getElementById("revPoint").value;
   const revcontent = document.getElementById("revContent").value;
-
+  if (revpoint < 0 || revpoint > 5) { 
+    alert("별점은 0부터 5까지 가능합니다!");
+    return;
+  }
   db.collection("movie-comments").add({
     // 파이어베이스 db에 인풋값 넣어주기
     movieId: thisPageId,
@@ -241,6 +244,10 @@ const clickReviewModi = () => {
       const Pointmodi = document.querySelector(".revPoint");
       const Contentmodi = document.querySelector(".revContent");
 
+      if (Pointmodi.value < 0 || Pointmodi.value > 5) {
+        alert("별점은 0부터 5까지 가능합니다!");
+        return;
+      }
       db.collection("movie-comments").doc(commentId).update({
         score: Pointmodi.value,
         text: Contentmodi.value,
