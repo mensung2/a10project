@@ -351,6 +351,7 @@ signupBtn.addEventListener("click", async () => {
           password: password.value,
           email: email.value,
           coin: 0,
+          eventVisit: false,
         })
         .then(() => {
           sessionStorage.removeItem("authMailState");

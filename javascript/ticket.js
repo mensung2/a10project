@@ -1,5 +1,37 @@
+const getRestCoin = async () => {
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const restCoin = await getData("accounts", userId, "coin");
+  return restCoin;
+}
+const updateCoin = async () => {
+  const restCoin = await getRestCoin();  
+  localStorage.setItem("coin", restCoin);
+}
 
+const decreaseCoin = async () => {
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const userCoin = await getRestCoin();
+  await db.collection("accounts").doc(userId).update({coin: Number(userCoin) - 1});
+}
 
+const checkFirstVisit = async () => { 
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const isVisit = await getData("accounts", userId, "eventVisit");
+  if(isVisit) {
+    return;
+  }
+  db.collection("accounts").doc(userId).update({eventVisit: true ,coin: 1});
+  welcomeModal();  
+  myRestTickets.innerText = `남은 동전: ${await getRestCoin()}`;
+}
+
+checkFirstVisit();
 
 const renderMyTicket = async () => {
   const localTicketGrade = localStorage.getItem("ticketGrade");
@@ -88,10 +120,8 @@ const generateTicketData = async () => {
 };
 
 const updateTicketCount = () => {
-  getData("event", "ticket-count", "units").then((data) => {});
   getRestTickets().then((availableSeats) => {
     ticketCounter.innerText = availableSeats.length;
-    console.log("rest ticket:", availableSeats.length);
   });
 };
 
@@ -127,22 +157,16 @@ const printTicket = () => {
       ticket.style.opacity = "1";
 
       generateTicketData();
-      decreaseTicketCount();
 
       setTimeout(() => {
         ticket.style.animationName = "printingTicket";
 
-        setTimeout(() => {
+        setTimeout(async() => {
           updateTicketCount();
           printBtn.classList.remove("working");
           // ticket.style.animationName = "none";
-          localStorage.setItem(
-            "restTickets",
-            localStorage.getItem("restTickets") - 1
-          );
-          myRestTickets.innerText = `남은 동전: ${localStorage.getItem(
-            "restTickets"
-          )}`;
+          await decreaseCoin();
+          myRestTickets.innerText = `남은 동전: ${await getRestCoin()}`;
 
           setTimeout(() => {
             const ticketGrade = localStorage.getItem("ticketGrade");
@@ -415,28 +439,13 @@ const confirmModal = () => {
 
 updateTicketCount();
 
-const getRestCoin = async () => {
-  const userSession = localStorage.getItem("sessions");
-  const sessionData = await db.collection("sessions").doc(userSession).get();
-  const userId = sessionData.data().userId;
-  const restCoin = await getData("accounts", userId, "coin");
-  return restCoin;
-}
-const updateCoin = async () => {
-  const restCoin = await getRestCoin();  
-  localStorage.setItem("coin", restCoin);
-}
 
-const checkFirstVisit = () => {
-  const userSession = localStorage.getItem("sessions");
-  db.collection("accounts").doc(userSession).update({coin: 1});
-  welcomeModal();  
-}
 
 const myRestTickets = document.querySelector(".my-rest-tickets");
 const printRestCoin = async () => {
-  myRestTickets.innerText = `남은 동전: ${getRestCoin()}`;
+  myRestTickets.innerText = `남은 동전: ${await getRestCoin()}`;
 }
+printRestCoin();
 
 
 const moveElement = (event) => {
@@ -556,8 +565,8 @@ const getCoin = () => {
 }
 
 const getCoinBtn = document.querySelector(".get-coin-btn");
-getCoinBtn.addEventListener("click", (e) => {
-  if (+localStorage.getItem("restTickets") === 0) {
+getCoinBtn.addEventListener("click", async(e) => {
+  if (await getRestCoin() < 1) {
     noTicketModal();
     return;
   }
