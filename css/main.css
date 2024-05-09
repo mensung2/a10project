@@ -1,8 +1,5 @@
 @import "./reset.css";
 
-nav {
-  margin-top: 10px;
-}
 body {
     background-color: #2D2D2D;
     position: relative;

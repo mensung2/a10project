@@ -415,15 +415,29 @@ const confirmModal = () => {
 
 updateTicketCount();
 
-const restTickets = localStorage.getItem("restTickets");
-console.log(restTickets);
-if (restTickets === null) {
-  localStorage.setItem("restTickets", 1);
-  welcomeModal();
+const getRestCoin = async () => {
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const restCoin = await getData("accounts", userId, "coin");
+  return restCoin;
+}
+const updateCoin = async () => {
+  const restCoin = await getRestCoin();  
+  localStorage.setItem("coin", restCoin);
+}
+
+const checkFirstVisit = () => {
+  const userSession = localStorage.getItem("sessions");
+  db.collection("accounts").doc(userSession).update({coin: 1});
+  welcomeModal();  
 }
 
 const myRestTickets = document.querySelector(".my-rest-tickets");
-myRestTickets.innerText = `남은 동전: ${localStorage.getItem("restTickets")}`;
+const printRestCoin = async () => {
+  myRestTickets.innerText = `남은 동전: ${getRestCoin()}`;
+}
+
 
 const moveElement = (event) => {
   const element = event.target;

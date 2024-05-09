@@ -31,7 +31,7 @@ const getNav = () => {
   fetch("../nav.html")
     .then((response) => response.text())
     .then((data) => {
-      document.getElementById("search-nav").innerHTML = data;
+      document.getElementById("header-nav").innerHTML = data;
       document
         .querySelector(".search-btn")
         .addEventListener("click", async function (event) {
