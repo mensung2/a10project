@@ -8,16 +8,27 @@ body {
   /* background-color: black; */
 }
 
-#section-container-button {
-  position: absolute;
+#header-nav {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#section-container-button {
+  position: relative;
+  top: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height :100%;
   color: #d8d8d8;
   font-size: 30px;
   font-weight: 700;
   background-color: transparent;
   border: none;
-  top: 140px;
-  left: 40px;
 
   img {
     color: white;
