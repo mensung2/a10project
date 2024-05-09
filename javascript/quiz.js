@@ -9,20 +9,21 @@ const getNav = () => {
 getNav();
 
 const backToPage = () => {
-  location.href="./main.html";
-}
+  location.href = "./index.html";
+};
 
 const goToNextStage = () => {
   const currLevel = localStorage.getItem("currLevel");
-  if(currLevel > 5) {
-    const message = "축하합니다! 모든 문제를 푸셨습니다!<br>티켓을 뽑을 수 있는 동전을 하나 드릴게요!";
+  if (currLevel > 5) {
+    const message =
+      "축하합니다! 모든 문제를 푸셨습니다!<br>티켓을 뽑을 수 있는 동전을 하나 드릴게요!";
     localStorage.setItem("currLevel", 0);
     renderSingleBtnModal(message);
-    return
+    return;
   }
   localStorage.setItem("currLevel", +currLevel + 1);
   render();
-}
+};
 const template = {
   singleBtn: `<button class="cancel">닫기</button>`,
   multiBtn: `
@@ -74,11 +75,11 @@ const renderSingleBtnModal = (body) => {
   cancelBtn.addEventListener("click", (e) => {
     e.preventDefault();
     // closeModal();
-    location.href = "./main.html";
+    location.href = "./index.html";
   });
 };
 
-const renderMultiBtnModal = (body,prevCallback, nextCallback) => {
+const renderMultiBtnModal = (body, prevCallback, nextCallback) => {
   const existModal = document.querySelector(".modal");
   if (existModal) {
     return;
@@ -95,7 +96,7 @@ const renderMultiBtnModal = (body,prevCallback, nextCallback) => {
   prevBtn.addEventListener("click", (e) => {
     e.preventDefault();
     closeModal();
-    prevCallback()
+    prevCallback();
   });
   nextBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -105,8 +106,8 @@ const renderMultiBtnModal = (body,prevCallback, nextCallback) => {
 };
 
 const render = async () => {
-  const existingContainer = document.querySelector('.quiz-container');
-  if(existingContainer) {
+  const existingContainer = document.querySelector(".quiz-container");
+  if (existingContainer) {
     existingContainer.remove();
   }
   let currLevel = localStorage.getItem("currLevel");
@@ -178,7 +179,6 @@ const render = async () => {
     <p>정답 : ${answer}</p>
     <p>${explan}</p>
     `;
-
 
     renderMultiBtnModal(modalTemplate, backToPage, goToNextStage);
   });
