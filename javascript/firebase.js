@@ -76,7 +76,3 @@ db.collection("event").doc("tickets").get().then(data => {
 
 //이벤트 자리에 무비 코멘트
 //티켓츠자리에 문서이름(댓글하나하나)
-
-db.collection("event").doc("hello").set({
-  a: 10,
-})
