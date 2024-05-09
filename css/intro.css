@@ -1,4 +1,4 @@
-@import './reset.css';
+@import "./reset.css";
 
 body {
   width: 100%;
@@ -30,7 +30,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .introtop h2 {
@@ -83,7 +83,7 @@ main {
   text-align: center;
   font-size: 40px;
   color: white;
-  font-weight: 700
+  font-weight: 700;
 }
 
 .section-title {
@@ -102,12 +102,16 @@ main {
   justify-content: center;
   width: 100%;
   max-width: 1440px;
-  height : 100%;
+  height: 100%;
 }
 
 .member {
   width: 300px;
-  height :400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .member img {
@@ -115,9 +119,13 @@ main {
 }
 
 .member .job {
-
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff200;
 }
 
 .member .name {
-  
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
 }
