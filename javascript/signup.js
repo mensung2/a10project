@@ -257,7 +257,7 @@ const confirmInputValues = async () => {
   };
   sessionStorage.setItem("authMailState", JSON.stringify(authMailState));
 
-  // sendAuthMail(username.value, email.value, serialNumber);
+  sendAuthMail(username.value, email.value, serialNumber);
   alert("성공적으로 메일을 보냈습니다!");
   sendAuthMailBtn.innerText = "인증메일 발송완료";
   sendAuthMailBtn.classList.add("complete");
@@ -362,11 +362,8 @@ signupBtn.addEventListener("click", async () => {
     });
 });
 
-// Firebase에서 expireDate가 지난 인증 데이터들을 제거.
 removeExpiredCertifications();
-// input 태
 addInputValidationListener();
-// checkSerialNumber();
 
 const sendAuthMailBtn = document.querySelector(".send-auth-num-btn");
 sendAuthMailBtn.addEventListener("click", () => {

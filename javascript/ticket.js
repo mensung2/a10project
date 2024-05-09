@@ -88,6 +88,7 @@ const generateTicketData = async () => {
     .then((availableSeats) => {
       const randomIndex = Math.floor(Math.random() * availableSeats.length);
       const seat = availableSeats[randomIndex];
+      // const seat = 
       return seat;
     })
     .then((seat) => {
@@ -100,6 +101,7 @@ const generateTicketData = async () => {
 
         const seatInfo = soldSeat.id;
         const seatSerialNumber = data[seat].serialNumber;
+
         const ticket = document.querySelector(".ticket");
         ticket.classList.remove("grade-VIP");
         ticket.classList.remove("grade-R");

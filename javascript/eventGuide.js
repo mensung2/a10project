@@ -98,11 +98,6 @@ const renderGuidPage = async () => {
     e.preventDefault();
     window.location.href = "../event.html";
   });
-
-  const backgSpaceButton = document.getElementById("section-container-button");
-  backgSpaceButton.addEventListener("click", (e) => {
-    history.go(-1);
-  });
 };
 
 renderGuidPage();

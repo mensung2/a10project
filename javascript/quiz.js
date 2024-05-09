@@ -1,3 +1,11 @@
+const getRestCoin = async () => {
+  const userSession = localStorage.getItem("sessions");
+  const sessionData = await db.collection("sessions").doc(userSession).get();
+  const userId = sessionData.data().userId;
+  const restCoin = await getData("accounts", userId, "coin");
+  return restCoin;
+}
+
 const getNav = () => {
   fetch("../nav.html")
     .then((response) => response.text())
